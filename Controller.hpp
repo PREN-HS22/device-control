@@ -1,6 +1,7 @@
 #pragma once
 
 #include <ArduinoSTL.h>
+#include <array>
 #include "Reportable.hpp"
 #include "Arm.hpp"
 #include "Container.hpp"
