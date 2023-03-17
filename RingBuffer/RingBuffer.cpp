@@ -17,7 +17,7 @@ namespace PREN
     }
 
     template <typename T, std::size_t N>
-    size_t RingBuffer<T, N>::GetCapacity()
+    std::size_t RingBuffer<T, N>::GetCapacity()
     {
         return this->buffer->max_size;
     }
