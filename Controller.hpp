@@ -1,5 +1,6 @@
 #pragma once
 
+#include <ArduinoSTL.h>
 #include "Arm.hpp"
 #include "Container.hpp"
 #include "Conveyor.hpp"
@@ -13,7 +14,7 @@ namespace PREN
     class Controller {
     private:
         Component::ElectroMagnet em;
-        Component::Container *containers[4];
+        std::array<Component::Container, 4> containers;
         Component::Arm arm;
         Component::Vacuum vacuum;
         Component::Conveyor conveyor;
