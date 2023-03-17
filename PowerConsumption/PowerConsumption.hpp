@@ -15,7 +15,7 @@ namespace PREN
         PowerConsumption();
         ~PowerConsumption();
 
-        void AddMeasurement(float v);
+        void AddWattsMeasurement(float v);
         void Clear();
         std::size_t GetCapacity();
         float GetCurrentWatts();

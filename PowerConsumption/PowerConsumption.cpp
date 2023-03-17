@@ -13,7 +13,7 @@ namespace PREN
     }
 
     template <std::size_t N>
-    void PowerConsumption<N>::AddMeasurement(float v)
+    void PowerConsumption<N>::AddWattsMeasurement(float v)
     {
         this->data.Push(v);
     }
