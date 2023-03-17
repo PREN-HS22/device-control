@@ -17,10 +17,10 @@ namespace PREN
         ~RingBuffer();
 
         size_t GetCapacity();
-        void Add(T obj);
+        void Push(T obj);
         void Clear();
         bool IsEmpty();
-        T GetNext();
+        T Pop();
         T PeekTail();
         T PeekHead();
     };

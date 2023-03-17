@@ -25,7 +25,7 @@ namespace PREN
     }
 
     template <typename T>
-    void RingBuffer<T>::Add(T obj)
+    void RingBuffer<T>::Push(T obj)
     {
         this->head = this->empty ? this->head : (this->head + 1) % this->capacity;
         this->buffer[this->head] = obj;
@@ -52,7 +52,7 @@ namespace PREN
     }
 
     template <typename T>
-    T RingBuffer<T>::GetNext()
+    T RingBuffer<T>::Pop()
     {
         if (!this->HasNext())
         {
