@@ -11,6 +11,7 @@ namespace PREN
         bool empty;
         unsigned int head, tail;
         std::array<T, N> buffer;
+        friend class SlidingRange;
 
     public:
         RingBuffer();
