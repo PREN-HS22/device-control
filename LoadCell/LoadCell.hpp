@@ -2,6 +2,7 @@
 #include "Emergency.hpp"
 #include "Reportable.hpp"
 #include "HX711_ADC.h"
+#include "SlidingRange.hpp"
 
 namespace PREN::Component
 {
@@ -11,6 +12,7 @@ namespace PREN::Component
     private:
         HX711_ADC device;
         Report status;
+        SlidingRange<D * S> data;
 
     public:
         LoadCell(unsigned int dout, unsigned int sck);
