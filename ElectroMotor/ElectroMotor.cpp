@@ -2,7 +2,7 @@
 
 namespace PREN::Component
 {
-    ElectroMotor::ElectroMotor(/* args */)
+    ElectroMotor::ElectroMotor()
     {
     }
 

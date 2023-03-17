@@ -10,7 +10,7 @@ namespace PREN::Component
         Report status;
 
     public:
-        Conveyor(/* args */);
+        Conveyor();
         virtual ~Conveyor();
 
         void Start();

@@ -2,7 +2,7 @@
 
 namespace PREN::Component
 {
-    ElectroMagnet::ElectroMagnet(/* args */)
+    ElectroMagnet::ElectroMagnet()
     {
     }
 
