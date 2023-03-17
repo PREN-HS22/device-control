@@ -1,22 +1,22 @@
 #pragma once
-#include <stdlib.h>
+#include <ArduinoSTL.h>
+#include <array>
 
 namespace PREN
 {
-    template <typename T>
+    template <typename T, std::size_t N>
     class RingBuffer
     {
     private:
-        size_t capacity;
         bool empty;
         unsigned int head, tail;
-        T buffer[];
+        std::array<T, N> buffer;
 
     public:
-        RingBuffer(size_t capacity);
+        RingBuffer();
         ~RingBuffer();
 
-        size_t GetCapacity();
+        std::size_t GetCapacity();
         void Push(T obj);
         void Clear();
         bool IsEmpty();
