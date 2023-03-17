@@ -85,25 +85,25 @@ namespace PREN
     }
 
     template <typename T, std::size_t N>
-    RingBuffer<T, N>::const_iterator RingBuffer<T, N>::begin() const
+    typename std::array<T, N>::const_iterator RingBuffer<T, N>::begin() const
     {
         return this->buffer->begin();
     }
 
     template <typename T, std::size_t N>
-    RingBuffer<T, N>::const_iterator RingBuffer<T, N>::cbegin() const
+    typename std::array<T, N>::const_iterator RingBuffer<T, N>::cbegin() const
     {
         return this->buffer->cbegin();
     }
 
     template <typename T, std::size_t N>
-    RingBuffer<T, N>::const_iterator RingBuffer<T, N>::end() const
+    typename std::array<T, N>::const_iterator RingBuffer<T, N>::end() const
     {
         return this->buffer->end();
     }
    
     template <typename T, std::size_t N>
-    RingBuffer<T, N>::const_iterator RingBuffer<T, N>::cend() const
+    typename std::array<T, N>::const_iterator RingBuffer<T, N>::cend() const
     {
         return this->buffer->cend();
     }

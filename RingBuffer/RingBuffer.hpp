@@ -25,11 +25,9 @@ namespace PREN
         T PeekHead();
 
         // Provide constant iterator for range iteration
-        typedef std::array<T, N>::const_iterator const_iterator;
-
-        const_iterator begin() const;
-        const_iterator cbegin() const;
-        const_iterator end() const;
-        const_iterator cend() const;
+        typename std::array<T, N>::const_iterator begin() const;
+        typename std::array<T, N>::const_iterator cbegin() const;
+        typename std::array<T, N>::const_iterator end() const;
+        typename std::array<T, N>::const_iterator cend() const;
     };
 }
