@@ -41,4 +41,9 @@ namespace PREN
     float Controller::TotalConsumedPower()
     {
     }
+
+    Report &Controller::GetStatusReport()
+    {
+        return this->status;
+    }
 }
