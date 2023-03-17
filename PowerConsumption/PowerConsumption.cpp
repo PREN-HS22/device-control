@@ -31,13 +31,13 @@ namespace PREN
     }
 
     template <std::size_t N>
-    float PowerConsumption<N>::GetCurrentConsumption()
+    float PowerConsumption<N>::GetCurrentWatts()
     {
         return this->data->PeekHead();
     }
 
     template <std::size_t N>
-    float PowerConsumption<N>::GetTotalConsumption()
+    float PowerConsumption<N>::GetTotalWatts()
     {
     }
 

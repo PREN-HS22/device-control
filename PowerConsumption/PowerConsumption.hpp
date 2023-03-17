@@ -9,7 +9,7 @@ namespace PREN
     {
     private:
         RingBuffer<float, N> data;
-        float totalConsumption;
+        float totalWatts;
 
     public:
         PowerConsumption();
@@ -18,8 +18,8 @@ namespace PREN
         void AddMeasurement(float v);
         void Clear();
         std::size_t GetCapacity();
-        float GetCurrentConsumption();
-        float GetTotalConsumption();
+        float GetCurrentWatts();
+        float GetTotalWatts();
 
         // Implement iterator
         typename std::array<float, N>::const_iterator begin() const;
