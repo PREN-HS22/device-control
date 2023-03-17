@@ -8,7 +8,7 @@ namespace PREN::Component
     class LoadCell : public Emergency, public Reportable
     {
     private:
-        HX711_ADC *device;
+        HX711_ADC device;
     public:
         LoadCell(unsigned int out, unsigned int clk);
         virtual ~LoadCell();
