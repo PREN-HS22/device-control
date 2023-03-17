@@ -39,7 +39,7 @@ namespace PREN
     template <std::size_t N>
     float PowerConsumption<N>::GetTotalWatts()
     {
-        return this->totalConsumption;
+        return this->totalWatts;
     }
 
     template <std::size_t N>
