@@ -2,32 +2,32 @@
 
 namespace PREN::Component
 {
-    template <unsigned int P1, unsigned int P2>
-    LoadCell<P1, P2>::LoadCell() : device(P1, P2)
+    template <std::size_t D, std::size_t S>
+    LoadCell<D, S>::LoadCell(unsigned int dout, unsigned int sck) : device(dout, sck)
     {
     }
 
-    LoadCell<P1, P2>::~LoadCell()
+    LoadCell<D, S>::~LoadCell()
     {
     }
 
-    float LoadCell<P1, P2>::GetValue()
+    float LoadCell<D, S>::GetValue()
     {
     }
 
-    void LoadCell<P1, P2>::Tare()
+    void LoadCell<D, S>::Tare()
     {
     }
 
-    void LoadCell<P1, P2>::RaiseEmergency()
+    void LoadCell<D, S>::RaiseEmergency()
     {
     }
 
-    void LoadCell<P1, P2>::RaiseEmergency()
+    void LoadCell<D, S>::RaiseEmergency()
     {
     }
 
-    Report &LoadCell<P1, P2>::GetStatusReport()
+    Report &LoadCell<D, S>::GetStatusReport()
     {
         return this->status;
     }
