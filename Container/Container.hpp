@@ -1,6 +1,7 @@
 #pragma once
 #include "Emergency.hpp"
 #include "Reportable.hpp"
+#include "LoadCell.hpp"
 
 namespace PREN::Component
 {
@@ -18,6 +19,7 @@ namespace PREN::Component
     private:
         ContainerType type;
         Report status;
+        LoadCell lc;
 
     public:
         Container(ContainerType t);
