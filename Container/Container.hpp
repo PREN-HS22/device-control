@@ -1,6 +1,6 @@
 #pragma once
-#include "../Emergency.hpp"
-#include "../Reportable.hpp"
+#include "Emergency.hpp"
+#include "Reportable.hpp"
 
 namespace PREN::Component
 {

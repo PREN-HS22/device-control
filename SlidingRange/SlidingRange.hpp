@@ -1,6 +1,6 @@
 #pragma once
-#include "../Derivable.hpp"
-#include "../Integratable.hpp"
+#include "Derivable.hpp"
+#include "Integratable.hpp"
 
 namespace PREN
 {
