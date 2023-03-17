@@ -2,7 +2,7 @@
 
 namespace PREN
 {
-    template <class T, class U>
+    template <typename T, typename U>
     class Integratable
     {
     public:
