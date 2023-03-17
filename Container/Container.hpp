@@ -16,6 +16,7 @@ namespace PREN::Component
     class Container : public Emergency, public Reportable
     {
     private:
+        ContainerType type;
         Report status;
 
     public:

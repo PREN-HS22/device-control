@@ -2,7 +2,7 @@
 
 namespace PREN::Component
 {
-    Container::Container(ContainerType t)
+    Container::Container(ContainerType t) : type(t)
     {
     }
 
@@ -12,6 +12,7 @@ namespace PREN::Component
 
     ContainerType Container::GetType()
     {
+        return this->type;
     }
 
     unsigned int Container::GetContentAmount()
