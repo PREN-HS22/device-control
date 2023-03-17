@@ -8,7 +8,7 @@ namespace PREN::Component
     {
     public:
         Arm();
-        ~Arm();
+        virtual ~Arm();
 
         void Descend();
         void Ascend();

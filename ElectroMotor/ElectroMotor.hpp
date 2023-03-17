@@ -8,7 +8,7 @@ namespace PREN::Component
     {
     public:
         ElectroMotor();
-        ~ElectroMotor();
+        virtual ~ElectroMotor();
 
         void Rotate(float angularVelocity, float torque, float duration);
         void Stop();

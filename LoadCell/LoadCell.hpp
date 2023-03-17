@@ -8,12 +8,11 @@ namespace PREN::Component
     {
     public:
         LoadCell(unsigned int out, unsigned int clk);
-        ~LoadCell();
+        virtual ~LoadCell();
 
         float GetValue();
         void Tare();
         void RaiseEmergency();
         Report* GetStatusReport();
     };
-
 }

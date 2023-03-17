@@ -17,7 +17,7 @@ namespace PREN::Component
 
     public:
         Container(ContainerType t);
-        ~Container();
+        virtual ~Container();
 
         ContainerType GetType();
         unsigned int GetAmount();

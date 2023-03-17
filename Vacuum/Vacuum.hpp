@@ -8,7 +8,7 @@ namespace PREN::Component
     {
     public:
         Vacuum();
-        ~Vacuum();
+        virtual ~Vacuum();
 
         void Start();
         void Stop();

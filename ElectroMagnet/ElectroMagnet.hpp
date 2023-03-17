@@ -8,7 +8,7 @@ namespace PREN::Component
     {
     public:
         ElectroMagnet();
-        ~ElectroMagnet();
+        virtual ~ElectroMagnet();
 
         void Enable();
         void Disable();

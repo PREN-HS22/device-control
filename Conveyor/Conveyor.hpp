@@ -8,7 +8,7 @@ namespace PREN::Component
     {
     public:
         Conveyor(/* args */);
-        ~Conveyor();
+        virtual ~Conveyor();
 
         void Start();
         void Stop();
