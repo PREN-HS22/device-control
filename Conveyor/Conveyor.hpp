@@ -6,6 +6,9 @@ namespace PREN::Component
 {
     class Conveyor : public Emergency, public Reportable
     {
+    private:
+        Report status;
+
     public:
         Conveyor(/* args */);
         virtual ~Conveyor();
@@ -15,6 +18,6 @@ namespace PREN::Component
         void SetSpeed(float s);
         float GetSpeed();
         void RaiseEmergency();
-        Report* GetStatusReport();
+        Report &GetStatusReport();
     };
 }

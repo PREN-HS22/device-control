@@ -26,7 +26,8 @@ namespace PREN::Component
     {
     }
 
-    Report* Container::GetStatusReport()
+    Report &Container::GetStatusReport()
     {
+        return this->status;
     }
 }

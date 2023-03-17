@@ -15,6 +15,9 @@ namespace PREN::Component
             E
         };
 
+    private:
+        Report status;
+
     public:
         Container(ContainerType t);
         virtual ~Container();
@@ -23,6 +26,6 @@ namespace PREN::Component
         unsigned int GetAmount();
         float GetConfidence();
         void RaiseEmergency();
-        Report* GetStatusReport();
+        Report &GetStatusReport();
     };
 }

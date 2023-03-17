@@ -6,6 +6,9 @@ namespace PREN::Component
 {
     class Arm : public Emergency, public Reportable
     {
+    private:
+        Report status;
+
     public:
         Arm();
         virtual ~Arm();
@@ -17,6 +20,6 @@ namespace PREN::Component
         float GetDistance();
         float GetAngle();
         void RaiseEmergency();
-        Report* GetStatusReport();
+        Report &GetStatusReport();
     };
 }

@@ -38,7 +38,8 @@ namespace PREN::Component
     {
     }
 
-    Report* ElectroMagnet::GetStatusReport()
+    Report &ElectroMagnet::GetStatusReport()
     {
+        return this->status;
     }
 }

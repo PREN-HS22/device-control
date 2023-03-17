@@ -6,6 +6,6 @@ namespace PREN
     class Reportable
     {
     public:
-        virtual Report* GetStatusReport() = 0;
+        virtual Report &GetStatusReport() = 0;
     };
 }

@@ -26,7 +26,8 @@ namespace PREN::Component
     {
     }
 
-    Report* ElectroMotor::GetStatusReport()
+    Report &ElectroMotor::GetStatusReport()
     {
+        return this->status;
     }
 }

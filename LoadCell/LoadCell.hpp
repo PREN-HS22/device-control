@@ -9,6 +9,8 @@ namespace PREN::Component
     {
     private:
         HX711_ADC device;
+        Report status;
+
     public:
         LoadCell(unsigned int dout, unsigned int sck);
         virtual ~LoadCell();
@@ -16,6 +18,6 @@ namespace PREN::Component
         float GetValue();
         void Tare();
         void RaiseEmergency();
-        Report* GetStatusReport();
+        Report &GetStatusReport();
     };
 }

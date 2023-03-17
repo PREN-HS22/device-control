@@ -6,6 +6,9 @@ namespace PREN::Component
 {
     class ElectroMotor : public Emergency, public Reportable
     {
+    private:
+        Report status;
+
     public:
         ElectroMotor();
         virtual ~ElectroMotor();
@@ -13,6 +16,6 @@ namespace PREN::Component
         void Rotate(float angularVelocity, float torque, float duration);
         void Stop();
         void RaiseEmergency();
-        Report* GetStatusReport();
+        Report &GetStatusReport();
     };
 }

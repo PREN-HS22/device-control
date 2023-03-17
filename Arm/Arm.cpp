@@ -38,7 +38,8 @@ namespace PREN::Component
     {
     }
 
-    Report* Arm::GetStatusReport()
+    Report &Arm::GetStatusReport()
     {
+        return this->status;
     }
 }

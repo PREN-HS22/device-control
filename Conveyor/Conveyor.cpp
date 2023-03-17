@@ -30,7 +30,8 @@ namespace PREN::Component
     {
     }
 
-    Report* Conveyor::GetStatusReport()
+    Report &Conveyor::GetStatusReport()
     {
+        return this->status;
     }
 }

@@ -6,6 +6,9 @@ namespace PREN::Component
 {
     class Vacuum : public Emergency, public Reportable
     {
+    private:
+        Report status;
+
     public:
         Vacuum();
         virtual ~Vacuum();
@@ -15,6 +18,6 @@ namespace PREN::Component
         void SetSpeed(float percentage);
         float GetSpeed();
         void RaiseEmergency();
-        Report* GetStatusReport();
+        Report &GetStatusReport();
     };
 }

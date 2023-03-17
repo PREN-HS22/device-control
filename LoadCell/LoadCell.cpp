@@ -26,7 +26,8 @@ namespace PREN::Component
     {
     }
 
-    Report* LoadCell::GetStatusReport()
+    Report &LoadCell::GetStatusReport()
     {
+        return this->status;
     }
 }

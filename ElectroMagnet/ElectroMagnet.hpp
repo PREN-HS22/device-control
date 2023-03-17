@@ -6,6 +6,9 @@ namespace PREN::Component
 {
     class ElectroMagnet : public Emergency, public Reportable
     {
+    private:
+        Report status;
+
     public:
         ElectroMagnet();
         virtual ~ElectroMagnet();
@@ -16,7 +19,7 @@ namespace PREN::Component
         void Rotate(float angle, float speed);
         void Cycle(int dir);
         void RaiseEmergency();
-        Report* GetStatusReport();
+        Report &GetStatusReport();
     };
 
 }
