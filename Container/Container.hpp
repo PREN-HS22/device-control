@@ -7,11 +7,10 @@ namespace PREN::Component
 {
     enum ContainerType
     {
-        A,
-        B,
-        C,
-        D,
-        E
+        PlasticCap,
+        CigaretteStup,
+        CrownCap,
+        Valuables
     };
 
     class Container : public Emergency, public Reportable
