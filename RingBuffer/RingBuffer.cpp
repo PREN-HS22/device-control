@@ -54,7 +54,7 @@ namespace PREN
     template <typename T>
     T RingBuffer<T>::Pop()
     {
-        if (!this->HasNext())
+        if (!this->IsEmpty())
         {
             return;
         }
