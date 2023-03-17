@@ -15,30 +15,31 @@ namespace PREN
     template <std::size_t N>
     void PowerConsumption<N>::AddMeasurement(float v)
     {
-        this->data->Push(v);
+        this->data.Push(v);
     }
 
     template <std::size_t N>
     void PowerConsumption<N>::Clear()
     {
-        this->data->Clear();
+        this->data.Clear();
     }
 
     template <std::size_t N>
     std::size_t PowerConsumption<N>::GetCapacity()
     {
-        return this->data->GetCapacity();
+        return this->data.GetCapacity();
     }
 
     template <std::size_t N>
     float PowerConsumption<N>::GetCurrentWatts()
     {
-        return this->data->PeekHead();
+        return this->data.PeekHead();
     }
 
     template <std::size_t N>
     float PowerConsumption<N>::GetTotalWatts()
     {
+        return this->totalConsumption;
     }
 
     template <std::size_t N>
