@@ -14,7 +14,7 @@ namespace PREN::Component
     {
     }
 
-    unsigned int Container::GetAmount()
+    unsigned int Container::GetContentAmount()
     {
     }
 

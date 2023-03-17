@@ -23,7 +23,7 @@ namespace PREN::Component
         virtual ~Container();
 
         ContainerType GetType();
-        unsigned int GetAmount();
+        unsigned int GetContentAmount();
         float GetConfidence();
         void RaiseEmergency();
         Report &GetStatusReport();
