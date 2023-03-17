@@ -4,6 +4,6 @@ namespace PREN
 {
     class Report {
         public:
-        virtual ~Report() = 0;
+        virtual ~Report();
     };
 }
