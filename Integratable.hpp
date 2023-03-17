@@ -6,6 +6,6 @@ namespace PREN
     class Integratable
     {
     public:
-        virtual T Integrate(U a, U b) = 0;
+        virtual T Integrate(U a, U b, U dx) = 0;
     };
 }

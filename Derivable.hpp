@@ -6,6 +6,6 @@ namespace PREN
     class Derivable
     {
     public:
-        virtual T Derive(U x) = 0;
+        virtual T Derive(U x, U dx) = 0;
     };
 }
