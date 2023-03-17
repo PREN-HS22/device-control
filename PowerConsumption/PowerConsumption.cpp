@@ -3,7 +3,7 @@
 namespace PREN
 {
     template <std::size_t N>
-    PowerConsumption<N>::PowerConsumption()
+    PowerConsumption<N>::PowerConsumption() : totalWatts(0)
     {
     }
 
