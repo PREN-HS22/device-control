@@ -10,7 +10,7 @@ namespace PREN::Component
     {
     }
 
-    Container::ContainerType Container::GetType()
+    ContainerType Container::GetType()
     {
     }
 

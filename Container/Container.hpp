@@ -4,17 +4,17 @@
 
 namespace PREN::Component
 {
+    enum ContainerType
+    {
+        A,
+        B,
+        C,
+        D,
+        E
+    };
+
     class Container : public Emergency, public Reportable
     {
-        enum ContainerType
-        {
-            A,
-            B,
-            C,
-            D,
-            E
-        };
-
     private:
         Report status;
 
