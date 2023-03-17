@@ -19,7 +19,7 @@ namespace PREN::Component
     private:
         ContainerType type;
         Report status;
-        LoadCell lc;
+        LoadCell<2, 3> lc;
 
     public:
         Container(ContainerType t);

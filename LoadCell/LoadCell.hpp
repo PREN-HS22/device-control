@@ -5,6 +5,7 @@
 
 namespace PREN::Component
 {
+    template <unsigned int P1, unsigned int P2>
     class LoadCell : public Emergency, public Reportable
     {
     private:
@@ -12,7 +13,7 @@ namespace PREN::Component
         Report status;
 
     public:
-        LoadCell(unsigned int dout, unsigned int sck);
+        LoadCell();
         virtual ~LoadCell();
 
         float GetValue();
