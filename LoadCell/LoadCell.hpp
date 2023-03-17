@@ -10,7 +10,7 @@ namespace PREN::Component
     private:
         HX711_ADC device;
     public:
-        LoadCell(unsigned int out, unsigned int clk);
+        LoadCell(unsigned int dout, unsigned int sck);
         virtual ~LoadCell();
 
         float GetValue();

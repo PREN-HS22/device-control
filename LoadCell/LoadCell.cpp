@@ -2,7 +2,7 @@
 
 namespace PREN::Component
 {
-    LoadCell::LoadCell(unsigned int out, unsigned int clk) : device(out, clk)
+    LoadCell::LoadCell(unsigned int dout, unsigned int sck) : device(dout, sck)
     {
     }
 
