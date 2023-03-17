@@ -13,7 +13,6 @@ namespace PREN
     template <typename T, std::size_t N>
     RingBuffer<T, N>::~RingBuffer()
     {
-        delete this->buffer;
     }
 
     template <typename T, std::size_t N>
