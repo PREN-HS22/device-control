@@ -10,35 +10,35 @@ namespace PREN
     {
     }
 
-    void Controller::Extend() {
-
+    void Controller::Extend()
+    {
     }
 
-    void Controller::Retract() {
-
+    void Controller::Retract()
+    {
     }
 
-    void Controller::StartCollecting() {
-
+    void Controller::StartCollecting()
+    {
     }
 
-    void Controller::StopCollecting() {
-
+    void Controller::StopCollecting()
+    {
     }
 
-    bool Controller::IsExtended() {
-
+    bool Controller::IsExtended()
+    {
     }
 
-    bool Controller::IsCollecting() {
-
+    bool Controller::IsCollecting()
+    {
     }
 
-    float Controller::CurrentPowerConsumption() {
-
+    float Controller::CurrentPowerConsumption()
+    {
     }
 
-    float Controller::TotalConsumedPower() {
-
+    float Controller::TotalConsumedPower()
+    {
     }
 }
