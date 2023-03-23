@@ -14,8 +14,16 @@ namespace PREN::Components
 
     class Container : public BaseComponent
     {
+    public:
+        enum Status
+        {
+            Idle,
+            Active
+        };
+
     private:
         ContainerType type;
+        Status status;
         LoadCell<2, 3> lc;
 
     public:
@@ -25,6 +33,7 @@ namespace PREN::Components
         ContainerType GetType();
         unsigned int GetContentAmount();
         float GetConfidence();
+        Status GetStatus();
         void RaiseEmergency();
         Report &GetStatusReport();
     };

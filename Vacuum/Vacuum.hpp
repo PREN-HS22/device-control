@@ -5,7 +5,15 @@ namespace PREN::Components
 {
     class Vacuum : public BaseComponent
     {
+    public:
+        enum Status
+        {
+            Idle,
+            Active
+        };
+
     private:
+        Status status;
 
     public:
         Vacuum(Controller *c);
@@ -15,6 +23,7 @@ namespace PREN::Components
         void Stop();
         void SetSpeed(float percentage);
         float GetSpeed();
+        Status GetStatus();
         void RaiseEmergency();
         Report &GetStatusReport();
     };

@@ -8,8 +8,17 @@ namespace PREN::Components
     template <std::size_t D = 1, std::size_t S = 20> // D: Duration in s, S: samples/s
     class LoadCell : public BaseComponent
     {
+    public:
+        enum Status
+        {
+            Idle,
+            Taring,
+            Active
+        };
+
     private:
         HX711_ADC device;
+        Status status;
         SlidingRange<D * S> data;
 
     public:
@@ -18,6 +27,7 @@ namespace PREN::Components
 
         float GetValue();
         void Tare();
+        Status GetStatus();
         void RaiseEmergency();
         Report &GetStatusReport();
     };

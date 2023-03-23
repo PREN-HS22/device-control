@@ -5,7 +5,15 @@ namespace PREN::Components
 {
     class Conveyor : public BaseComponent
     {
+    public:
+        enum Status
+        {
+            Idle,
+            Active
+        };
+
     private:
+        Status status;
 
     public:
         Conveyor(Controller *c);
@@ -15,6 +23,7 @@ namespace PREN::Components
         void Stop();
         void SetSpeed(float s);
         float GetSpeed();
+        Status GetStatus();
         void RaiseEmergency();
         Report &GetStatusReport();
     };

@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Container::Container(Controller *c, ContainerType t) : BaseComponent(c), type(t)
+    Container::Container(Controller *c, ContainerType t) : BaseComponent(c), status(Idle), type(t), lc(c, 2, 3)
     {
     }
 
@@ -21,6 +21,11 @@ namespace PREN::Components
 
     float Container::GetConfidence()
     {
+    }
+
+    Container::Status Container::GetStatus()
+    {
+        return this->status;
     }
 
     void Container::RaiseEmergency()

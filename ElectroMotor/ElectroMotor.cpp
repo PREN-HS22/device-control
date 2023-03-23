@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    ElectroMotor::ElectroMotor(Controller *c) : BaseComponent(c)
+    ElectroMotor::ElectroMotor(Controller *c) : BaseComponent(c), status(Idle)
     {
     }
 
@@ -18,8 +18,9 @@ namespace PREN::Components
     {
     }
 
-    void ElectroMotor::RaiseEmergency()
+    ElectroMotor::Status ElectroMotor::GetStatus()
     {
+        return this->status;
     }
 
     void ElectroMotor::RaiseEmergency()

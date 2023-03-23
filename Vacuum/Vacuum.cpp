@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Vacuum::Vacuum(Controller *c) : BaseComponent(c)
+    Vacuum::Vacuum(Controller *c) : BaseComponent(c), status(Idle)
     {
     }
 
@@ -24,6 +24,9 @@ namespace PREN::Components
 
     float Vacuum::GetSpeed()
     {
+    Vacuum::Status Vacuum::GetStatus()
+    {
+        return this->status;
     }
 
     void Vacuum::RaiseEmergency()

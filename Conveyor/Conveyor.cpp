@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Conveyor::Conveyor(Controller *c) : BaseComponent(c)
+    Conveyor::Conveyor(Controller *c) : BaseComponent(c), status(Idle)
     {
     }
 
@@ -24,6 +24,11 @@ namespace PREN::Components
 
     float Conveyor::GetSpeed()
     {
+    }
+
+    Conveyor::Status Conveyor::GetStatus()
+    {
+        return this->status;
     }
 
     void Conveyor::RaiseEmergency()

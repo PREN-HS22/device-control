@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    ElectroMagnet::ElectroMagnet(Controller *c) : BaseComponent(c)
+    ElectroMagnet::ElectroMagnet(Controller *c) : BaseComponent(c), status(Idle)
     {
     }
 
@@ -30,8 +30,9 @@ namespace PREN::Components
     {
     }
 
-    void ElectroMagnet::RaiseEmergency()
+    ElectroMagnet::Status ElectroMagnet::GetStatus()
     {
+        return this->status;
     }
 
     void ElectroMagnet::RaiseEmergency()

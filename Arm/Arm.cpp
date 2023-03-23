@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Arm::Arm(Controller *c) : BaseComponent(c)
+    Arm::Arm(Controller *c) : BaseComponent(c), status(Idle)
     {
     }
 
@@ -32,6 +32,11 @@ namespace PREN::Components
 
     float Arm::GetAngle()
     {
+    }
+
+    Arm::Status Arm::GetStatus()
+    {
+        return this->status;
     }
 
     void Arm::RaiseEmergency()
