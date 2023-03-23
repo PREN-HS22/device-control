@@ -1,6 +1,6 @@
 #include "ElectroMagnet.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     ElectroMagnet::ElectroMagnet()
     {

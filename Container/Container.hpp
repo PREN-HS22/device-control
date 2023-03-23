@@ -3,7 +3,7 @@
 #include "Reportable.hpp"
 #include "LoadCell.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     enum ContainerType
     {

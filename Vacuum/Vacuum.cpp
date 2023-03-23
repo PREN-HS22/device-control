@@ -1,6 +1,6 @@
 #include "Vacuum.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     Vacuum::Vacuum()
     {

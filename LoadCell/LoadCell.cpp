@@ -1,6 +1,6 @@
 #include "LoadCell.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     template <std::size_t D, std::size_t S>
     LoadCell<D, S>::LoadCell(unsigned int dout, unsigned int sck) : device(dout, sck)

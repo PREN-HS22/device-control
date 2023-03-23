@@ -1,6 +1,6 @@
 #include "Conveyor.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     Conveyor::Conveyor()
     {

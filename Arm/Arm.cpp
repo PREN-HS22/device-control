@@ -1,6 +1,6 @@
 #include "Arm.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     Arm::Arm()
     {

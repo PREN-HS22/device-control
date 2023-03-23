@@ -1,6 +1,6 @@
 #include "Container.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     Container::Container(ContainerType t) : type(t)
     {

@@ -1,6 +1,6 @@
 #include "ElectroMotor.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     ElectroMotor::ElectroMotor()
     {

@@ -2,7 +2,7 @@
 #include "Emergency.hpp"
 #include "Reportable.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     class Vacuum : public Emergency, public Reportable
     {

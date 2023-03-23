@@ -4,7 +4,7 @@
 #include "HX711_ADC.h"
 #include "SlidingRange.hpp"
 
-namespace PREN::Component
+namespace PREN::Components
 {
     template <std::size_t D, std::size_t S>
     class LoadCell : public Emergency, public Reportable
