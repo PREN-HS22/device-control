@@ -18,6 +18,7 @@ namespace PREN::Components
 
     private:
         Status status;
+        void Rotate(float angle, float speed);
 
     public:
         ElectroMagnet(Controller *c);
@@ -26,11 +27,9 @@ namespace PREN::Components
         void Enable();
         void Disable();
         bool IsEnabled();
-        void Rotate(float angle, float speed);
         void Cycle(int dir);
         Status GetStatus();
         void RaiseEmergency();
         Report &GetReport();
     };
-
 }
