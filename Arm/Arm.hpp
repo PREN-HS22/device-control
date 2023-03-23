@@ -25,8 +25,8 @@ namespace PREN::Components
         Arm(Controller *c);
         virtual ~Arm();
 
-        void Descend();
-        void Ascend();
+        void Extend();
+        void Retract();
         void Move(float distance, float speed);
         void Rotate(float angle, float speed);
         float GetDistance();

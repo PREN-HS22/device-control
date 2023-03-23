@@ -10,11 +10,11 @@ namespace PREN::Components
     {
     }
 
-    void Arm::Descend()
+    void Arm::Extend()
     {
     }
 
-    void Arm::Ascend()
+    void Arm::Retract()
     {
     }
 
