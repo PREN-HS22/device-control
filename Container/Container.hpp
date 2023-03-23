@@ -1,6 +1,5 @@
 #pragma once
-#include "Emergency.hpp"
-#include "Reportable.hpp"
+#include "BaseComponent.hpp"
 #include "LoadCell.hpp"
 
 namespace PREN::Components
@@ -13,15 +12,14 @@ namespace PREN::Components
         Valuables
     };
 
-    class Container : public Emergency, public Reportable
+    class Container : public BaseComponent
     {
     private:
         ContainerType type;
-        Report status;
         LoadCell<2, 3> lc;
 
     public:
-        Container(ContainerType t);
+        Container(Controller *c, ContainerType t);
         virtual ~Container();
 
         ContainerType GetType();

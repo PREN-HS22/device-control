@@ -3,7 +3,7 @@
 namespace PREN::Components
 {
     template <std::size_t D, std::size_t S>
-    LoadCell<D, S>::LoadCell(unsigned int dout, unsigned int sck) : device(dout, sck)
+    LoadCell<D, S>::LoadCell(Controller *c, unsigned int dout, unsigned int sck) : BaseComponent(c), device(dout, sck)
     {
     }
 
@@ -34,6 +34,6 @@ namespace PREN::Components
     template <std::size_t D, std::size_t S>
     Report &LoadCell<D, S>::GetStatusReport()
     {
-        return this->status;
+        return this->report;
     }
 }

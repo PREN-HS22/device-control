@@ -1,16 +1,14 @@
 #pragma once
-#include "Emergency.hpp"
-#include "Reportable.hpp"
+#include "BaseComponent.hpp"
 
 namespace PREN::Components
 {
-    class ElectroMagnet : public Emergency, public Reportable
+    class ElectroMagnet : public BaseComponent
     {
     private:
-        Report status;
 
     public:
-        ElectroMagnet();
+        ElectroMagnet(Controller *c);
         virtual ~ElectroMagnet();
 
         void Enable();

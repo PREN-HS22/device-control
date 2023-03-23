@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Arm::Arm()
+    Arm::Arm(Controller *c) : BaseComponent(c)
     {
     }
 
@@ -40,6 +40,6 @@ namespace PREN::Components
 
     Report &Arm::GetStatusReport()
     {
-        return this->status;
+        return this->report;
     }
 }

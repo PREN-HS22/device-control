@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Container::Container(ContainerType t) : type(t)
+    Container::Container(Controller *c, ContainerType t) : BaseComponent(c), type(t)
     {
     }
 
@@ -29,6 +29,6 @@ namespace PREN::Components
 
     Report &Container::GetStatusReport()
     {
-        return this->status;
+        return this->report;
     }
 }

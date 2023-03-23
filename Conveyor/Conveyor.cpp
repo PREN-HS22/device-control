@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Conveyor::Conveyor()
+    Conveyor::Conveyor(Controller *c) : BaseComponent(c)
     {
     }
 
@@ -32,6 +32,6 @@ namespace PREN::Components
 
     Report &Conveyor::GetStatusReport()
     {
-        return this->status;
+        return this->report;
     }
 }

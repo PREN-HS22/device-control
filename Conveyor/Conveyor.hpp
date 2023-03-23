@@ -1,16 +1,14 @@
 #pragma once
-#include "Emergency.hpp"
-#include "Reportable.hpp"
+#include "BaseComponent.hpp"
 
 namespace PREN::Components
 {
-    class Conveyor : public Emergency, public Reportable
+    class Conveyor : public BaseComponent
     {
     private:
-        Report status;
 
     public:
-        Conveyor();
+        Conveyor(Controller *c);
         virtual ~Conveyor();
 
         void Start();

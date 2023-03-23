@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    ElectroMagnet::ElectroMagnet()
+    ElectroMagnet::ElectroMagnet(Controller *c) : BaseComponent(c)
     {
     }
 
@@ -40,6 +40,6 @@ namespace PREN::Components
 
     Report &ElectroMagnet::GetStatusReport()
     {
-        return this->status;
+        return this->report;
     }
 }

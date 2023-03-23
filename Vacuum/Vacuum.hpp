@@ -1,16 +1,14 @@
 #pragma once
-#include "Emergency.hpp"
-#include "Reportable.hpp"
+#include "BaseComponent.hpp"
 
 namespace PREN::Components
 {
-    class Vacuum : public Emergency, public Reportable
+    class Vacuum : public BaseComponent
     {
     private:
-        Report status;
 
     public:
-        Vacuum();
+        Vacuum(Controller *c);
         virtual ~Vacuum();
 
         void Start();

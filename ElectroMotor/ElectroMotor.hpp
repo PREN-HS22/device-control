@@ -1,16 +1,14 @@
 #pragma once
-#include "Emergency.hpp"
-#include "Reportable.hpp"
+#include "BaseComponent.hpp"
 
 namespace PREN::Components
 {
-    class ElectroMotor : public Emergency, public Reportable
+    class ElectroMotor : public BaseComponent
     {
     private:
-        Report status;
 
     public:
-        ElectroMotor();
+        ElectroMotor(Controller *c);
         virtual ~ElectroMotor();
 
         void Rotate(float angularVelocity, float torque, float duration);

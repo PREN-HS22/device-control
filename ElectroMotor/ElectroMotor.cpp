@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    ElectroMotor::ElectroMotor()
+    ElectroMotor::ElectroMotor(Controller *c) : BaseComponent(c)
     {
     }
 
@@ -28,6 +28,6 @@ namespace PREN::Components
 
     Report &ElectroMotor::GetStatusReport()
     {
-        return this->status;
+        return this->report;
     }
 }

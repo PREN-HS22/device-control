@@ -1,16 +1,14 @@
 #pragma once
-#include "Emergency.hpp"
-#include "Reportable.hpp"
+#include "BaseComponent.hpp"
 
 namespace PREN::Components
 {
-    class Arm : public Emergency, public Reportable
+    class Arm : public BaseComponent
     {
     private:
-        Report status;
 
     public:
-        Arm();
+        Arm(Controller *c);
         virtual ~Arm();
 
         void Descend();

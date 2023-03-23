@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Vacuum::Vacuum()
+    Vacuum::Vacuum(Controller *c) : BaseComponent(c)
     {
     }
 
@@ -32,6 +32,6 @@ namespace PREN::Components
 
     Report &Vacuum::GetStatusReport()
     {
-        return this->status;
+        return this->report;
     }
 }
