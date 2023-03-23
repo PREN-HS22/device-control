@@ -33,7 +33,7 @@ namespace PREN::Components
     {
     }
 
-    Report &Vacuum::GetStatusReport()
+    Report &Vacuum::GetReport()
     {
         return this->report;
     }

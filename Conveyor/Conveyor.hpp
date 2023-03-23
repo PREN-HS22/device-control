@@ -25,6 +25,6 @@ namespace PREN::Components
         float GetSpeed();
         Status GetStatus();
         void RaiseEmergency();
-        Report &GetStatusReport();
+        Report &GetReport();
     };
 }

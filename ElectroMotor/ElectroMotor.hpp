@@ -23,6 +23,6 @@ namespace PREN::Components
         void Stop();
         Status GetStatus();
         void RaiseEmergency();
-        Report &GetStatusReport();
+        Report &GetReport();
     };
 }

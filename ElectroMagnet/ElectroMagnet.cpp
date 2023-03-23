@@ -39,7 +39,7 @@ namespace PREN::Components
     {
     }
 
-    Report &ElectroMagnet::GetStatusReport()
+    Report &ElectroMagnet::GetReport()
     {
         return this->report;
     }

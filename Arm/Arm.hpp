@@ -33,6 +33,6 @@ namespace PREN::Components
         float GetAngle();
         Status GetStatus();
         void RaiseEmergency();
-        Report &GetStatusReport();
+        Report &GetReport();
     };
 }

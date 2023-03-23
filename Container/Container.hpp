@@ -35,6 +35,6 @@ namespace PREN::Components
         float GetConfidence();
         Status GetStatus();
         void RaiseEmergency();
-        Report &GetStatusReport();
+        Report &GetReport();
     };
 }

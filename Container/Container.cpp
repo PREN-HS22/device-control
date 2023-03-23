@@ -32,7 +32,7 @@ namespace PREN::Components
     {
     }
 
-    Report &Container::GetStatusReport()
+    Report &Container::GetReport()
     {
         return this->report;
     }

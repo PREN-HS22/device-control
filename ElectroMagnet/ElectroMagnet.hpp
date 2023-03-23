@@ -30,7 +30,7 @@ namespace PREN::Components
         void Cycle(int dir);
         Status GetStatus();
         void RaiseEmergency();
-        Report &GetStatusReport();
+        Report &GetReport();
     };
 
 }

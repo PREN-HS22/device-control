@@ -29,6 +29,6 @@ namespace PREN::Components
         void Tare();
         Status GetStatus();
         void RaiseEmergency();
-        Report &GetStatusReport();
+        Report &GetReport();
     };
 }
