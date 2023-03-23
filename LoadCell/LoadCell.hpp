@@ -6,7 +6,7 @@
 
 namespace PREN::Components
 {
-    template <std::size_t D, std::size_t S>
+    template <std::size_t D = 1, std::size_t S = 20> // D: Duration in s, S: samples/s
     class LoadCell : public Emergency, public Reportable
     {
     private:
