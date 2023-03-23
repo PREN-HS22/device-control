@@ -49,6 +49,11 @@ namespace PREN::Components
 
     Report &Arm::GetReport()
     {
+        this->report["Status"] = this->GetStatus();
+        this->report["Distance"] = this->GetDistance();
+        this->report["Angle"] = this->GetAngle();
+        this->report["Retracted"] = this->IsRetracted();
+
         return this->report;
     }
 }

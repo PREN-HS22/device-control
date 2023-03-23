@@ -37,6 +37,9 @@ namespace PREN::Components
 
     Report &Conveyor::GetReport()
     {
+        this->report["Status"] = this->GetStatus();
+        this->report["Speed"] = this->GetSpeed();
+
         return this->report;
     }
 }

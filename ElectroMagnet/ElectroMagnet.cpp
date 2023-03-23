@@ -41,6 +41,8 @@ namespace PREN::Components
 
     Report &ElectroMagnet::GetReport()
     {
+        this->report["Status"] = this->GetStatus();
+
         return this->report;
     }
 }

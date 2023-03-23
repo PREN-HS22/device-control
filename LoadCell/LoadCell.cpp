@@ -36,6 +36,8 @@ namespace PREN::Components
     template <std::size_t D, std::size_t S>
     Report &LoadCell<D, S>::GetReport()
     {
+        this->report["Status"] = this->GetStatus();
+
         return this->report;
     }
 }

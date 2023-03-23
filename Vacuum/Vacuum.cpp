@@ -44,6 +44,10 @@ namespace PREN::Components
 
     Report &Vacuum::GetReport()
     {
+        this->report["Status"] = this->GetStatus();
+        this->report["Speed [%]"] = this->GetSpeed();
+        this->report["RPM"] = 0.f; // Calculate RPM of the motor
+
         return this->report;
     }
 }

@@ -34,6 +34,11 @@ namespace PREN::Components
 
     Report &Container::GetReport()
     {
+        this->report["Status"] = this->GetStatus();
+        this->report["ContainerType"] = this->GetType();
+        this->report["Amount"] = this->GetContentAmount();
+        this->report["Confidence"] = this->GetConfidence();
+
         return this->report;
     }
 }

@@ -39,6 +39,10 @@ namespace PREN::Components
 
     Report &ElectroMotor::GetReport()
     {
+        this->report["Status"] = this->GetStatus();
+        this->report["AngularVelocity"] = this->angularVel;
+        this->report["Torque"] = this->torque;
+
         return this->report;
     }
 }
