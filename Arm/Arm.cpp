@@ -26,6 +26,10 @@ namespace PREN::Components
     {
     }
 
+    bool Arm::IsRetracted()
+    {
+    }
+
     float Arm::GetDistance()
     {
     }

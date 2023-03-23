@@ -29,6 +29,7 @@ namespace PREN::Components
         void Retract();
         void Move(float distance, float speed);
         void Rotate(float angle, float speed);
+        bool IsRetracted();
         float GetDistance();
         float GetAngle();
         Status GetStatus();
