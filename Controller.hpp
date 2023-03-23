@@ -2,6 +2,7 @@
 
 #include <ArduinoSTL.h>
 #include <array>
+#include "Emergency.hpp"
 #include "Reportable.hpp"
 #include "Arm.hpp"
 #include "Container.hpp"
@@ -13,7 +14,7 @@
 
 namespace PREN
 {
-    class Controller : public Reportable
+    class Controller : public Emergency, public Reportable
     {
     private:
         Report status;
@@ -35,6 +36,7 @@ namespace PREN
         bool IsCollecting();
         float CurrentPowerConsumption();
         float TotalConsumedPower();
+        void RaiseEmergency();
         Report &GetReport();
     };
 }

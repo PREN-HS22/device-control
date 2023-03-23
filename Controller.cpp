@@ -42,6 +42,10 @@ namespace PREN
     {
     }
 
+    void Controller::RaiseEmergency()
+    {
+    }
+
     Report &Controller::GetReport()
     {
         return this->status;
