@@ -16,14 +16,23 @@ namespace PREN::Components
 
     void Vacuum::Stop()
     {
+        this->speedPctg = 0.f;
     }
 
     void Vacuum::SetSpeed(float percentage)
     {
+        if (! (0.f <= percentage && percentage <= 100.f)) {
+            return;
+        }
+
+        this->speedPctg = percentage;
     }
 
     float Vacuum::GetSpeed()
     {
+        return this->speedPctg;
+    }
+
     Vacuum::Status Vacuum::GetStatus()
     {
         return this->status;

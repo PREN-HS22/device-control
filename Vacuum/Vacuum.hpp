@@ -13,6 +13,7 @@ namespace PREN::Components
         };
 
     private:
+        float speedPctg;
         Status status;
 
     public:
