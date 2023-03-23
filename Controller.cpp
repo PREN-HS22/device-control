@@ -42,7 +42,7 @@ namespace PREN
     {
     }
 
-    Report &Controller::GetStatusReport()
+    Report &Controller::GetReport()
     {
         return this->status;
     }

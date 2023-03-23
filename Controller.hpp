@@ -35,6 +35,6 @@ namespace PREN
         bool IsCollecting();
         float CurrentPowerConsumption();
         float TotalConsumedPower();
-        Report &GetStatusReport();
+        Report &GetReport();
     };
 }
