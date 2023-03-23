@@ -17,11 +17,11 @@ namespace PREN
     {
     private:
         Report status;
-        Component::ElectroMagnet em;
-        std::array<Component::Container, 4> containers;
-        Component::Arm arm;
-        Component::Vacuum vacuum;
-        Component::Conveyor conveyor;
+        Components::ElectroMagnet em;
+        std::array<Components::Container, 4> containers;
+        Components::Arm arm;
+        Components::Vacuum vacuum;
+        Components::Conveyor conveyor;
 
     public:
         Controller();
