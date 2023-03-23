@@ -2,7 +2,7 @@
 
 namespace PREN
 {
-    Controller::Controller()
+    Controller::Controller() : em(this), arm(this), vacuum(this), conveyor(this), containers({})
     {
     }
 
