@@ -10,8 +10,9 @@ namespace PREN::Components
     {
     }
 
-    void ElectroMotor::Rotate(float angularVelocity, float torque, float duration)
+    void ElectroMotor::Rotate(float angularVel, float torque)
     {
+    void ElectroMotor::Rotate(float angularVel, float torque, float duration)
     }
 
     void ElectroMotor::Stop()

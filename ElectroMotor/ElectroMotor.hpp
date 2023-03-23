@@ -19,7 +19,8 @@ namespace PREN::Components
         ElectroMotor(Controller *c);
         virtual ~ElectroMotor();
 
-        void Rotate(float angularVelocity, float torque, float duration);
+        void Rotate(float angularVel, float torque);
+        void Rotate(float angularVel, float torque, float duration);
         void Stop();
         Status GetStatus();
         void RaiseEmergency();
