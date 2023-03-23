@@ -1,9 +1,7 @@
 #pragma once
+#include "Arduino_JSON.h"
 
 namespace PREN
 {
-    class Report {
-        public:
-        virtual ~Report();
-    };
+    class Report : public JSONVar {};
 }
