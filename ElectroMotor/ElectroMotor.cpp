@@ -12,11 +12,20 @@ namespace PREN::Components
 
     void ElectroMotor::Rotate(float angularVel, float torque)
     {
+        this->angularVel = angularVel;
+        this->torque = torque;
+    }
+
     void ElectroMotor::Rotate(float angularVel, float torque, float duration)
+    {
+        this->angularVel = angularVel;
+        this->torque = torque;
     }
 
     void ElectroMotor::Stop()
     {
+        this->angularVel = 0.f;
+        this->torque = 0.f;
     }
 
     ElectroMotor::Status ElectroMotor::GetStatus()

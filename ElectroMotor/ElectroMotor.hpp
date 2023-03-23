@@ -13,6 +13,7 @@ namespace PREN::Components
         };
 
     private:
+        float angularVel, torque;
         Status status;
 
     public:
