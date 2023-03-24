@@ -35,7 +35,7 @@ namespace PREN
         bool IsExtended();
         bool IsCollecting();
         float CurrentPowerConsumption();
-        float TotalConsumedPower();
+        float TotalPowerConsumption();
         void RaiseEmergency();
         Report &GetReport();
     };

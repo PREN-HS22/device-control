@@ -38,7 +38,7 @@ namespace PREN
     {
     }
 
-    float Controller::TotalConsumedPower()
+    float Controller::TotalPowerConsumption()
     {
     }
 
