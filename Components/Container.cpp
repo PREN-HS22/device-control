@@ -2,7 +2,7 @@
 
 namespace PREN::Components
 {
-    Container::Container(Controller *c, ContainerType t) : BaseComponent(c), status(Idle), type(t), lc(c, 2, 3)
+    Container::Container(Controller *c, ContainerType t) : BaseComponent(c), status(Idle), type(t), lc(c, 2U, 3U)
     {
     }
 
@@ -30,6 +30,7 @@ namespace PREN::Components
 
     void Container::RaiseEmergency()
     {
+        // Stop device
     }
 
     Report &Container::GetReport()

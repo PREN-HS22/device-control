@@ -1,7 +1,7 @@
 #pragma once
+#include <HX711_ADC.h>
 #include "BaseComponent.hpp"
-#include "HX711_ADC.h"
-#include "SlidingRange.hpp"
+#include "../Misc/SlidingRange.hpp"
 
 namespace PREN::Components
 {
@@ -19,7 +19,7 @@ namespace PREN::Components
     private:
         HX711_ADC device;
         Status status;
-        SlidingRange<D * S> data;
+        SlidingRange<(D * S)> data;
 
     public:
         LoadCell(Controller *c, unsigned int dout, unsigned int sck);

@@ -4,13 +4,14 @@
 #include <array>
 #include "Emergency.hpp"
 #include "Reportable.hpp"
-#include "Arm.hpp"
-#include "Container.hpp"
-#include "Conveyor.hpp"
-#include "ElectroMagnet.hpp"
-#include "ElectroMotor.hpp"
-#include "LoadCell.hpp"
-#include "Vacuum.hpp"
+#include "Components/Arm.hpp"
+#include "Components/Container.hpp"
+#include "Components/Conveyor.hpp"
+#include "Components/ElectroMagnet.hpp"
+#include "Components/ElectroMotor.hpp"
+#include "Components/Lcd.hpp"
+#include "Components/LoadCell.hpp"
+#include "Components/Vacuum.hpp"
 
 namespace PREN
 {

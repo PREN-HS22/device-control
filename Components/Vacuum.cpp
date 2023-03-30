@@ -40,6 +40,8 @@ namespace PREN::Components
 
     void Vacuum::RaiseEmergency()
     {
+        this->SetSpeed(0.f);
+        // Stop device
     }
 
     Report &Vacuum::GetReport()

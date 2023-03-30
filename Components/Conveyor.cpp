@@ -33,6 +33,7 @@ namespace PREN::Components
 
     void Conveyor::RaiseEmergency()
     {
+        // Stop device
     }
 
     Report &Conveyor::GetReport()

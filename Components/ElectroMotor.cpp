@@ -35,6 +35,7 @@ namespace PREN::Components
 
     void ElectroMotor::RaiseEmergency()
     {
+        // Stop device
     }
 
     Report &ElectroMotor::GetReport()

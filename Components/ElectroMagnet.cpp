@@ -37,6 +37,7 @@ namespace PREN::Components
 
     void ElectroMagnet::RaiseEmergency()
     {
+        // Stop device
     }
 
     Report &ElectroMagnet::GetReport()

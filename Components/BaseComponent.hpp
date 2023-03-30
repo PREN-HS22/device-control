@@ -1,7 +1,7 @@
 #pragma once
-#include "Emergency.hpp"
-#include "Reportable.hpp"
-#include "Controller.hpp"
+#include "../Emergency.hpp"
+#include "../Reportable.hpp"
+#include "../Controller.hpp"
 
 namespace PREN::Components
 {

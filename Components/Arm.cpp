@@ -45,6 +45,7 @@ namespace PREN::Components
 
     void Arm::RaiseEmergency()
     {
+        // Stop device
     }
 
     Report &Arm::GetReport()

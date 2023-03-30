@@ -24,7 +24,7 @@ namespace PREN::Components
     private:
         ContainerType type;
         Status status;
-        LoadCell<2, 3> lc;
+        LoadCell<> lc;
 
     public:
         Container(Controller *c, ContainerType t);
