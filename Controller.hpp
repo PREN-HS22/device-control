@@ -27,7 +27,7 @@ namespace PREN
 
     public:
         Controller();
-        virtual ~Controller();
+        ~Controller();
 
         void Extend();
         void Retract();

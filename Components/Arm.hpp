@@ -23,7 +23,7 @@ namespace PREN::Components
 
     public:
         Arm(Controller *c);
-        virtual ~Arm();
+        ~Arm();
 
         void Extend();
         void Retract();

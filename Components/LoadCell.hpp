@@ -23,7 +23,7 @@ namespace PREN::Components
 
     public:
         LoadCell(Controller *c, unsigned int dout, unsigned int sck);
-        virtual ~LoadCell();
+        ~LoadCell();
 
         float GetValue();
         void Tare();

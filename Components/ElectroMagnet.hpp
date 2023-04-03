@@ -22,7 +22,7 @@ namespace PREN::Components
 
     public:
         ElectroMagnet(Controller *c);
-        virtual ~ElectroMagnet();
+        ~ElectroMagnet();
 
         void Enable();
         void Disable();

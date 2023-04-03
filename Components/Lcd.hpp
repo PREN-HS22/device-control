@@ -17,7 +17,7 @@ namespace PREN::Components
 
     public:
         Lcd(Controller *c);
-        virtual ~Lcd();
+        ~Lcd();
 
         Status GetStatus();
         void RaiseEmergency();

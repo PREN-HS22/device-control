@@ -18,7 +18,7 @@ namespace PREN::Components
 
     public:
         Vacuum(Controller *c);
-        virtual ~Vacuum();
+        ~Vacuum();
 
         void Start();
         void Stop();

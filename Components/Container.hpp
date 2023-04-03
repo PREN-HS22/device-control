@@ -28,7 +28,7 @@ namespace PREN::Components
 
     public:
         Container(Controller *c, ContainerType t);
-        virtual ~Container();
+        ~Container();
 
         ContainerType GetType();
         unsigned int GetContentAmount();

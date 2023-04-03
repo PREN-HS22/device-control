@@ -17,7 +17,7 @@ namespace PREN::Components
 
     public:
         Conveyor(Controller *c);
-        virtual ~Conveyor();
+        ~Conveyor();
 
         void Start();
         void Stop();
