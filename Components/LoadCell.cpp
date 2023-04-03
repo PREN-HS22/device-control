@@ -41,7 +41,7 @@ namespace PREN::Components
     }
 
     template <std::size_t D, std::size_t S>
-    LoadCell<D, S>::Status LoadCell<D, S>::GetStatus()
+    typename LoadCell<D, S>::Status LoadCell<D, S>::GetStatus()
     {
         return this->status;
     }
