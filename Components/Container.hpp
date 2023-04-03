@@ -7,7 +7,7 @@ namespace PREN::Components
     enum ContainerType
     {
         PlasticCap,
-        CigaretteStup,
+        CigaretteStump,
         CrownCap,
         Valuables
     };
