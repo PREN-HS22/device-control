@@ -1,0 +1,42 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell",
+			"label": "Build sketch",
+			"command": "arduino-cli",
+			"args": [
+				"compile",
+				"-m",
+				"PREN"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Upload sketch",
+			"command": "arduino-cli",
+			"args": [
+				"upload",
+				"-v",
+				"-m",
+				"PREN"
+			],
+			"problemMatcher": [],
+			"group": "build"
+		},
+		{
+			"type": "shell",
+			"label": "Build and upload sektch",
+			"command": "arduino-cli",
+			"args": [
+				"compile",
+				"-u",
+				"-m",
+				"PREN"
+			],
+			"group": "build"
+		}
+	]
+}
