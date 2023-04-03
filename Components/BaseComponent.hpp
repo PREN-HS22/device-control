@@ -1,7 +1,11 @@
 #pragma once
 #include "../Emergency.hpp"
 #include "../Reportable.hpp"
-#include "../Controller.hpp"
+
+namespace PREN
+{
+    class Controller;
+}
 
 namespace PREN::Components
 {
