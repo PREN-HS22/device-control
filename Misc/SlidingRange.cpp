@@ -37,9 +37,9 @@ namespace PREN
     {
         auto _a = (unsigned int)(this->capacity * a);
         auto _b = (unsigned int)(this->capacity * b);
-        unsigned int span = std::abs(_b - _a);
+        unsigned int span = abs(_b - _a);
 
-        if ((unsigned int)(std::abs(b - a) + 0.5f) == 0 || span > this->capacity)
+        if ((unsigned int)(abs(b - a) + 0.5f) == 0 || span > this->capacity)
         {
             return 0.f;
         }
