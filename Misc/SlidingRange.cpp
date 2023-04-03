@@ -44,8 +44,10 @@ namespace PREN
             return 0.f;
         }
 
-        auto temp = _a + this->buffer.tail;
-        auto x1 = temp < this->capacity ? temp : temp - this->capacity;
+        auto tempA = _a + this->buffer.tail;
+        auto tempB = _b + this->buffer.head;
+        auto x1 = tempA < this->capacity ? tempA : tempA - this->capacity;
+        auto x2 = tempB < this->capacity ? tempB : tempB - this->capacity ;
         bool reverse = _b < _a;
 
         // \int_a^b y dx = (0.5 * (y_a + y_b) + (\sum_{i=a+1}^b y_i)) * dx
