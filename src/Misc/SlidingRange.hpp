@@ -10,7 +10,7 @@ namespace PREN
     class SlidingRange : public Derivable<float, float>, public Integratable<float, float>
     {
     private:
-        RingBuffer<float, N + 1> buffer;
+        RingBuffer<float, N + 1U> buffer;
         std::size_t capacity = N;
 
     public:
@@ -19,15 +19,23 @@ namespace PREN
 
         void AddValue(float value) { this->buffer.Push(value); }
 
-        float Derive(float x, float dx)
+        float Derive(float x = 1.f, float dx = 1.f/N)
         {
-            unsigned int _x = ((unsigned int)x) % this->capacity;
-            unsigned int offset = this->buffer.tail;
-            unsigned int a = (_x + offset) % this->capacity;
-            unsigned int b = (a + 1) % this->capacity;
+            // Clamp x between 0 and 1
+            x = x < 0 ? 0 : x > 1.f ? 1.f : x;
+            // Clamp dx: (1/N) <= dx <= N
+            dx = dx < 1/N ? 1/N : dx > N ? N : dx;
 
-            float yb = this->buffer.buffer.at(b);
+            // Scale x by N
+            x = x * N;
+            auto offset = this->buffer.tail;
+            unsigned int a, b;
+            // Offset `a` & `b` and wrap around if necessary
+            a = ((unsigned int)x + offset) % N;
+            b = ((unsigned int)x + offset + 1) % N;
+
             float ya = this->buffer.buffer.at(a);
+            float yb = this->buffer.buffer.at(b);
 
             return (yb - ya) * (1 / dx);
         }
