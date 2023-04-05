@@ -11,7 +11,6 @@ namespace PREN
     {
     private:
         RingBuffer<float, N + 1U> buffer;
-        std::size_t capacity = N;
 
     public:
         SlidingRange() {}
@@ -40,40 +39,42 @@ namespace PREN
             return (yb - ya) * (1 / dx);
         }
 
-        float Integrate(float a, float b, float dx)
+        float Integrate(float a = 0.f, float b = 1.f, float dx = 1.f/N)
         {
-            auto _a = (unsigned int)(this->capacity * a);
-            auto _b = (unsigned int)(this->capacity * b);
+            // Clamp a & b between 0 and 1
+            a = a < 0 ? 0.f : a > 1.f ? 1.f : a;
+            b = b < 0 ? 0.f : b > 1.f ? 1.f : b;
+
+            // Scale a & b by N
+            a = a * N;
+            b = b * N;
+            unsigned int _a = a;
+            unsigned int _b = b;
             unsigned int span = abs(_b - _a);
 
-            if ((unsigned int)(abs(b - a) + 0.5f) == 0 || span > this->capacity)
+            if ((unsigned int)(span + 0.5f) == 0 || span > N)
             {
                 return 0.f;
             }
 
-            auto tempA = _a + this->buffer.tail;
-            auto tempB = _b + this->buffer.head;
-            auto x1 = tempA < this->capacity ? tempA : tempA - this->capacity;
-            auto x2 = tempB < this->capacity ? tempB : tempB - this->capacity;
-            bool reverse = _b < _a;
+            _a = (_a + this->buffer.tail) % N;
+            _b = (_b + this->buffer.head) % N;     
+            // If b < a, integration is reversed -> \int_b^a = -\int_a^b       
+            unsigned int h = _b < _a ? -1 : 1;
 
             // \int_a^b y dx = (0.5 * (y_a + y_b) + (\sum_{i=a+1}^b y_i)) * dx
 
             float sum = 0.f;
-            unsigned int i = x1 + 1;
+            unsigned int i = _a + 1;
 
-            while (i != x2)
+            while (i != _b)
             {
                 sum += this->buffer.buffer.at(i);
-
-                if (++i > this->capacity)
-                {
-                    i = 0;
-                }
+                i = (i + 1) % N;
             }
 
-            sum += 0.5f * (this->buffer.buffer.at(x1) + this->buffer.buffer.at(x2));
-            return sum * dx;
+            sum += .5f * (this->buffer.buffer.at(_a) + this->buffer.buffer.at(_b));
+            return h * sum * dx;
         }
     };
 }
