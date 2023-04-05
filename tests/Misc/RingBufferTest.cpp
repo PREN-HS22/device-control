@@ -6,7 +6,8 @@ namespace RingBufferTest
 {
     PREN::RingBuffer<int, 10> rb;
 
-    void CapacityTest() {
+    void CapacityTest()
+    {
         assertEqual(rb.GetCapacity(), 10);
     }
 
@@ -42,17 +43,20 @@ namespace RingBufferTest
         assertEqual(rb.Pop(), n);
     }
 
-    void FillUpTest() {
+    void FillUpTest()
+    {
         rb.Clear();
         assertTrue(rb.IsEmpty());
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
+        {
             rb.Push(i);
         }
 
         assertFalse(rb.IsEmpty());
 
-        for (int i = 0; i < 10; i++) {
+        for (int i = 0; i < 10; i++)
+        {
             assertEqual(rb.Pop(), i);
         }
 
@@ -79,7 +83,8 @@ namespace RingBufferTest
         assertTrue(rb.IsEmpty());
     }
 
-    void PeekTest() {
+    void PeekTest()
+    {
         rb.Clear();
         assertTrue(rb.IsEmpty());
 
@@ -93,24 +98,25 @@ namespace RingBufferTest
 
         rb.Pop();
         rb.Push(4);
-        assertEqual(rb.PeekTail(), 2);        
+        assertEqual(rb.PeekTail(), 2);
         assertEqual(rb.PeekHead(), 4);
     }
 
-    void IteratorTest() {
+    void IteratorTest()
+    {
         rb.Clear();
         assertTrue(rb.IsEmpty());
 
-        for (int i = 0; i < 18; i++) {
+        for (int i = 0; i < 18; i++)
+        {
             rb.Push(i);
         }
 
-        int i = 0;
-        for (auto e : rb) {
-            i++;
-            Serial.println(e);
+        int i = 8;
+        for (auto e : rb)
+        {
+            assertEqual(e, i++);
         }
-        assertEqual(rb.GetCapacity(), i);
     }
 
     void Run()
