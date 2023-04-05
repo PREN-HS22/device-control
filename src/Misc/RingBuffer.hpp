@@ -11,7 +11,43 @@ namespace PREN
         bool empty;
         unsigned int head, tail;
         std::array<T, N> buffer;
-        template <std::size_t M> friend class SlidingRange;
+        template <std::size_t M>
+        friend class SlidingRange;
+        class Iterator
+        {
+        private:
+            std::array<T, N> *range;
+            unsigned int next, end;
+
+        public:
+            Iterator(std::array<T, N> *range, unsigned int next, unsigned int end) : range(range), next(next), end(end) {}
+            ~Iterator() {}
+
+            Iterator &operator++()
+            {
+                this->next++;
+                this->next = this->next < N ? this->next : 0;
+                return *this;
+            }
+
+            T const &operator*() const { return this->range->at(next); }
+            T &operator*() { return this->range->at(next); }
+
+            bool operator!=(Iterator const &rhs) const
+            {
+                if (rhs.next == rhs.end)
+                {
+                    return false;
+                }
+
+                if (this->next == rhs.next)
+                {
+                    ++rhs;
+                }
+
+                return true;
+            }
+        };
 
     public:
         RingBuffer() : empty(true), head(0), tail(0) {}
@@ -24,9 +60,9 @@ namespace PREN
             this->head = this->head < this->GetCapacity() ? this->head : 0;
 
             // Move tail ahead if head approaches
-            this->tail = this->empty
-                || this->head != this->tail
-                ? this->tail : this->tail + 1;
+            this->tail = this->empty || this->head != this->tail
+                             ? this->tail
+                             : this->tail + 1;
             // Wrap around tail if it exceeds the buffer size
             this->tail = this->tail < this->GetCapacity() ? this->tail : 0;
             this->buffer[this->head] = obj;
@@ -77,9 +113,7 @@ namespace PREN
         bool IsEmpty() { return this->empty; }
 
         // Provide constant iterator for range iteration
-        typename std::array<T, N>::const_iterator begin() const { return this->buffer.begin(); }
-        typename std::array<T, N>::const_iterator cbegin() const { return this->buffer.cbegin(); };
-        typename std::array<T, N>::const_iterator end() const { return this->buffer.end(); }
-        typename std::array<T, N>::const_iterator cend() const { return this->buffer.cend(); }
+        Iterator begin() const { return Iterator(&this->buffer, this->tail, this->head); }
+        Iterator end() const { return Iterator(&this->buffer, this->head, this->head + 1); }
     };
 }
