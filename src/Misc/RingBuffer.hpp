@@ -40,7 +40,7 @@ namespace PREN
                     return false;
                 }
 
-                if (this->next == rhs.next)
+                if (this->next == rhs.end)
                 {
                     ++rhs;
                 }
@@ -114,6 +114,6 @@ namespace PREN
 
         // Provide constant iterator for range iteration
         Iterator begin() const { return Iterator(&this->buffer, this->tail, this->head); }
-        Iterator end() const { return Iterator(&this->buffer, this->head, this->head + 1); }
+        Iterator end() const { return Iterator(&this->buffer, this->head - 1, this->head); }
     };
 }
