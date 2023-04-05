@@ -107,6 +107,19 @@ namespace RingBufferTest
         rb.Clear();
         assertTrue(rb.IsEmpty());
 
+        for (int i = 0; i < 10; i++)
+        {
+            rb.Push(i);
+        }
+
+        for (auto e : rb)
+        {
+            Serial.println(e);
+        }
+
+        rb.Clear();
+        assertTrue(rb.IsEmpty());
+
         for (int i = 0; i < 18; i++)
         {
             rb.Push(i);
