@@ -31,7 +31,6 @@ namespace PREN::Components
 
             if (this->device.getTareTimeoutFlag())
             {
-                throw;
             }
             else
             {
