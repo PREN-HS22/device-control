@@ -12,5 +12,4 @@ profiles:
       - LiquidCrystal I2C (1.1.2)
       - STL for Arduino (1.5.0)
 
-default_port: COM4
 default_fqbn: arduino:avr:uno
