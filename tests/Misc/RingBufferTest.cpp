@@ -132,6 +132,22 @@ namespace RingBufferTest
         }
     }
 
+    void RangeTest()
+    {
+        rb.Clear();
+
+        for (int i = 0; i < 22; i++)
+        {
+            rb.Push(i);
+        }
+
+        auto begin = rb.begin() + 2;
+
+        for (auto e = begin; e != rb.end(); ++e) {
+            Serial.println(*e);
+        }
+    }
+
     void Run()
     {
         TEST(CapacityTest);
@@ -142,5 +158,6 @@ namespace RingBufferTest
         TEST(OverflowTest);
         TEST(PeekTest);
         TEST(IteratorTest);
+        TEST(RangeTest);
     }
 }
