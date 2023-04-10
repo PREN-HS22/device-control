@@ -1,4 +1,5 @@
 #include "Controller.hpp"
+#include <array>
 
 namespace PREN
 {
@@ -6,13 +7,11 @@ namespace PREN
         : em(this),
           arm(this),
           vacuum(this),
-          conveyor(this),
-          containers({
-              Components::Container(this, Components::ContainerType::PlasticCap),
-              Components::Container(this, Components::ContainerType::CrownCap),
-              Components::Container(this, Components::ContainerType::CigaretteStump),
-              Components::Container(this, Components::ContainerType::Valuables),
-          })
+          conveyor(this),          
+          cont_a(this, Components::ContainerType::PlasticCap),
+          cont_b(this, Components::ContainerType::CrownCap),
+          cont_c(this, Components::ContainerType::CigaretteStump),
+          cont_d(this, Components::ContainerType::Valuables)
     {
     }
 

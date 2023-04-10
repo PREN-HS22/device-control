@@ -20,10 +20,10 @@ namespace PREN
     private:
         Report status;
         Components::ElectroMagnet em;
-        std::array<Components::Container, 4> containers;
         Components::Arm arm;
         Components::Vacuum vacuum;
         Components::Conveyor conveyor;
+        Components::Container cont_a, cont_b, cont_c, cont_d;
 
     public:
         Controller();
