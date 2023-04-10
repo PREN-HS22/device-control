@@ -60,7 +60,7 @@ namespace PREN
             _a = (_a + this->buffer.tail) % N;
             _b = (_b + this->buffer.head) % N;     
             // If b < a, integration is reversed -> \int_b^a = -\int_a^b       
-            unsigned int h = _b < _a ? -1 : 1;
+            int h = b < a ? -1 : 1;
 
             // \int_a^b y dx = (0.5 * (y_a + y_b) + (\sum_{i=a+1}^b y_i)) * dx
 
