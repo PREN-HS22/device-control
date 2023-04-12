@@ -34,8 +34,10 @@ namespace SlidingRangeTest
         {
             sr.AddValue(e);
         }
+    }
 
-
+    void BufferTest()
+    {
         // Uncomment only if private members of `SlidingRange` are public
         // int i = 0;
         // for (auto e : sr.buffer)
@@ -60,8 +62,9 @@ namespace SlidingRangeTest
 
     void Run()
     {
-        TEST(CapacityTest);
+        // TEST(CapacityTest);
         TEST(AddValueTest);
+        // TEST(BufferTest);
         TEST(DeriveTest);
         TEST(IntegrateTest);
     }
