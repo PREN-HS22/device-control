@@ -1,6 +1,6 @@
 #include "Container.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     Container::Container(Controller *c, ContainerType t) : BaseComponent(c), status(Idle), type(t), lc(c, 2U, 3U)
     {

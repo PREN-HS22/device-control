@@ -1,6 +1,6 @@
 #include "Lcd.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     Lcd::Lcd(Controller *c) : BaseComponent(c), status(Idle)
     {

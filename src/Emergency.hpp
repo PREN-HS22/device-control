@@ -1,6 +1,6 @@
 #pragma once
 
-namespace PREN
+namespace CleaningDevice
 {
     class Emergency
     {

@@ -3,7 +3,7 @@
 #include "BaseComponent.hpp"
 #include "../Misc/SlidingRange.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     template <std::size_t D = 1, std::size_t S = 20> // D: Duration in s, S: samples/s
     class LoadCell : public BaseComponent

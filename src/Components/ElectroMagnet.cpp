@@ -1,6 +1,6 @@
 #include "ElectroMagnet.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     ElectroMagnet::ElectroMagnet(Controller *c) : BaseComponent(c), status(Idle)
     {

@@ -2,7 +2,7 @@
 #include <ArduinoSTL.h>
 #include "RingBuffer.hpp"
 
-namespace PREN
+namespace CleaningDevice
 {
     template <std::size_t N>
     class PowerConsumption

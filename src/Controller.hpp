@@ -13,7 +13,7 @@
 #include "Components/LoadCell.hpp"
 #include "Components/Vacuum.hpp"
 
-namespace PREN
+namespace CleaningDevice
 {
     class Controller : public Emergency, public Reportable
     {

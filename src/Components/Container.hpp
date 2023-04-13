@@ -2,7 +2,7 @@
 #include "BaseComponent.hpp"
 #include "LoadCell.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     enum ContainerType
     {

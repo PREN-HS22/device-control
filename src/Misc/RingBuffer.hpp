@@ -2,7 +2,7 @@
 #include <ArduinoSTL.h>
 #include <array>
 
-namespace PREN
+namespace CleaningDevice
 {
     template <typename T, std::size_t N>
     class RingBuffer

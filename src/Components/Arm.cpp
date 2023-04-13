@@ -1,6 +1,6 @@
 #include "Arm.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     Arm::Arm(Controller *c) : BaseComponent(c), status(Idle)
     {

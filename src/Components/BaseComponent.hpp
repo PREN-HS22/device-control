@@ -2,14 +2,14 @@
 #include "../Emergency.hpp"
 #include "../Reportable.hpp"
 
-namespace PREN
+namespace CleaningDevice
 {
     class Controller;
 }
 
-using PREN::Emergency, PREN::Reportable, PREN::Controller, PREN::Report;
+using CleaningDevice::Emergency, CleaningDevice::Reportable, CleaningDevice::Controller, CleaningDevice::Report;
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     class BaseComponent : public Emergency, public Reportable
     {

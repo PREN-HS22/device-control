@@ -1,6 +1,6 @@
 #include "BaseComponent.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     BaseComponent::BaseComponent(Controller *c) : ctrl(c)
     {

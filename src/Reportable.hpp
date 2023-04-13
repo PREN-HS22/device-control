@@ -1,7 +1,7 @@
 #pragma once
 #include "Report.hpp"
 
-namespace PREN
+namespace CleaningDevice
 {
     class Reportable
     {

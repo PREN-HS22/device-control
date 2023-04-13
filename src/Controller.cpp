@@ -1,7 +1,7 @@
 #include "Controller.hpp"
 #include <array>
 
-namespace PREN
+namespace CleaningDevice
 {
     Controller::Controller()
         : em(this),

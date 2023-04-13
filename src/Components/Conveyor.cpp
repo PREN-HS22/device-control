@@ -1,6 +1,6 @@
 #include "Conveyor.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     Conveyor::Conveyor(Controller *c) : BaseComponent(c), status(Idle)
     {

@@ -1,6 +1,6 @@
 #pragma once
 
-namespace PREN
+namespace CleaningDevice
 {
     template <typename T, typename U>
     class Derivable

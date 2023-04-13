@@ -4,7 +4,7 @@
 #include "Integratable.hpp"
 #include "RingBuffer.hpp"
 
-namespace PREN
+namespace CleaningDevice
 {
     template <std::size_t N>
     class SlidingRange : public Derivable<float, float>, public Integratable<float, float>

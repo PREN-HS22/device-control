@@ -1,7 +1,7 @@
 #pragma once
 #include "BaseComponent.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     class Vacuum : public BaseComponent
     {

@@ -1,6 +1,6 @@
 #include "Vacuum.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     Vacuum::Vacuum(Controller *c) : BaseComponent(c), status(Idle)
     {

@@ -1,7 +1,7 @@
 #pragma once
 #include "Arduino_JSON.h"
 
-namespace PREN
+namespace CleaningDevice
 {
     class Report : public JSONVar {};
 }

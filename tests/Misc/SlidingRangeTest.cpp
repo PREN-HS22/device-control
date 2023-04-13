@@ -4,7 +4,7 @@
 
 namespace SlidingRangeTest
 {
-    PREN::SlidingRange<10> sr;
+    CleaningDevice::SlidingRange<10> sr;
 
     void CapacityTest()
     {

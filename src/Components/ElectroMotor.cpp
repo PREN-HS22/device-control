@@ -1,6 +1,6 @@
 #include "ElectroMotor.hpp"
 
-namespace PREN::Components
+namespace CleaningDevice::Components
 {
     ElectroMotor::ElectroMotor(Controller *c) : BaseComponent(c), status(Idle)
     {

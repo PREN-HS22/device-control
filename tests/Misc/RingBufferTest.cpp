@@ -4,7 +4,7 @@
 
 namespace RingBufferTest
 {
-    PREN::RingBuffer<int, 10> rb;
+    CleaningDevice::RingBuffer<int, 10> rb;
 
     void CapacityTest()
     {
