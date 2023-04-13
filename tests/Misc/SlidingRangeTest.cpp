@@ -4,12 +4,12 @@
 
 namespace SlidingRangeTest
 {
-    CleaningDevice::SlidingRange<10> sr;
+    auto sr = new CleaningDevice::SlidingRange<10>();
 
     void CapacityTest()
     {
         // Uncomment only if private members of `SlidingRange` are public
-        // assertEqual(sr.buffer.GetCapacity(), 11);
+        // assertEqual(sr->buffer.GetCapacity(), 11);
     }
 
     void AddValueTest()
@@ -32,7 +32,7 @@ namespace SlidingRangeTest
 
         for (auto e : data)
         {
-            sr.AddValue(e);
+            sr->AddValue(e);
         }
     }
 
@@ -40,7 +40,7 @@ namespace SlidingRangeTest
     {
         // Uncomment only if private members of `SlidingRange` are public
         // int i = 0;
-        // for (auto e : sr.buffer)
+        // for (auto e : sr->buffer)
         // {
         //     i++;
         //     Serial.println(e);
@@ -50,12 +50,12 @@ namespace SlidingRangeTest
 
     void DeriveTest()
     {
-        assertNear(-.5f, sr.Derive(.5f, 1.f), .001f);
+        assertNear(-.5f, sr->Derive(.5f, 1.f), .001f);
     }
 
     void IntegrateTest()
     {
-        auto integral = sr.Integrate(.2f, .7f, 1.f);
+        auto integral = sr->Integrate(.2f, .7f, 1.f);
         Serial.println(integral);
         assertNear(125.3f, integral, .001f);
     }
