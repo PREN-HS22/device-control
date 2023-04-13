@@ -1,5 +1,6 @@
 #include "Misc/RingBufferTest.cpp"
 #include "Misc/SlidingRangeTest.cpp"
+#include "StateMachine/StateMachineTest.cpp"
 
 namespace TestSuite
 {
@@ -7,5 +8,6 @@ namespace TestSuite
     {
         RingBufferTest::Run();
         SlidingRangeTest::Run();
+        StateMachineTest::Run();
     }
 }
