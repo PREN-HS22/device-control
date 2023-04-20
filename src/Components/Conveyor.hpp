@@ -3,7 +3,7 @@
 
 namespace CleaningDevice::Components
 {
-    class Conveyor : public BaseComponent
+    class Conveyor : public BaseComponent<Conveyor>
     {
     public:
         enum Status
@@ -12,18 +12,14 @@ namespace CleaningDevice::Components
             Active
         };
 
-    private:
-        Status status;
-
     public:
-        Conveyor(Controller *c);
+        Conveyor(Controller *c, State<Conveyor> *start);
         ~Conveyor();
 
         void Start();
         void Stop();
         void SetSpeed(float s);
         float GetSpeed();
-        Status GetStatus();
         void RaiseEmergency();
         Report &GetReport();
     };

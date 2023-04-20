@@ -2,7 +2,10 @@
 
 namespace CleaningDevice::Components
 {
-    Container::Container(Controller *c, ContainerType t) : BaseComponent(c), status(Idle), type(t), lc(c, 2U, 3U)
+    Container::Container(Controller *c, State<Container> *start, ContainerType t)
+        : BaseComponent<Container>(c, start),
+          type(t),
+          lc(c, 2U, 3U)
     {
     }
 
@@ -23,11 +26,6 @@ namespace CleaningDevice::Components
     {
     }
 
-    Container::Status Container::GetStatus()
-    {
-        return this->status;
-    }
-
     void Container::RaiseEmergency()
     {
         // Stop device
@@ -35,7 +33,7 @@ namespace CleaningDevice::Components
 
     Report &Container::GetReport()
     {
-        this->report["Status"] = this->GetStatus();
+        this->report["Status"] = this->GetState()->GetName();
         this->report["ContainerType"] = this->GetType();
         this->report["Amount"] = this->GetContentAmount();
         this->report["Confidence"] = this->GetConfidence();

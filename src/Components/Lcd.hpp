@@ -3,7 +3,7 @@
 
 namespace CleaningDevice::Components
 {
-    class Lcd : public BaseComponent
+    class Lcd : public BaseComponent<Lcd>
     {
     public:
         enum Status
@@ -12,14 +12,10 @@ namespace CleaningDevice::Components
             Active
         };
 
-    private:
-        Status status;
-
     public:
-        Lcd(Controller *c);
+        Lcd(Controller *c, State<Lcd> *start);
         ~Lcd();
 
-        Status GetStatus();
         void RaiseEmergency();
         Report &GetReport();
     };

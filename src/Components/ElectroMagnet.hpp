@@ -3,7 +3,7 @@
 
 namespace CleaningDevice::Components
 {
-    class ElectroMagnet : public BaseComponent
+    class ElectroMagnet : public BaseComponent<ElectroMagnet>
     {
     public:
         enum Status
@@ -17,18 +17,16 @@ namespace CleaningDevice::Components
         };
 
     private:
-        Status status;
         void Rotate(float angle, float speed);
 
     public:
-        ElectroMagnet(Controller *c);
+        ElectroMagnet(Controller *c, State<ElectroMagnet> *start);
         ~ElectroMagnet();
 
         void Enable();
         void Disable();
         bool IsEnabled();
         void Cycle(int dir);
-        Status GetStatus();
         void RaiseEmergency();
         Report &GetReport();
     };

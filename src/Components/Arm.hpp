@@ -3,7 +3,7 @@
 
 namespace CleaningDevice::Components
 {
-    class Arm : public BaseComponent
+    class Arm : public BaseComponent<Arm>
     {
     public:
         enum Status
@@ -18,11 +18,8 @@ namespace CleaningDevice::Components
             MovingRotating = 12
         };
 
-    private:
-        Status status;
-
     public:
-        Arm(Controller *c);
+        Arm(Controller *c, State<Arm> *start);
         ~Arm();
 
         void Extend();
@@ -32,7 +29,6 @@ namespace CleaningDevice::Components
         bool IsRetracted();
         float GetDistance();
         float GetAngle();
-        Status GetStatus();
         void RaiseEmergency();
         Report &GetReport();
     };

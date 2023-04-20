@@ -3,7 +3,7 @@
 
 namespace CleaningDevice::Components
 {
-    class Vacuum : public BaseComponent
+    class Vacuum : public BaseComponent<Vacuum>
     {
     public:
         enum Status
@@ -14,17 +14,15 @@ namespace CleaningDevice::Components
 
     private:
         float speedPctg;
-        Status status;
 
     public:
-        Vacuum(Controller *c);
+        Vacuum(Controller *c, State<Vacuum> *start);
         ~Vacuum();
 
         void Start();
         void Stop();
         void SetSpeed(float percentage);
         float GetSpeed();
-        Status GetStatus();
         void RaiseEmergency();
         Report &GetReport();
     };

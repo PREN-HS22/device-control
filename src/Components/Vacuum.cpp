@@ -2,7 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    Vacuum::Vacuum(Controller *c) : BaseComponent(c), status(Idle)
+    Vacuum::Vacuum(Controller *c, State<Vacuum> *start)
+        : BaseComponent<Vacuum>(c, start)
     {
     }
 
@@ -21,7 +22,8 @@ namespace CleaningDevice::Components
 
     void Vacuum::SetSpeed(float percentage)
     {
-        if (! (0.f <= percentage && percentage <= 100.f)) {
+        if (!(0.f <= percentage && percentage <= 100.f))
+        {
             return;
         }
 
@@ -33,11 +35,6 @@ namespace CleaningDevice::Components
         return this->speedPctg;
     }
 
-    Vacuum::Status Vacuum::GetStatus()
-    {
-        return this->status;
-    }
-
     void Vacuum::RaiseEmergency()
     {
         this->SetSpeed(0.f);
@@ -46,7 +43,7 @@ namespace CleaningDevice::Components
 
     Report &Vacuum::GetReport()
     {
-        this->report["Status"] = this->GetStatus();
+        this->report["Status"] = this->GetState()->GetName();
         this->report["Speed [%]"] = this->GetSpeed();
         this->report["RPM"] = 0.f; // Calculate RPM of the motor
 

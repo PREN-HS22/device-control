@@ -2,7 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    Conveyor::Conveyor(Controller *c) : BaseComponent(c), status(Idle)
+    Conveyor::Conveyor(Controller *c, State<Conveyor> *start)
+        : BaseComponent<Conveyor>(c, start)
     {
     }
 
@@ -26,11 +27,6 @@ namespace CleaningDevice::Components
     {
     }
 
-    Conveyor::Status Conveyor::GetStatus()
-    {
-        return this->status;
-    }
-
     void Conveyor::RaiseEmergency()
     {
         // Stop device
@@ -38,7 +34,7 @@ namespace CleaningDevice::Components
 
     Report &Conveyor::GetReport()
     {
-        this->report["Status"] = this->GetStatus();
+        this->report["Status"] = this->GetState()->GetName();
         this->report["Speed"] = this->GetSpeed();
 
         return this->report;

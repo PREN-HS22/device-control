@@ -2,17 +2,13 @@
 
 namespace CleaningDevice::Components
 {
-    Lcd::Lcd(Controller *c) : BaseComponent(c), status(Idle)
+    Lcd::Lcd(Controller *c, State<Lcd> *start)
+        : BaseComponent<Lcd>(c, start)
     {
     }
 
     Lcd::~Lcd()
     {
-    }
-
-    Lcd::Status Lcd::GetStatus()
-    {
-        return this->status;
     }
 
     void Lcd::RaiseEmergency()
@@ -22,7 +18,7 @@ namespace CleaningDevice::Components
 
     Report &Lcd::GetReport()
     {
-        this->report["Status"] = this->GetStatus();
+        this->report["Status"] = this->GetState()->GetName();
 
         return this->report;
     }

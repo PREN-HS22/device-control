@@ -3,7 +3,7 @@
 
 namespace CleaningDevice::Components
 {
-    class ElectroMotor : public BaseComponent
+    class ElectroMotor : public BaseComponent<ElectroMotor>
     {
     public:
         enum Status
@@ -14,16 +14,14 @@ namespace CleaningDevice::Components
 
     private:
         float angularVel, torque;
-        Status status;
 
     public:
-        ElectroMotor(Controller *c);
+        ElectroMotor(Controller *c, State<ElectroMotor> *start);
         ~ElectroMotor();
 
         void Rotate(float angularVel, float torque);
         void Rotate(float angularVel, float torque, float duration);
         void Stop();
-        Status GetStatus();
         void RaiseEmergency();
         Report &GetReport();
     };

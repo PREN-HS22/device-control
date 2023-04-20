@@ -12,7 +12,7 @@ namespace CleaningDevice::Components
         Valuables
     };
 
-    class Container : public BaseComponent
+    class Container : public BaseComponent<Container>
     {
     public:
         enum Status
@@ -23,17 +23,15 @@ namespace CleaningDevice::Components
 
     private:
         ContainerType type;
-        Status status;
         LoadCell<> lc;
 
     public:
-        Container(Controller *c, ContainerType t);
+        Container(Controller *c, State<Container> *start, ContainerType t);
         ~Container();
 
         ContainerType GetType();
         unsigned int GetContentAmount();
         float GetConfidence();
-        Status GetStatus();
         void RaiseEmergency();
         Report &GetReport();
     };

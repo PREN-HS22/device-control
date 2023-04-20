@@ -6,7 +6,7 @@
 namespace CleaningDevice::Components
 {
     template <std::size_t D = 1, std::size_t S = 20> // D: Duration in s, S: samples/s
-    class LoadCell : public BaseComponent
+    class LoadCell : public BaseComponent<LoadCell<D, S>>
     {
     public:
         enum Status
@@ -18,11 +18,12 @@ namespace CleaningDevice::Components
 
     private:
         HX711_ADC device;
-        Status status;
         SlidingRange<(D * S)> data;
 
     public:
-        LoadCell(Controller *c, unsigned int dout, unsigned int sck) : BaseComponent(c), status(Idle), device(dout, sck)
+        LoadCell(Controller *c, unsigned int dout, unsigned int sck)
+            : BaseComponent<LoadCell<D, S>>(c, null), // TODO: Define start state
+              device(dout, sck)
         {
             this->device.setSamplesInUse(10);
             this->device.begin();
@@ -50,13 +51,11 @@ namespace CleaningDevice::Components
 
         void Tare() {}
 
-        Status GetStatus() { return this->status; }
-        
         void RaiseEmergency() {}
 
         Report &GetReport()
         {
-            this->report["Status"] = this->GetStatus();
+            this->report["Status"] = this->GetState()->GetName();
             return this->report;
         }
     };

@@ -3,15 +3,16 @@
 
 namespace CleaningDevice
 {
+    // TODO: Define start state for all components
     Controller::Controller()
-        : em(this),
-          arm(this),
-          vacuum(this),
-          conveyor(this),          
-          cont_a(this, Components::ContainerType::PlasticCap),
-          cont_b(this, Components::ContainerType::CrownCap),
-          cont_c(this, Components::ContainerType::CigaretteStump),
-          cont_d(this, Components::ContainerType::Valuables)
+        : em(this, null),
+          arm(this, null),
+          vacuum(this, null),
+          conveyor(this, null),
+          cont_a(this, null, Components::ContainerType::PlasticCap),
+          cont_b(this, null, Components::ContainerType::CrownCap),
+          cont_c(this, null, Components::ContainerType::CigaretteStump),
+          cont_d(this, null, Components::ContainerType::Valuables)
     {
     }
 

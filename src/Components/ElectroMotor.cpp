@@ -2,7 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    ElectroMotor::ElectroMotor(Controller *c) : BaseComponent(c), status(Idle)
+    ElectroMotor::ElectroMotor(Controller *c, State<ElectroMotor> *start)
+        : BaseComponent<ElectroMotor>(c, start)
     {
     }
 
@@ -28,11 +29,6 @@ namespace CleaningDevice::Components
         this->torque = 0.f;
     }
 
-    ElectroMotor::Status ElectroMotor::GetStatus()
-    {
-        return this->status;
-    }
-
     void ElectroMotor::RaiseEmergency()
     {
         // Stop device
@@ -40,7 +36,7 @@ namespace CleaningDevice::Components
 
     Report &ElectroMotor::GetReport()
     {
-        this->report["Status"] = this->GetStatus();
+        this->report["Status"] = this->GetState()->GetName();
         this->report["AngularVelocity"] = this->angularVel;
         this->report["Torque"] = this->torque;
 

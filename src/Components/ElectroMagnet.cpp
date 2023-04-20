@@ -2,7 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    ElectroMagnet::ElectroMagnet(Controller *c) : BaseComponent(c), status(Idle)
+    ElectroMagnet::ElectroMagnet(Controller *c, State<ElectroMagnet> *start)
+        : BaseComponent<ElectroMagnet>(c, start)
     {
     }
 
@@ -30,11 +31,6 @@ namespace CleaningDevice::Components
     {
     }
 
-    ElectroMagnet::Status ElectroMagnet::GetStatus()
-    {
-        return this->status;
-    }
-
     void ElectroMagnet::RaiseEmergency()
     {
         // Stop device
@@ -42,7 +38,7 @@ namespace CleaningDevice::Components
 
     Report &ElectroMagnet::GetReport()
     {
-        this->report["Status"] = this->GetStatus();
+        this->report["Status"] = this->GetState()->GetName();
 
         return this->report;
     }

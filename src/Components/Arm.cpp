@@ -2,7 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    Arm::Arm(Controller *c) : BaseComponent(c), status(Idle)
+    Arm::Arm(Controller *c, State<Arm> *start)
+        : BaseComponent<Arm>(c, start)
     {
     }
 
@@ -38,11 +39,6 @@ namespace CleaningDevice::Components
     {
     }
 
-    Arm::Status Arm::GetStatus()
-    {
-        return this->status;
-    }
-
     void Arm::RaiseEmergency()
     {
         // Stop device
@@ -50,7 +46,7 @@ namespace CleaningDevice::Components
 
     Report &Arm::GetReport()
     {
-        this->report["Status"] = this->GetStatus();
+        this->report["Status"] = this->GetState()->GetName();
         this->report["Distance"] = this->GetDistance();
         this->report["Angle"] = this->GetAngle();
         this->report["Retracted"] = this->IsRetracted();
