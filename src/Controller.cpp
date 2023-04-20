@@ -58,6 +58,12 @@ namespace CleaningDevice
 
     Report &Controller::GetReport()
     {
-        return this->status;
+        this->report["Status"] = this->GetState()->GetName();
+        this->report["Extended"] = this->IsExtended();
+        this->report["Collecting"] = this->IsCollecting();
+        this->report["CurrentPowerConsumption"] = this->CurrentPowerConsumption();
+        this->report["TotalPowerConsumption"] = this->TotalPowerConsumption();
+
+        return this->report;
     }
 }

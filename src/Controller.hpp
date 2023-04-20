@@ -18,7 +18,7 @@ namespace CleaningDevice
     class Controller : public Emergency, public Reportable
     {
     private:
-        Report status;
+        Report report;
         Components::ElectroMagnet em;
         Components::Arm arm;
         Components::Vacuum vacuum;
