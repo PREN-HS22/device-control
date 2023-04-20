@@ -4,6 +4,7 @@
 #include <array>
 #include "Emergency.hpp"
 #include "Reportable.hpp"
+#include "StateMachine/FiniteStateMachine.hpp"
 #include "Components/Arm.hpp"
 #include "Components/Container.hpp"
 #include "Components/Conveyor.hpp"
@@ -13,9 +14,14 @@
 #include "Components/LoadCell.hpp"
 #include "Components/Vacuum.hpp"
 
+using CleaningDevice::StateMachine::State, CleaningDevice::StateMachine::FiniteStateMachine;
+
 namespace CleaningDevice
 {
-    class Controller : public Emergency, public Reportable
+    class Controller
+        : public FiniteStateMachine<Controller>,
+          public Emergency,
+          public Reportable
     {
     private:
         Report report;
@@ -26,7 +32,7 @@ namespace CleaningDevice
         Components::Container cont_a, cont_b, cont_c, cont_d;
 
     public:
-        Controller();
+        Controller(State<Controller> *start);
         ~Controller();
 
         void Extend();

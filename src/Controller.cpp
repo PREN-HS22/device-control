@@ -4,8 +4,9 @@
 namespace CleaningDevice
 {
     // TODO: Define start state for all components
-    Controller::Controller()
-        : em(this, null),
+    Controller::Controller(State<Controller> *start)
+        : FiniteStateMachine<Controller>(start),
+          em(this, null),
           arm(this, null),
           vacuum(this, null),
           conveyor(this, null),
