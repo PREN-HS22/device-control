@@ -1,4 +1,3 @@
-#include <ArduinoSTL.h>
 #include <map>
 #include "../../src/StateMachine/Message.hpp"
 #include "../../src/StateMachine/State.hpp"

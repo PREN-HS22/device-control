@@ -1,6 +1,5 @@
 #pragma once
 
-#include <ArduinoSTL.h>
 #include <array>
 #include "Misc/Emergency.hpp"
 #include "Misc/Reportable.hpp"

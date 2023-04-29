@@ -1,5 +1,4 @@
 #pragma once
-#include <ArduinoSTL.h>
 #include <array>
 
 namespace CleaningDevice

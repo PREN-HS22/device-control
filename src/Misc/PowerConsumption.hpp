@@ -1,5 +1,4 @@
 #pragma once
-#include <ArduinoSTL.h>
 #include "RingBuffer.hpp"
 
 namespace CleaningDevice

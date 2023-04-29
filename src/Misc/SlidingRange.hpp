@@ -1,5 +1,4 @@
 #pragma once
-#include <ArduinoSTL.h>
 #include "Derivable.hpp"
 #include "Integratable.hpp"
 #include "RingBuffer.hpp"
@@ -50,7 +49,7 @@ namespace CleaningDevice
             b = b * N;
             unsigned int _a = a;
             unsigned int _b = b;
-            unsigned int span = abs(_b - _a);
+            unsigned int span = std::abs((long)(_b - _a));
 
             if ((unsigned int)(span + 0.5f) == 0 || span > N)
             {

@@ -1,4 +1,3 @@
-#include <ArduinoSTL.h>
 #include <map>
 #include "../tests.hpp"
 #include "../assertions.hpp"
