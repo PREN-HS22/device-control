@@ -17,6 +17,6 @@ namespace CleaningDevice::StateMachine
 
     public:
         String GetName() { return this->name; }
-        virtual State<T> *Handle(T *fsm, Message<T> *msg) = 0;
+        virtual State<T> &Handle(T &fsm, Message<T> &msg) = 0;
     };
 }

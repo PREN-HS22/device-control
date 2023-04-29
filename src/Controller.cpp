@@ -4,7 +4,7 @@
 namespace CleaningDevice
 {
     // TODO: Define start state for all components
-    Controller::Controller(State<Controller> *start)
+    Controller::Controller(State<Controller> &start)
         : FiniteStateMachine<Controller>(start),
           em(this, null),
           arm(this, null),
@@ -59,7 +59,7 @@ namespace CleaningDevice
 
     Report &Controller::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
+        this->report["Status"] = this->GetState().GetName();
         this->report["Extended"] = this->IsExtended();
         this->report["Collecting"] = this->IsCollecting();
         this->report["CurrentPowerConsumption"] = this->CurrentPowerConsumption();

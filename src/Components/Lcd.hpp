@@ -13,7 +13,7 @@ namespace CleaningDevice::Components
         };
 
     public:
-        Lcd(Controller *c, State<Lcd> *start);
+        Lcd(Controller &c, State<Lcd> &start);
         ~Lcd();
 
         void RaiseEmergency();

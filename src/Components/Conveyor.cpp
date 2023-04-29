@@ -2,7 +2,7 @@
 
 namespace CleaningDevice::Components
 {
-    Conveyor::Conveyor(Controller *c, State<Conveyor> *start)
+    Conveyor::Conveyor(Controller &c, State<Conveyor> &start)
         : BaseComponent<Conveyor>(c, start)
     {
     }
@@ -34,7 +34,7 @@ namespace CleaningDevice::Components
 
     Report &Conveyor::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
+        this->report["Status"] = this->GetState().GetName();
         this->report["Speed"] = this->GetSpeed();
 
         return this->report;

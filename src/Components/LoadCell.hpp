@@ -21,7 +21,7 @@ namespace CleaningDevice::Components
         SlidingRange<(D * S)> data;
 
     public:
-        LoadCell(Controller *c, unsigned int dout, unsigned int sck)
+        LoadCell(Controller &c, unsigned int dout, unsigned int sck)
             : BaseComponent<LoadCell<D, S>>(c, null), // TODO: Define start state
               device(dout, sck)
         {
@@ -55,7 +55,7 @@ namespace CleaningDevice::Components
 
         Report &GetReport()
         {
-            this->report["Status"] = this->GetState()->GetName();
+            this->report["Status"] = this->GetState().GetName();
             return this->report;
         }
     };

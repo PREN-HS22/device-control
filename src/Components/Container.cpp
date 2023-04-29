@@ -2,7 +2,7 @@
 
 namespace CleaningDevice::Components
 {
-    Container::Container(Controller *c, State<Container> *start, ContainerType t)
+    Container::Container(Controller &c, State<Container> &start, ContainerType t)
         : BaseComponent<Container>(c, start),
           type(t),
           lc(c, 2U, 3U)
@@ -33,7 +33,7 @@ namespace CleaningDevice::Components
 
     Report &Container::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
+        this->report["Status"] = this->GetState().GetName();
         this->report["ContainerType"] = this->GetType();
         this->report["Amount"] = this->GetContentAmount();
         this->report["Confidence"] = this->GetConfidence();

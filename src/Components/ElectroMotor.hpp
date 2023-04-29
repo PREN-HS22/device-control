@@ -16,7 +16,7 @@ namespace CleaningDevice::Components
         float angularVel, torque;
 
     public:
-        ElectroMotor(Controller *c, State<ElectroMotor> *start);
+        ElectroMotor(Controller &c, State<ElectroMotor> &start);
         ~ElectroMotor();
 
         void Rotate(float angularVel, float torque);

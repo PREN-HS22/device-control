@@ -20,7 +20,7 @@ namespace CleaningDevice::Components
         void Rotate(float angle, float speed);
 
     public:
-        ElectroMagnet(Controller *c, State<ElectroMagnet> *start);
+        ElectroMagnet(Controller &c, State<ElectroMagnet> &start);
         ~ElectroMagnet();
 
         void Enable();

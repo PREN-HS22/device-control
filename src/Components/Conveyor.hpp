@@ -13,7 +13,7 @@ namespace CleaningDevice::Components
         };
 
     public:
-        Conveyor(Controller *c, State<Conveyor> *start);
+        Conveyor(Controller &c, State<Conveyor> &start);
         ~Conveyor();
 
         void Start();

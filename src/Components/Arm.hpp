@@ -19,7 +19,7 @@ namespace CleaningDevice::Components
         };
 
     public:
-        Arm(Controller *c, State<Arm> *start);
+        Arm(Controller &c, State<Arm> &start);
         ~Arm();
 
         void Extend();

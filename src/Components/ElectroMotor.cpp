@@ -2,7 +2,7 @@
 
 namespace CleaningDevice::Components
 {
-    ElectroMotor::ElectroMotor(Controller *c, State<ElectroMotor> *start)
+    ElectroMotor::ElectroMotor(Controller &c, State<ElectroMotor> &start)
         : BaseComponent<ElectroMotor>(c, start)
     {
     }
@@ -36,7 +36,7 @@ namespace CleaningDevice::Components
 
     Report &ElectroMotor::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
+        this->report["Status"] = this->GetState().GetName();
         this->report["AngularVelocity"] = this->angularVel;
         this->report["Torque"] = this->torque;
 

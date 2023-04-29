@@ -24,8 +24,9 @@ namespace CleaningDevice::Components
           public Reportable
     {
     protected:
-        Controller *ctrl;
+        Controller &ctrl;
         Report report;
-        BaseComponent(Controller *c, State<T> *start) : ctrl(c), FiniteStateMachine<T>(start) {}
+
+        BaseComponent(Controller &c, State<T> &start) : ctrl(c), FiniteStateMachine<T>(start) {}
     };
 }
