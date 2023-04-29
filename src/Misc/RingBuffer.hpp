@@ -14,18 +14,6 @@ namespace CleaningDevice
         template <std::size_t M>
         friend class SlidingRange;
 
-        void advanceHead()
-        {
-            ++this->head;
-            this->head = this->head < N ? this->head : 0;
-        }
-
-        void advanceTail()
-        {
-            ++this->tail;
-            this->tail = this->tail < N ? this->tail : 0;
-        }
-
         class Iterator
         {
         private:
@@ -39,10 +27,7 @@ namespace CleaningDevice
 
             Iterator &operator++()
             {
-                this->next++;
-                // Wrap around tail if it exceeds the buffer size
-                this->next = this->next < N ? this->next : 0;
-
+                this->next = (this->next + 1) % N;
                 return *this;
             }
 
@@ -80,7 +65,7 @@ namespace CleaningDevice
             }
 
             this->buffer[this->head] = obj;
-            this->advanceHead();
+            this->head = (this->head + 1) % N;
             this->overflowed = this->tail == this->head;
         }
 
@@ -92,7 +77,7 @@ namespace CleaningDevice
             }
 
             T next = this->buffer[this->tail];
-            this->advanceTail();
+            this->tail = (this->tail + 1) % N;
             this->overflowed = false;
             return next;
         }
