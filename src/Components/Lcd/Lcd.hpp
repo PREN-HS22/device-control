@@ -1,5 +1,5 @@
 #pragma once
-#include "BaseComponent.hpp"
+#include "../BaseComponent.hpp"
 #include <LiquidCrystal_I2C.h>
 #include <cstdint>
 

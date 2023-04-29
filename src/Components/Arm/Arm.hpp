@@ -1,5 +1,5 @@
 #pragma once
-#include "BaseComponent.hpp"
+#include "../BaseComponent.hpp"
 
 namespace CleaningDevice::Components
 {

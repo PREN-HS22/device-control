@@ -1,7 +1,7 @@
 #pragma once
 #include <HX711_ADC.h>
-#include "BaseComponent.hpp"
-#include "../Misc/SlidingRange.hpp"
+#include "../BaseComponent.hpp"
+#include "../../Misc/SlidingRange.hpp"
 
 namespace CleaningDevice::Components
 {

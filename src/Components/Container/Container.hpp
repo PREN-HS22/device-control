@@ -1,6 +1,6 @@
 #pragma once
-#include "BaseComponent.hpp"
-#include "LoadCell.hpp"
+#include "../BaseComponent.hpp"
+#include "../LoadCell/LoadCell.hpp"
 
 namespace CleaningDevice::Components
 {

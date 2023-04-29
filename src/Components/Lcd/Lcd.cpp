@@ -1,5 +1,5 @@
 #include "Lcd.hpp"
-#include "../Misc/LcdCharacters.hpp"
+#include "../../Misc/LcdCharacters.hpp"
 
 using CleaningDevice::LcdCharacters;
 
