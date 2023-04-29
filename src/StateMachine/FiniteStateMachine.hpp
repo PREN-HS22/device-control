@@ -14,9 +14,9 @@ namespace CleaningDevice::StateMachine
         State<T> &state;
 
         FiniteStateMachine(State<T> &start) : state(start) {}
-        ~FiniteStateMachine() {}
 
     public:
+        virtual ~FiniteStateMachine() {}
         void UpdateState(Message<T> &msg) { this->state = this->state.Handle(this, msg); }
         State<T> &GetState() { return this->state; }
     };

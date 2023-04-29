@@ -13,9 +13,9 @@ namespace CleaningDevice::StateMachine
 
     protected:
         State(String name) : name(name) {}
-        ~State() {}
 
     public:
+        virtual ~State() {}
         String GetName() { return this->name; }
         virtual State<T> &Handle(T &fsm, Message<T> &msg) = 0;
     };

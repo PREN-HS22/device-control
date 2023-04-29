@@ -11,9 +11,9 @@ namespace CleaningDevice::StateMachine
 
     protected:
         Message(String name) : name(name) {}
-        ~Message() {}
 
     public:
+        virtual ~Message() {}
         String GetName() { return this->name; }
     };
 }
