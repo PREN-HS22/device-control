@@ -2,8 +2,8 @@
 
 #include <ArduinoSTL.h>
 #include <array>
-#include "Emergency.hpp"
-#include "Reportable.hpp"
+#include "Misc/Emergency.hpp"
+#include "Misc/Reportable.hpp"
 #include "StateMachine/FiniteStateMachine.hpp"
 #include "Components/Arm/Arm.hpp"
 #include "Components/Container/Container.hpp"

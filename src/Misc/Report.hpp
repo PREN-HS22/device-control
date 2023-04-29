@@ -1,5 +1,5 @@
 #pragma once
-#include "Arduino_JSON.h"
+#include <Arduino_JSON.h>
 
 namespace CleaningDevice
 {

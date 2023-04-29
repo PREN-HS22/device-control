@@ -1,6 +1,6 @@
 #pragma once
-#include "../Emergency.hpp"
-#include "../Reportable.hpp"
+#include "../Misc/Emergency.hpp"
+#include "../Misc/Reportable.hpp"
 #include "../StateMachine/FiniteStateMachine.hpp"
 
 namespace CleaningDevice
