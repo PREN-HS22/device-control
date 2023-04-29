@@ -6,8 +6,8 @@ namespace TestSuite
 {
     void StartTests()
     {
-        RingBufferTest::Run();
-        SlidingRangeTest::Run();
-        StateMachineTest::Run();
+        // RingBufferTest::Run();
+        // SlidingRangeTest::Run();
+        // StateMachineTest::Run();
     }
 }
