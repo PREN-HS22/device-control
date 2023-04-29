@@ -9,7 +9,7 @@
 namespace StateMachineTest
 {
     auto messages = new std::map<std::string, Message<MockFSM> *>();
-    std::map<std::string, State<MockFSM> *> *states = new std::map<std::string, State<MockFSM> *>();
+    auto states = new std::map<std::string, State<MockFSM> *>();
 
     void MessageTest()
     {
@@ -37,10 +37,10 @@ namespace StateMachineTest
 
     void FSMTest()
     {
-        auto fsm = new MockFSM((*states)["A"]);
-        fsm->UpdateState((*messages)["A"]);
-        fsm->UpdateState((*messages)["B"]);
-        fsm->UpdateState((*messages)["C"]);
+        auto fsm = new MockFSM(*(*states)["A"]);
+        fsm->UpdateState(*(*messages)["A"]);
+        fsm->UpdateState(*(*messages)["B"]);
+        fsm->UpdateState(*(*messages)["C"]);
     }
 
     void Run()

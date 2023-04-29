@@ -8,7 +8,7 @@ namespace StateMachineTest
     class MockFSM : public FiniteStateMachine<MockFSM>
     {
     public:
-        MockFSM(State<MockFSM> *start) : FiniteStateMachine<MockFSM>(start) {}
+        MockFSM(State<MockFSM> &start) : FiniteStateMachine<MockFSM>(start) {}
         ~MockFSM() {}
     };
 }

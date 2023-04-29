@@ -19,12 +19,12 @@ namespace StateMachineTest
         StateA() : MockState(TYPENAME(StateA)) {}
         ~StateA() {}
 
-        MockState *Handle(MockFSM *fsm, MockMsg *msg)
+        MockState &Handle(MockFSM &fsm, MockMsg &msg)
         {
             Serial.print("StateA::Handle(MockMsg(");
-            Serial.print(msg->GetName());
+            Serial.print(msg.GetName());
             Serial.println("))");
-            return (*StateMachineTest::states)["B"];
+            return *(*StateMachineTest::states)["B"];
         }
     };
 
@@ -34,12 +34,12 @@ namespace StateMachineTest
         StateB() : MockState(TYPENAME(StateB)) {}
         ~StateB() {}
 
-        MockState *Handle(MockFSM *fsm, MockMsg *msg)
+        MockState &Handle(MockFSM &fsm, MockMsg &msg)
         {
             Serial.print("StateB::Handle(MockMsg(");
-            Serial.print(msg->GetName());
+            Serial.print(msg.GetName());
             Serial.println("))");
-            return (*StateMachineTest::states)["C"];
+            return *(*StateMachineTest::states)["C"];
         }
     };
 
@@ -49,12 +49,12 @@ namespace StateMachineTest
         StateC() : MockState(TYPENAME(StateC)) {}
         ~StateC() {}
 
-        MockState *Handle(MockFSM *fsm, MockMsg *msg)
+        MockState &Handle(MockFSM &fsm, MockMsg &msg)
         {
             Serial.print("StateC::Handle(MockMsg(");
-            Serial.print(msg->GetName());
+            Serial.print(msg.GetName());
             Serial.println("))");
-            return (*StateMachineTest::states)["C"];
+            return *(*StateMachineTest::states)["C"];
         }
     };
 }
