@@ -1,10 +1,20 @@
 #include "Lcd.hpp"
+#include "../Misc/LcdCharacters.hpp"
+
+using CleaningDevice::LcdCharacters;
 
 namespace CleaningDevice::Components
 {
-    Lcd::Lcd(Controller &c, State<Lcd> &start)
-        : BaseComponent<Lcd>(c, start)
+    Lcd::Lcd(Controller &c, State<Lcd> &start, std::uint8_t address, std::uint8_t cols, std::uint8_t rows)
+        : BaseComponent<Lcd>(c, start),
+          LiquidCrystal_I2C(address, cols, rows)
     {
+        // Register custom characters
+        std::uint8_t i = 0;
+        for (auto c : LcdCharacters)
+        {
+            this->createChar(i++, const_cast<std::uint8_t *>(c));
+        }
     }
 
     Lcd::~Lcd()
