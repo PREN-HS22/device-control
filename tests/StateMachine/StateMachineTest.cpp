@@ -41,6 +41,7 @@ namespace StateMachineTest
         fsm->UpdateState(*(*messages)["A"]);
         fsm->UpdateState(*(*messages)["B"]);
         fsm->UpdateState(*(*messages)["C"]);
+        delete fsm;
     }
 
     void Run()
@@ -48,5 +49,15 @@ namespace StateMachineTest
         TEST(MessageTest);
         TEST(StateTest);
         TEST(FSMTest);
+
+        for (auto [_, msg] : *messages) {
+            delete msg;
+        }
+
+        for (auto [_, s] : *states) {
+            delete s;
+        }
+
+        delete messages, states;
     }
 }

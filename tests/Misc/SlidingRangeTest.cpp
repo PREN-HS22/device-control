@@ -67,5 +67,6 @@ namespace SlidingRangeTest
         // TEST(BufferTest);
         TEST(DeriveTest);
         TEST(IntegrateTest);
+        delete sr;
     }
 }

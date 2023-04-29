@@ -159,5 +159,6 @@ namespace RingBufferTest
         TEST(PeekTest);
         TEST(IteratorTest);
         TEST(RangeTest);
+        delete rb;
     }
 }
