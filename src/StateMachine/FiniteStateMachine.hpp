@@ -1,12 +1,9 @@
 #pragma once
-#include "State.hpp"
 #include "Message.hpp"
+#include "State.hpp"
 
 namespace CleaningDevice::StateMachine
 {
-    template <typename T> class Message;
-    template <typename T> class State;
-
     template <typename T>
     class FiniteStateMachine
     {
