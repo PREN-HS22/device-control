@@ -11,11 +11,11 @@ namespace CleaningDevice::Components
     {
     }
 
-    void Arm::Extend()
+    void Arm::Lower()
     {
     }
 
-    void Arm::Retract()
+    void Arm::Raise()
     {
     }
 
@@ -27,7 +27,11 @@ namespace CleaningDevice::Components
     {
     }
 
-    bool Arm::IsRetracted()
+    bool Arm::IsRaised()
+    {
+    }
+
+    bool Arm::IsLowered()
     {
     }
 
@@ -49,7 +53,7 @@ namespace CleaningDevice::Components
         this->report["Status"] = this->GetState().GetName();
         this->report["Distance"] = this->GetDistance();
         this->report["Angle"] = this->GetAngle();
-        this->report["Retracted"] = this->IsRetracted();
+        this->report["Raised"] = this->IsRaised();
 
         return this->report;
     }

@@ -22,11 +22,12 @@ namespace CleaningDevice::Components
         Arm(Controller &c, State<Arm> &start);
         ~Arm();
 
-        void Extend();
-        void Retract();
+        void Lower();
+        void Raise();
         void Move(float distance, float speed);
         void Rotate(float angle, float speed);
-        bool IsRetracted();
+        bool IsRaised();
+        bool IsLowered();
         float GetDistance();
         float GetAngle();
         void RaiseEmergency();
