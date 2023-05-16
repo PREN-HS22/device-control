@@ -18,7 +18,7 @@ using CleaningDevice::Emergency,
 namespace CleaningDevice::Components
 {
     template <typename T>
-    class BaseComponent
+    class AbstractComponent
         : public FiniteStateMachine<T>,
           public Emergency,
           public Reportable
@@ -27,6 +27,6 @@ namespace CleaningDevice::Components
         Controller &ctrl;
         Report report;
 
-        BaseComponent(Controller &c, State<T> &start) : ctrl(c), FiniteStateMachine<T>(start) {}
+        AbstractComponent(Controller &c, State<T> &start) : ctrl(c), FiniteStateMachine<T>(start) {}
     };
 }

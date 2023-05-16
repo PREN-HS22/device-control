@@ -1,12 +1,12 @@
 #pragma once
 #include <HX711_ADC.h>
-#include "../BaseComponent.hpp"
+#include "../AbstractComponent.hpp"
 #include "../../Misc/SlidingRange.hpp"
 
 namespace CleaningDevice::Components
 {
     template <std::size_t D = 1, std::size_t S = 20> // D: Duration in s, S: samples/s
-    class LoadCell : public BaseComponent<LoadCell<D, S>>
+    class LoadCell : public AbstractComponent<LoadCell<D, S>>
     {
     public:
         enum Status
@@ -22,7 +22,7 @@ namespace CleaningDevice::Components
 
     public:
         LoadCell(Controller &c, unsigned int dout, unsigned int sck)
-            : BaseComponent<LoadCell<D, S>>(c, null), // TODO: Define start state
+            : AbstractComponent<LoadCell<D, S>>(c), // TODO: Define start state
               device(dout, sck)
         {
             this->device.setSamplesInUse(10);

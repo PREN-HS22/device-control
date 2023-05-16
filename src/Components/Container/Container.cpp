@@ -3,7 +3,7 @@
 namespace CleaningDevice::Components
 {
     Container::Container(Controller &c, State<Container> &start, ContainerType t)
-        : BaseComponent<Container>(c, start),
+        : AbstractComponent<Container>(c, start),
           type(t),
           lc(c, 2U, 3U)
     {

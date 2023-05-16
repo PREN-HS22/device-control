@@ -3,7 +3,7 @@
 namespace CleaningDevice::Components
 {
     DcMotor::DcMotor(Controller &c, State<DcMotor> &start)
-        : BaseComponent<DcMotor>(c, start)
+        : AbstractComponent(c, start)
     {
     }
 

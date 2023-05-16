@@ -6,7 +6,7 @@ using CleaningDevice::LcdCharacters;
 namespace CleaningDevice::Components
 {
     Lcd::Lcd(Controller &c, State<Lcd> &start, std::uint8_t address, std::uint8_t cols, std::uint8_t rows)
-        : BaseComponent<Lcd>(c, start),
+        : AbstractComponent<Lcd>(c, start),
           LiquidCrystal_I2C(address, cols, rows)
     {
         // Register custom characters

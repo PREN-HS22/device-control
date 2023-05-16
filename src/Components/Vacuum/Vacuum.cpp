@@ -3,7 +3,7 @@
 namespace CleaningDevice::Components
 {
     Vacuum::Vacuum(Controller &c, State<Vacuum> &start)
-        : BaseComponent<Vacuum>(c, start)
+        : AbstractComponent<Vacuum>(c, start)
     {
     }
 

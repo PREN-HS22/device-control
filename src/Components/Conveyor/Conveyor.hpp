@@ -1,9 +1,9 @@
 #pragma once
-#include "../BaseComponent.hpp"
+#include "../AbstractComponent.hpp"
 
 namespace CleaningDevice::Components
 {
-    class Conveyor : public BaseComponent<Conveyor>
+    class Conveyor : public AbstractComponent<Conveyor>
     {
     public:
         enum Status

@@ -1,9 +1,9 @@
 #pragma once
-#include "../BaseComponent.hpp"
+#include "../AbstractComponent.hpp"
 
 namespace CleaningDevice::Components
 {
-    class BrushHead : public BaseComponent<BrushHead>
+    class BrushHead : public AbstractComponent<BrushHead>
     {
     public:
         BrushHead(Controller &c, State<BrushHead> &start);

@@ -3,7 +3,7 @@
 namespace CleaningDevice::Components
 {
     Conveyor::Conveyor(Controller &c, State<Conveyor> &start)
-        : BaseComponent<Conveyor>(c, start)
+        : AbstractComponent<Conveyor>(c, start)
     {
     }
 

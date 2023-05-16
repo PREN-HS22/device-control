@@ -1,9 +1,9 @@
 #pragma once
-#include "../BaseComponent.hpp"
+#include "../AbstractComponent.hpp"
 
 namespace CleaningDevice::Components
 {
-    class ElectroMagnet : public BaseComponent<ElectroMagnet>
+    class ElectroMagnet : public AbstractComponent<ElectroMagnet>
     {
     public:
         enum Status

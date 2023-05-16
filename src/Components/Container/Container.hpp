@@ -1,5 +1,5 @@
 #pragma once
-#include "../BaseComponent.hpp"
+#include "../AbstractComponent.hpp"
 #include "../LoadCell/LoadCell.hpp"
 
 namespace CleaningDevice::Components
@@ -12,7 +12,7 @@ namespace CleaningDevice::Components
         Valuables
     };
 
-    class Container : public BaseComponent<Container>
+    class Container : public AbstractComponent<Container>
     {
     public:
         enum Status

@@ -1,11 +1,11 @@
 #pragma once
-#include "../BaseComponent.hpp"
+#include "../AbstractComponent.hpp"
 #include <LiquidCrystal_I2C.h>
 #include <cstdint>
 
 namespace CleaningDevice::Components
 {
-    class Lcd : public LiquidCrystal_I2C, public BaseComponent<Lcd>
+    class Lcd : public LiquidCrystal_I2C, public AbstractComponent<Lcd>
     {
     public:
         enum Status

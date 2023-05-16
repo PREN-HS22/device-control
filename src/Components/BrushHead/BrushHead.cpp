@@ -3,7 +3,7 @@
 namespace CleaningDevice::Components
 {
     BrushHead::BrushHead(Controller &c, State<BrushHead> &start)
-        : BaseComponent<BrushHead>(c, start)
+        : AbstractComponent<BrushHead>(c, start)
     {
     }
 
