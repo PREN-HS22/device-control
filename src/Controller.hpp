@@ -34,11 +34,11 @@ namespace CleaningDevice
         Controller(State<Controller> &start);
         ~Controller();
 
-        void Extend();
-        void Retract();
+        void StartDevice();
+        void StopDevice();
         void StartCollecting();
         void StopCollecting();
-        bool IsExtended();
+        bool IsReady();
         bool IsCollecting();
         float CurrentPowerConsumption();
         float TotalPowerConsumption();

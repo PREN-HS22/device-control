@@ -21,11 +21,11 @@ namespace CleaningDevice
     {
     }
 
-    void Controller::Extend()
+    void Controller::StartDevice()
     {
     }
 
-    void Controller::Retract()
+    void Controller::StopDevice()
     {
     }
 
@@ -37,7 +37,7 @@ namespace CleaningDevice
     {
     }
 
-    bool Controller::IsExtended()
+    bool Controller::IsReady()
     {
     }
 
