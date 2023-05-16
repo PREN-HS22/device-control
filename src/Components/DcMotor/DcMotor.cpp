@@ -1,40 +1,40 @@
-#include "ElectroMotor.hpp"
+#include "DcMotor.hpp"
 
 namespace CleaningDevice::Components
 {
-    ElectroMotor::ElectroMotor(Controller &c, State<ElectroMotor> &start)
-        : BaseComponent<ElectroMotor>(c, start)
+    DcMotor::DcMotor(Controller &c, State<DcMotor> &start)
+        : BaseComponent<DcMotor>(c, start)
     {
     }
 
-    ElectroMotor::~ElectroMotor()
+    DcMotor::~DcMotor()
     {
     }
 
-    void ElectroMotor::Rotate(float angularVel, float torque)
-    {
-        this->angularVel = angularVel;
-        this->torque = torque;
-    }
-
-    void ElectroMotor::Rotate(float angularVel, float torque, float duration)
+    void DcMotor::Rotate(float angularVel, float torque)
     {
         this->angularVel = angularVel;
         this->torque = torque;
     }
 
-    void ElectroMotor::Stop()
+    void DcMotor::Rotate(float angularVel, float torque, float duration)
+    {
+        this->angularVel = angularVel;
+        this->torque = torque;
+    }
+
+    void DcMotor::Stop()
     {
         this->angularVel = 0.f;
         this->torque = 0.f;
     }
 
-    void ElectroMotor::RaiseEmergency()
+    void DcMotor::RaiseEmergency()
     {
         // Stop device
     }
 
-    Report &ElectroMotor::GetReport()
+    Report &DcMotor::GetReport()
     {
         this->report["Status"] = this->GetState().GetName();
         this->report["AngularVelocity"] = this->angularVel;
