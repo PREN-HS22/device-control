@@ -5,6 +5,7 @@
 #include "Misc/Reportable.hpp"
 #include "StateMachine/FiniteStateMachine.hpp"
 #include "Components/Arm/Arm.hpp"
+#include "Components/BrushHead/BrushHead.hpp"
 #include "Components/Container/Container.hpp"
 #include "Components/Conveyor/Conveyor.hpp"
 #include "Components/ElectroMagnet/ElectroMagnet.hpp"
