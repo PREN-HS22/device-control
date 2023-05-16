@@ -5,17 +5,6 @@ namespace CleaningDevice::Components
 {
     class ElectroMagnet : public AbstractComponent<ElectroMagnet>
     {
-    public:
-        enum Status
-        {
-            Idle,
-            Enabled,
-            Disabled,
-            Cycling = 4,
-            CyclingEnabled,
-            CyclingDisabled
-        };
-
     private:
         void Rotate(float angle, float speed);
 

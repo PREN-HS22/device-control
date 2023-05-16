@@ -8,14 +8,6 @@ namespace CleaningDevice::Components
     template <std::size_t D = 1, std::size_t S = 20> // D: Duration in s, S: samples/s
     class LoadCell : public AbstractComponent<LoadCell<D, S>>
     {
-    public:
-        enum Status
-        {
-            Idle,
-            Taring,
-            Active
-        };
-
     private:
         HX711_ADC device;
         SlidingRange<(D * S)> data;

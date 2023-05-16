@@ -5,13 +5,6 @@ namespace CleaningDevice::Components
 {
     class DcMotor : public AbstractComponent<DcMotor>
     {
-    public:
-        enum Status
-        {
-            Idle,
-            Active
-        };
-
     private:
         float angularVel, torque;
 

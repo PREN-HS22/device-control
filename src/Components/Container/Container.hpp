@@ -14,13 +14,6 @@ namespace CleaningDevice::Components
 
     class Container : public AbstractComponent<Container>
     {
-    public:
-        enum Status
-        {
-            Idle,
-            Active
-        };
-
     private:
         ContainerType type;
         LoadCell<> lc;

@@ -5,13 +5,6 @@ namespace CleaningDevice::Components
 {
     class Vacuum : public AbstractComponent<Vacuum>
     {
-    public:
-        enum Status
-        {
-            Idle,
-            Active
-        };
-
     private:
         float speedPctg;
 

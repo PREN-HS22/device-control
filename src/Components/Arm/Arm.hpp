@@ -6,19 +6,6 @@ namespace CleaningDevice::Components
     class Arm : public AbstractComponent<Arm>
     {
     public:
-        enum Status
-        {
-            Idle,
-            Extending,
-            Retractring,
-            Moving = 4,
-            MovingExtending,
-            MovingRetracting,
-            Rotating = 8,
-            MovingRotating = 12
-        };
-
-    public:
         Arm(Controller &c, State<Arm> &start);
         ~Arm();
 
