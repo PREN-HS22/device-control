@@ -27,6 +27,6 @@ namespace CleaningDevice::Components
         Controller &ctrl;
         Report report;
 
-        AbstractComponent(Controller &c, State<T> &start) : ctrl(c), FiniteStateMachine<T>(start) {}
+        AbstractComponent(Controller &c, State<T> *start) : ctrl(c), FiniteStateMachine<T>(start) {}
     };
 }

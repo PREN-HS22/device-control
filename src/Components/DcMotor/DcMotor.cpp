@@ -2,7 +2,7 @@
 
 namespace CleaningDevice::Components
 {
-    DcMotor::DcMotor(Controller &c, State<DcMotor> &start)
+    DcMotor::DcMotor(Controller &c, State<DcMotor> *start)
         : AbstractComponent(c, start)
     {
     }
@@ -36,7 +36,7 @@ namespace CleaningDevice::Components
 
     Report &DcMotor::GetReport()
     {
-        this->report["Status"] = this->GetState().GetName();
+        this->report["Status"] = this->GetState()->GetName();
         this->report["AngularVelocity"] = this->angularVel;
         this->report["Torque"] = this->torque;
 

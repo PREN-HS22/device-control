@@ -2,7 +2,7 @@
 
 namespace CleaningDevice::Components
 {
-    Vacuum::Vacuum(Controller &c, State<Vacuum> &start)
+    Vacuum::Vacuum(Controller &c, State<Vacuum> *start)
         : AbstractComponent<Vacuum>(c, start)
     {
     }
@@ -43,7 +43,7 @@ namespace CleaningDevice::Components
 
     Report &Vacuum::GetReport()
     {
-        this->report["Status"] = this->GetState().GetName();
+        this->report["Status"] = this->GetState()->GetName();
         this->report["Speed [%]"] = this->GetSpeed();
         this->report["RPM"] = 0.f; // Calculate RPM of the motor
 

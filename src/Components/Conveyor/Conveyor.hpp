@@ -6,7 +6,7 @@ namespace CleaningDevice::Components
     class Conveyor : public AbstractComponent<Conveyor>
     {
     public:
-        Conveyor(Controller &c, State<Conveyor> &start);
+        Conveyor(Controller &c, State<Conveyor> *start);
         ~Conveyor();
 
         void Start();

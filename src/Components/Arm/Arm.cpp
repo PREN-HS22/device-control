@@ -2,7 +2,7 @@
 
 namespace CleaningDevice::Components
 {
-    Arm::Arm(Controller &c, State<Arm> &start)
+    Arm::Arm(Controller &c, State<Arm> *start)
         : AbstractComponent<Arm>(c, start)
     {
     }
@@ -50,7 +50,7 @@ namespace CleaningDevice::Components
 
     Report &Arm::GetReport()
     {
-        this->report["Status"] = this->GetState().GetName();
+        this->report["Status"] = this->GetState()->GetName();
         this->report["Distance"] = this->GetDistance();
         this->report["Angle"] = this->GetAngle();
         this->report["Raised"] = this->IsRaised();

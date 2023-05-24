@@ -9,7 +9,7 @@ namespace CleaningDevice::Components
         float speedPctg;
 
     public:
-        Vacuum(Controller &c, State<Vacuum> &start);
+        Vacuum(Controller &c, State<Vacuum> *start);
         ~Vacuum();
 
         void Start();

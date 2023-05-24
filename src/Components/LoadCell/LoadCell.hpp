@@ -13,8 +13,8 @@ namespace CleaningDevice::Components
         SlidingRange<(D * S)> data;
 
     public:
-        LoadCell(Controller &c, unsigned int dout, unsigned int sck)
-            : AbstractComponent<LoadCell<D, S>>(c), // TODO: Define start state
+        LoadCell(Controller &c, State<LoadCell> *start, std::uint8_t dout, std::uint8_t sck)
+            : AbstractComponent<LoadCell<D, S>>(c, start), // TODO: Define start state
               device(dout, sck)
         {
             this->device.setSamplesInUse(10);
@@ -47,7 +47,7 @@ namespace CleaningDevice::Components
 
         Report &GetReport()
         {
-            this->report["Status"] = this->GetState().GetName();
+            this->report["Status"] = this->GetState()->GetName();
             return this->report;
         }
     };

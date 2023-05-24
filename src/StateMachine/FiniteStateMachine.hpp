@@ -8,13 +8,13 @@ namespace CleaningDevice::StateMachine
     class FiniteStateMachine
     {
     protected:
-        State<T> &state;
+        State<T> *state;
 
-        FiniteStateMachine(State<T> &start) : state(start) {}
+        FiniteStateMachine(State<T> *start) : state(start) {}
 
     public:
         virtual ~FiniteStateMachine() {}
-        void UpdateState(Message<T> &msg) { this->state = this->state.Handle(this, msg); }
-        State<T> &GetState() { return this->state; }
+        void UpdateState(Message<T> &msg) { this->state = this->state->Handle(this, msg); }
+        State<T> *GetState() { return this->state; }
     };
 }

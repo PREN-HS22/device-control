@@ -9,7 +9,7 @@ namespace CleaningDevice::Components
         float angularVel, torque;
 
     public:
-        DcMotor(Controller &c, State<DcMotor> &start);
+        DcMotor(Controller &c, State<DcMotor> *start);
         ~DcMotor();
 
         void Rotate(float angularVel, float torque);

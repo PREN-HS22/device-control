@@ -6,7 +6,7 @@ namespace CleaningDevice::Components
     class Arm : public AbstractComponent<Arm>
     {
     public:
-        Arm(Controller &c, State<Arm> &start);
+        Arm(Controller &c, State<Arm> *start);
         ~Arm();
 
         void Lower();

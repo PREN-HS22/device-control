@@ -6,7 +6,7 @@ namespace CleaningDevice::Components
     class BrushHead : public AbstractComponent<BrushHead>
     {
     public:
-        BrushHead(Controller &c, State<BrushHead> &start);
+        BrushHead(Controller &c, State<BrushHead> *start);
         ~BrushHead();
 
         void Start();

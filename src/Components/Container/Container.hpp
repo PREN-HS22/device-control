@@ -19,7 +19,7 @@ namespace CleaningDevice::Components
         LoadCell<> lc;
 
     public:
-        Container(Controller &c, State<Container> &start, ContainerType t);
+        Container(Controller &c, State<Container> *start, ContainerType t);
         ~Container();
 
         ContainerType GetType();

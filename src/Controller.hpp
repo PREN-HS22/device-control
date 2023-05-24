@@ -32,7 +32,7 @@ namespace CleaningDevice
         Components::Container cont_a, cont_b, cont_c, cont_d;
 
     public:
-        Controller(State<Controller> &start);
+        Controller(State<Controller> *start);
         ~Controller();
 
         void StartDevice();
