@@ -1,8 +1,10 @@
 #pragma once
 
 #include <array>
+#include <WiFi.h>
 #include "Misc/Emergency.hpp"
 #include "Misc/Reportable.hpp"
+#include "Misc/MqttClient.hpp"
 #include "StateMachine/FiniteStateMachine.hpp"
 #include "Components/Arm/Arm.hpp"
 #include "Components/BrushHead/BrushHead.hpp"
@@ -25,6 +27,8 @@ namespace CleaningDevice
     {
     private:
         Report report;
+        WiFiClient wifiClient;
+        MqttClient mqttClient;
         Components::ElectroMagnet em;
         Components::Arm arm;
         Components::Vacuum vacuum;
@@ -45,5 +49,9 @@ namespace CleaningDevice
         float TotalPowerConsumption();
         void RaiseEmergency();
         Report &GetReport();
+
+    private:
+        void ConnectToWiFiAP();
+        void ConnectToMqttBroker();
     };
 }
