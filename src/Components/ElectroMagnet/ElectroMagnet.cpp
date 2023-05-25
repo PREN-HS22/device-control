@@ -3,7 +3,7 @@
 namespace CleaningDevice::Components
 {
     ElectroMagnet::ElectroMagnet(Controller &c, State<ElectroMagnet> *start)
-        : AbstractComponent<ElectroMagnet>(c, start)
+        : AbstractComponent(c, start)
     {
     }
 

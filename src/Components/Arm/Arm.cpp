@@ -3,7 +3,7 @@
 namespace CleaningDevice::Components
 {
     Arm::Arm(Controller &c, State<Arm> *start)
-        : AbstractComponent<Arm>(c, start)
+        : AbstractComponent(c, start)
     {
     }
 

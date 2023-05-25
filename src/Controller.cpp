@@ -5,7 +5,7 @@ namespace CleaningDevice
 {
     // TODO: Define start state for all components
     Controller::Controller(State<Controller> *start)
-        : FiniteStateMachine<Controller>(start),
+        : FiniteStateMachine(start),
           em(*this, nullptr),
           arm(*this, nullptr),
           vacuum(*this, nullptr),
