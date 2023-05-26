@@ -31,7 +31,7 @@ namespace CleaningDevice
             messageTemp += (char)payload[i];
         }
 
-        uint8_t position = receivedTopic.indexOf("callback/") + 9;
+        std::uint8_t position = receivedTopic.indexOf("callback/") + 9;
         String receivedTopicCut = receivedTopic.substring(position);
 
         Serial.println(receivedTopicCut);
@@ -207,7 +207,7 @@ namespace CleaningDevice
         // Publish device information periodically
         auto mqttClient = *(static_cast<MqttClient*>(pvParams));
         auto pubsubClient = mqttClient.pubsubClient;
-        uint64_t lastMsg = 0;
+        std::uint64_t lastMsg = 0;
         for (;;)
         {
             // put your main code here, to run repeatedly:
