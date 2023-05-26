@@ -1,12 +1,13 @@
 #pragma once
 #include "../AbstractComponent.hpp"
-
+#include "../DcMotor/DcMotor.hpp"
 namespace CleaningDevice::Components
 {
     class Vacuum : public AbstractComponent<Vacuum>
     {
     private:
-        float speedPctg;
+        float speedFraction;
+        DcMotor motor;
 
     public:
         Vacuum(Controller &c, State<Vacuum> *start);
@@ -14,7 +15,7 @@ namespace CleaningDevice::Components
 
         void Start();
         void Stop();
-        void SetSpeed(float percentage);
+        void SetSpeed(float fraction);
         float GetSpeed();
         void RaiseEmergency();
         Report &GetReport();
