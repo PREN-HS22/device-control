@@ -3,7 +3,8 @@
 namespace CleaningDevice::Components
 {
     BrushHead::BrushHead(Controller &c, State<BrushHead> *start)
-        : AbstractComponent(c, start)
+        : AbstractComponent(c, start),
+          motor(c, nullptr, DcMotorCfg(-1, -1, -1)) // Determine correct pins
     {
     }
 
@@ -13,18 +14,24 @@ namespace CleaningDevice::Components
 
     void BrushHead::Start()
     {
+        this->motor.Rotate(L298N::FORWARD, 100); // Determine correct direction
     }
 
     void BrushHead::Stop()
     {
+        this->motor.Stop();
     }
 
-    void BrushHead::SetSpeed(float s)
+    void BrushHead::SetSpeed(float fraction)
     {
+        fraction = std::clamp(fraction, .0f, 1.f);
+        auto pwm = (std::uint16_t)(fraction * 255);
+        this->motor.Rotate(L298N::FORWARD, pwm);
     }
 
     float BrushHead::GetSpeed()
     {
+        return this->motor.GetSpeed();
     }
 
     void BrushHead::RaiseEmergency()
@@ -33,6 +40,10 @@ namespace CleaningDevice::Components
 
     Report &BrushHead::GetReport()
     {
+        this->report["Status"] = this->GetState()->GetName();
+        this->report["Speed"] = this->GetSpeed();
+        this->report["Motor"] = this->motor.GetReport();
+
         return this->report;
     }
 }
