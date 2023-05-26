@@ -7,28 +7,37 @@ namespace CleaningDevice::Components
           config(cfg),
           motor(cfg.Enable, cfg.In1, cfg.In2)
     {
-        this->motor.setSpeed(cfg.Pwm);
     }
 
     DcMotor::~DcMotor()
     {
     }
 
-    void DcMotor::Rotate(L298N::Direction dir, uint16_t pwmDutyCycle)
+    void DcMotor::Rotate(L298N::Direction dir, float speedFraction)
     {
-        this->motor.setSpeed(pwmDutyCycle);
-        this->motor.runFor(0, dir);
+        speedFraction = std::clamp(speedFraction, 0.f, 1.f);
+        auto pwm = (std::uint16_t)(speedFraction * 255);
+        this->motor.setSpeed(pwm);
+        this->motor.run(dir);
     }
 
-    void DcMotor::Rotate(L298N::Direction dir, uint16_t pwmDutyCycle, float duration)
+    void DcMotor::Rotate(L298N::Direction dir, float speedFraction, float duration)
     {
-        this->motor.setSpeed(pwmDutyCycle);
-        this->motor.runFor(duration, dir);
+        // Use a one-time FreeRTOS timer to stop the motor
+        speedFraction = std::clamp(speedFraction, 0.f, 1.f);
+        auto pwm = (std::uint16_t)(speedFraction * 255);
+        this->motor.setSpeed(pwm);
+        this->motor.run(dir);
     }
 
     void DcMotor::Stop()
     {
         this->motor.stop();
+    }
+
+    float DcMotor::GetSpeed()
+    {
+        return (float)(this->motor.getSpeed()) / 255.f;
     }
 
     void DcMotor::RaiseEmergency()
@@ -51,8 +60,9 @@ namespace CleaningDevice::Components
             dir = "Stopped";
             break;
         }
+
         this->report["Status"] = this->GetState()->GetName();
-        this->report["Duty cycle"] = this->motor.getSpeed();
+        this->report["Duty cycle"] = this->GetSpeed();
         this->report["Direction"] = dir.c_str();
 
         return this->report;

@@ -8,13 +8,11 @@ namespace CleaningDevice::Components
     {
     public:
         const std::uint8_t Enable, In1, In2;
-        const std::uint16_t Pwm;
 
-        DcMotorCfg(std::uint8_t enable, std::uint8_t in1, std::uint8_t in2, std::uint16_t pwm = 0)
+        DcMotorCfg(std::uint8_t enable, std::uint8_t in1, std::uint8_t in2)
             : Enable(enable),
               In1(in1),
-              In2(in2),
-              Pwm(pwm) {}
+              In2(in2) {}
     };
 
     class DcMotor : public AbstractComponent<DcMotor>
@@ -27,9 +25,10 @@ namespace CleaningDevice::Components
         DcMotor(Controller &c, State<DcMotor> *start, DcMotorCfg config);
         ~DcMotor();
 
-        void Rotate(L298N::Direction dir, uint16_t pwmDutyCycle);
-        void Rotate(L298N::Direction dir, uint16_t pwmDutyCycle, float duration);
+        void Rotate(L298N::Direction dir, float speedFraction);
+        void Rotate(L298N::Direction dir, float speedFraction, float duration);
         void Stop();
+        float GetSpeed();
         void RaiseEmergency();
         Report &GetReport();
     };
