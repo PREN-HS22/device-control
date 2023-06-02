@@ -37,6 +37,7 @@ namespace CleaningDevice::Components
         this->report["ContainerType"] = this->GetType();
         this->report["Amount"] = this->GetContentAmount();
         this->report["Confidence"] = this->GetConfidence();
+        this->report["Load cell"] = this->lc.GetReport();
 
         return this->report;
     }
