@@ -19,8 +19,8 @@ namespace CleaningDevice::Components
         Stepper(Controller &c, State<Stepper> *start, AccelStepper::MotorInterfaceType ifType, std::uint8_t pin1, std::uint8_t pin2);
         ~Stepper();
 
-        void MoveAbsolute(long position);
-        void MoveRelative(long position);
+        void MoveAbsolute(long position, float speed);
+        void MoveRelative(long position, float speed);
         bool Calibrate();
         void Suspend();
         void Resume();

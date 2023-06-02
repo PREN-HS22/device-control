@@ -8,8 +8,6 @@ namespace CleaningDevice::Components
     {
         // After initialisation, set current position as the new 0-position
         this->stepper.setAcceleration(12000);
-        this->stepper.setMaxSpeed(3000);
-        this->stepper.setSpeed(3000);
         this->stepper.setCurrentPosition(this->stepper.currentPosition());
         xTaskCreate(Stepper::StepTask, "Stepper::StepTask", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY + 1, &(this->task));
         vTaskSuspend(this->task);
@@ -21,14 +19,15 @@ namespace CleaningDevice::Components
         vTaskDelete(this->task);
     }
 
-    void Stepper::MoveAbsolute(long position)
+    void Stepper::MoveAbsolute(long position, float speed = 1500.f)
     {
         this->Stop();
+        this->stepper.setMaxSpeed(speed);
         this->stepper.moveTo(position);
         vTaskResume(this->task);
     }
 
-    void Stepper::MoveRelative(long position)
+    void Stepper::MoveRelative(long position, float speed = 1500.f)
     {
         this->MoveAbsolute(this->stepper.currentPosition() + position);
     }
