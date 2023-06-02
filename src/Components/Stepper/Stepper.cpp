@@ -9,7 +9,7 @@ namespace CleaningDevice::Components
         // After initialisation, set current position as the new 0-position
         this->stepper.setAcceleration(12000);
         this->stepper.setCurrentPosition(this->stepper.currentPosition());
-        xTaskCreate(Stepper::StepTask, "Stepper::StepTask", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY + 1, &(this->task));
+        xTaskCreate(Stepper::StepTask, "Stepper::StepTask", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->task));
         vTaskSuspend(this->task);
     }
 
