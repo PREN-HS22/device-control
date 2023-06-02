@@ -1,5 +1,5 @@
 #pragma once
-#include <Arduino.h>
+#include <string>
 
 namespace CleaningDevice::StateMachine
 {
@@ -7,13 +7,13 @@ namespace CleaningDevice::StateMachine
     class Message
     {
     private:
-        String name;
+        std::string name;
 
     protected:
-        Message(String name) : name(name) {}
+        Message(std::string name) : name(name) {}
 
     public:
         virtual ~Message() {}
-        String GetName() { return this->name; }
+        std::string GetName() { return this->name; }
     };
 }
