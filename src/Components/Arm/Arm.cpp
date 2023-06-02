@@ -27,7 +27,7 @@ namespace CleaningDevice::Components
     {
     }
 
-    void Arm::Rotate(float angle, float speed)
+    void Arm::Rotate(float angle, float speed = .5f)
     {
     }
 
