@@ -29,6 +29,10 @@ namespace CleaningDevice::Components
 
     void Arm::Rotate(float angle, float speed = .5f)
     {
+        // TODO: Calculate angle to steps
+        long steps = (long)(angle * 100.f);
+        speed = speed * 3000.f;
+        this->horizontalStepper.MoveRelative(steps, speed);
     }
 
     bool Arm::IsRaised()
