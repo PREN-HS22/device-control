@@ -1,14 +1,14 @@
 #pragma once
 #include "../AbstractComponent.hpp"
-#include <AccelStepper.h>
 #include "../DcMotor/DcMotor.hpp"
+#include "../Stepper/Stepper.hpp"
 
 namespace CleaningDevice::Components
 {
     class Arm : public AbstractComponent<Arm>
     {
     private:
-        AccelStepper verticalStepper, horizontalStepper;
+        Stepper verticalStepper, horizontalStepper;
         DcMotor motorA, motorB;
 
     public:

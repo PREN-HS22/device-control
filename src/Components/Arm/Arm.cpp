@@ -4,10 +4,10 @@ namespace CleaningDevice::Components
 {
     Arm::Arm(Controller &c, State<Arm> *start)
         : AbstractComponent(c, start),
-          verticalStepper(AccelStepper::DRIVER, 16, 17),    // Arm lowering and raising
-          horizontalStepper(AccelStepper::DRIVER, 4, 13),   // Arm rotation
-          motorA(c, nullptr, DcMotorCfg(32, 25, 33)), // Compartment A (Motor closer to base)
-          motorB(c, nullptr, DcMotorCfg(14, 26, 27))  // Compartment B (Motor closer to brush)
+          verticalStepper(c, nullptr, AccelStepper::FULL2WIRE, 21, 19),   // Arm lowering and raising
+          horizontalStepper(c, nullptr, AccelStepper::FULL2WIRE, 23, 22), // Arm rotation
+          motorA(c, nullptr, DcMotorCfg(32, 25, 33)),                     // Compartment A (Motor closer to base)
+          motorB(c, nullptr, DcMotorCfg(14, 26, 27))                      // Compartment B (Motor closer to brush)
     {
     }
 
@@ -58,6 +58,8 @@ namespace CleaningDevice::Components
         this->report["Distance"] = this->GetDistance();
         this->report["Angle"] = this->GetAngle();
         this->report["Raised"] = this->IsRaised();
+        this->report["Stepper"]["Horizontal"] = this->horizontalStepper.GetReport();
+        this->report["Stepper"]["Vertical"] = this->verticalStepper.GetReport();
         this->report["Motor"]["Segment A"] = this->motorA.GetReport();
         this->report["Motor"]["Segment B"] = this->motorB.GetReport();
 
