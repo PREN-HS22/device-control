@@ -1,10 +1,12 @@
 #pragma once
+#include "Reportable.hpp"
 
 namespace CleaningDevice
 {
-    class PowerConsumption
+    class PowerConsumption : public Reportable
     {
     private:
+        Report report;
         float current;
         float total;
         float deltaTime;
@@ -24,5 +26,13 @@ namespace CleaningDevice
         }
 
         float GetTotal() { return this->total; }
+
+        Report &GetReport()
+        {
+            this->report["Power"]["Current"] = this->current;
+            this->report["Power"]["Total"] = this->total;
+
+            return this->report;
+        }
     };
 }
