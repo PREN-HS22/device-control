@@ -31,13 +31,13 @@ namespace CleaningDevice
         {
             if (this->pubsubClient.connect(this->id.c_str()))
             {
-                this->pubsubClient.publish((this->id + "/status").c_str(), "[Status] Connected");
+                this->Publish("/status", "[Status] Connected");
             }
             else
             {
-                Serial.print("failed, rc=");
-                Serial.println(this->pubsubClient.state());
+                // Display error on LCD
             }
+
             delay(5000);
         }
     }
