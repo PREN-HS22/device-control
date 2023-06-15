@@ -86,4 +86,13 @@ namespace CleaningDevice
         }
     }
     }
+
+    void Controller::Run(void *pvParams)
+    {
+        auto self = new Controller();
+
+        for (;;)
+        {
+        }
+    }
 }

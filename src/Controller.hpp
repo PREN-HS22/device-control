@@ -2,6 +2,7 @@
 
 #include <array>
 #include <WiFi.h>
+#include <freertos/task.h>
 #include "Misc/Emergency.hpp"
 #include "Misc/Reportable.hpp"
 #include "Misc/MqttClient.hpp"
@@ -44,6 +45,7 @@ namespace CleaningDevice
         float TotalPowerConsumption();
         void RaiseEmergency();
         Report &GetReport();
+        static void Run(void *pvParams);
 
     private:
         void ConnectToWiFiAP();
