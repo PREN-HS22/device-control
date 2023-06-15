@@ -2,28 +2,25 @@
 #include <WiFi.h>
 #include <PubSubClient.h>
 #include <string>
-#include <Arduino_JSON.h>
 
 namespace CleaningDevice
 {
     class MqttClient
     {
     private:
-        WiFiClient &client;
         PubSubClient pubsubClient;
-
-        // Add your MQTT Broker IP address
+        const std::string id;
         const std::string server;
         const std::uint16_t port;
         const std::string user;
         const std::string pass;
 
     public:
-        MqttClient(WiFiClient &client, std::string server, std::uint16_t port, std::string user, std::string pass);
+        MqttClient(WiFiClient &client, std::string server, std::uint16_t port, std::string user, std::string pass, std::string id);
+        ~MqttClient();
 
-        static void OnIncoming(char *topic, byte *payload, std::size_t length);
-        static void Run(void *pvParams);
+        static void OnIncoming(char *topic, std::uint8_t *payload, std::size_t length);
         void Connect();
-        void Publish(JSONVar &json, std::string topic);
+        void Publish(std::string topic, std::string message);
     };
 }
