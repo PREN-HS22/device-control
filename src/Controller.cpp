@@ -5,7 +5,7 @@ namespace CleaningDevice
 {
     Controller::Controller()
         : wifiClient(),
-          mqttClient(wifiClient, "", 0U, "", ""),
+          mqttClient(wifiClient, "", 0U, "", "", (std::string)"esp32" + WiFi.macAddress().c_str()),
           arm(*this),
           vacuum(*this),
           conveyor(*this),
@@ -15,7 +15,7 @@ namespace CleaningDevice
           cont_d(*this, Components::ContainerType::Valuables)
     {
         this->ConnectToWiFiAP();
-        this->ConnectToMqttBroker();
+        this->mqttClient.Connect();
     }
 
     Controller::~Controller()
@@ -71,20 +71,19 @@ namespace CleaningDevice
     void Controller::ConnectToWiFiAP()
     {
         WiFi.begin("" /* ssid */, "" /* password */);
+        int tries = 0;
 
         while (WiFi.status() != WL_CONNECTED)
         {
-            delay(500);
+            delay(250);
             Serial.print(".");
+            tries++;
+
+            if (tries > 10)
+            {
+                // Display connection error on LCD
+                Serial.println("AP connection failed");
         }
-
-        Serial.println("");
-        Serial.println("WiFi connected");
-        Serial.println("IP address: ");
-        Serial.println(WiFi.localIP());
     }
-
-    void Controller::ConnectToMqttBroker()
-    {
     }
 }

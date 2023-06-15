@@ -47,6 +47,5 @@ namespace CleaningDevice
 
     private:
         void ConnectToWiFiAP();
-        void ConnectToMqttBroker();
     };
 }
