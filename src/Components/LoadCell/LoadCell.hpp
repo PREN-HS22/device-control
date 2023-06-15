@@ -35,10 +35,7 @@ namespace CleaningDevice::Components
 
         float GetValue()
         {
-            if (this->device.update() != 0)
-            {
-                return this->device.getData();
-            }
+            return this->device.getData();
         }
 
         void Tare() {}
