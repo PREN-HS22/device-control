@@ -2,8 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    ElectroMagnet::ElectroMagnet(Controller &c, State<ElectroMagnet> *start)
-        : AbstractComponent(c, start)
+    ElectroMagnet::ElectroMagnet(Controller &c)
+        : AbstractComponent(c)
     {
     }
 
@@ -38,7 +38,7 @@ namespace CleaningDevice::Components
 
     Report &ElectroMagnet::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
+        this->report[""] = "";
 
         return this->report;
     }

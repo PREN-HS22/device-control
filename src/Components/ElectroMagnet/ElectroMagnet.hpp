@@ -3,13 +3,13 @@
 
 namespace CleaningDevice::Components
 {
-    class ElectroMagnet : public AbstractComponent<ElectroMagnet>
+    class ElectroMagnet : public AbstractComponent
     {
     private:
         void Rotate(float angle, float speed);
 
     public:
-        ElectroMagnet(Controller &c, State<ElectroMagnet> *start);
+        ElectroMagnet(Controller &c);
         ~ElectroMagnet();
 
         void Enable();

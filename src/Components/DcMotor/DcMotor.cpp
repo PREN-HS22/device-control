@@ -2,8 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    DcMotor::DcMotor(Controller &c, State<DcMotor> *start, DcMotorCfg cfg)
-        : AbstractComponent(c, start),
+    DcMotor::DcMotor(Controller &c, DcMotorCfg cfg)
+        : AbstractComponent(c),
           config(cfg),
           motor(cfg.Enable, cfg.In1, cfg.In2)
     {
@@ -61,7 +61,6 @@ namespace CleaningDevice::Components
             break;
         }
 
-        this->report["Status"] = this->GetState()->GetName();
         this->report["Duty cycle"] = this->GetSpeed();
         this->report["Direction"] = dir.c_str();
 

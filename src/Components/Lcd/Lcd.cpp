@@ -5,8 +5,8 @@ using CleaningDevice::LcdCharacters;
 
 namespace CleaningDevice::Components
 {
-    Lcd::Lcd(Controller &c, State<Lcd> *start, std::uint8_t address, std::uint8_t cols, std::uint8_t rows)
-        : AbstractComponent(c, start),
+    Lcd::Lcd(Controller &c, std::uint8_t address, std::uint8_t cols, std::uint8_t rows)
+        : AbstractComponent(c),
           LiquidCrystal_I2C(address, cols, rows)
     {
         // Register custom characters
@@ -28,7 +28,7 @@ namespace CleaningDevice::Components
 
     Report &Lcd::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
+        this->report[""] = "";
 
         return this->report;
     }

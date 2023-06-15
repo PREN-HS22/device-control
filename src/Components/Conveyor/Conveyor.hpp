@@ -4,13 +4,13 @@
 
 namespace CleaningDevice::Components
 {
-    class Conveyor : public AbstractComponent<Conveyor>
+    class Conveyor : public AbstractComponent
     {
     private:
         DcMotor motor;
 
     public:
-        Conveyor(Controller &c, State<Conveyor> *start);
+        Conveyor(Controller &c);
         ~Conveyor();
 
         void Start();

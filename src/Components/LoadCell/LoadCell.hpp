@@ -6,15 +6,15 @@
 namespace CleaningDevice::Components
 {
     template <std::size_t D = 1, std::size_t S = 20> // D: Duration in s, S: samples/s
-    class LoadCell : public AbstractComponent<LoadCell<D, S>>
+    class LoadCell : public AbstractComponent
     {
     private:
         HX711_ADC device;
         SlidingRange<(D * S)> data;
 
     public:
-        LoadCell(Controller &c, State<LoadCell> *start, std::uint8_t dout, std::uint8_t sck)
-            : AbstractComponent<LoadCell<D, S>>(c, start), // TODO: Define start state
+        LoadCell(Controller &c, std::uint8_t dout, std::uint8_t sck)
+            : AbstractComponent(c), // TODO: Define start state
               device(dout, sck)
         {
             this->device.setSamplesInUse(10);
@@ -47,7 +47,8 @@ namespace CleaningDevice::Components
 
         Report &GetReport()
         {
-            this->report["Status"] = this->GetState()->GetName();
+            this->report[""] = "";
+
             return this->report;
         }
     };

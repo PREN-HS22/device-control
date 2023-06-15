@@ -15,14 +15,14 @@ namespace CleaningDevice::Components
               In2(in2) {}
     };
 
-    class DcMotor : public AbstractComponent<DcMotor>
+    class DcMotor : public AbstractComponent
     {
     private:
         DcMotorCfg config;
         L298N motor;
 
     public:
-        DcMotor(Controller &c, State<DcMotor> *start, DcMotorCfg config);
+        DcMotor(Controller &c, DcMotorCfg config);
         ~DcMotor();
 
         void Rotate(L298N::Direction dir, float speedFraction);

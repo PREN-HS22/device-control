@@ -12,14 +12,14 @@ namespace CleaningDevice::Components
         Valuables
     };
 
-    class Container : public AbstractComponent<Container>
+    class Container : public AbstractComponent
     {
     private:
         ContainerType type;
         LoadCell<> lc;
 
     public:
-        Container(Controller &c, State<Container> *start, ContainerType t);
+        Container(Controller &c, ContainerType t);
         ~Container();
 
         ContainerType GetType();

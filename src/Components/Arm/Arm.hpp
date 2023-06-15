@@ -5,14 +5,14 @@
 
 namespace CleaningDevice::Components
 {
-    class Arm : public AbstractComponent<Arm>
+    class Arm : public AbstractComponent
     {
     private:
         Stepper verticalStepper, horizontalStepper;
         DcMotor motorA, motorB;
 
     public:
-        Arm(Controller &c, State<Arm> *start);
+        Arm(Controller &c);
         ~Arm();
 
         void Lower();

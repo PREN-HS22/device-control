@@ -2,8 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    Vacuum::Vacuum(Controller &c, State<Vacuum> *start)
-        : AbstractComponent<Vacuum>(c, start),
+    Vacuum::Vacuum(Controller &c)
+        : AbstractComponent(c),
           motor(c, nullptr, DcMotorCfg(-1, -1, -1)) // Determine correct pins
     {
     }
@@ -44,7 +44,6 @@ namespace CleaningDevice::Components
 
     Report &Vacuum::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
         this->report["Speed"] = this->GetSpeed();
         this->report["Motor"] = this->motor.GetReport();
 

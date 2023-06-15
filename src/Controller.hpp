@@ -5,7 +5,6 @@
 #include "Misc/Emergency.hpp"
 #include "Misc/Reportable.hpp"
 #include "Misc/MqttClient.hpp"
-#include "StateMachine/FiniteStateMachine.hpp"
 #include "Components/Arm/Arm.hpp"
 #include "Components/BrushHead/BrushHead.hpp"
 #include "Components/Container/Container.hpp"
@@ -16,13 +15,10 @@
 #include "Components/LoadCell/LoadCell.hpp"
 #include "Components/Vacuum/Vacuum.hpp"
 
-using CleaningDevice::StateMachine::State, CleaningDevice::StateMachine::FiniteStateMachine;
-
 namespace CleaningDevice
 {
     class Controller
-        : public FiniteStateMachine<Controller>,
-          public Emergency,
+        : public Emergency,
           public Reportable
     {
     private:
@@ -36,7 +32,7 @@ namespace CleaningDevice
         Components::Container cont_a, cont_b, cont_c, cont_d;
 
     public:
-        Controller(State<Controller> *start);
+        Controller();
         ~Controller();
 
         void StartDevice();

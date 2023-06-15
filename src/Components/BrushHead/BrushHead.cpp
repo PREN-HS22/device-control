@@ -2,9 +2,9 @@
 
 namespace CleaningDevice::Components
 {
-    BrushHead::BrushHead(Controller &c, State<BrushHead> *start)
-        : AbstractComponent(c, start),
-          motor(c, nullptr, DcMotorCfg(-1, -1, -1)) // Determine correct pins
+    BrushHead::BrushHead(Controller &c)
+        : AbstractComponent(c),
+          motor(c, DcMotorCfg(-1, -1, -1)) // Determine correct pins
     {
     }
 
@@ -40,7 +40,6 @@ namespace CleaningDevice::Components
 
     Report &BrushHead::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
         this->report["Speed"] = this->GetSpeed();
         this->report["Motor"] = this->motor.GetReport();
 

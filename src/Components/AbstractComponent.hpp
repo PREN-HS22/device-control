@@ -1,7 +1,6 @@
 #pragma once
 #include "../Misc/Emergency.hpp"
 #include "../Misc/Reportable.hpp"
-#include "../StateMachine/FiniteStateMachine.hpp"
 
 namespace CleaningDevice
 {
@@ -11,22 +10,18 @@ namespace CleaningDevice
 using CleaningDevice::Emergency,
     CleaningDevice::Reportable,
     CleaningDevice::Controller,
-    CleaningDevice::Report,
-    CleaningDevice::StateMachine::State,
-    CleaningDevice::StateMachine::FiniteStateMachine;
+    CleaningDevice::Report;
 
 namespace CleaningDevice::Components
 {
-    template <typename T>
     class AbstractComponent
-        : public FiniteStateMachine<T>,
-          public Emergency,
+        : public Emergency,
           public Reportable
     {
     protected:
         Controller &ctrl;
         Report report;
 
-        AbstractComponent(Controller &c, State<T> *start) : ctrl(c), FiniteStateMachine<T>(start) {}
+        AbstractComponent(Controller &c) : ctrl(c) {}
     };
 }

@@ -4,13 +4,13 @@
 
 namespace CleaningDevice::Components
 {
-    class BrushHead : public AbstractComponent<BrushHead>
+    class BrushHead : public AbstractComponent
     {
     private:
         DcMotor motor;
 
     public:
-        BrushHead(Controller &c, State<BrushHead> *start);
+        BrushHead(Controller &c);
         ~BrushHead();
 
         void Start();

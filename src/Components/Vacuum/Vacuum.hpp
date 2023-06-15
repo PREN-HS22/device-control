@@ -3,14 +3,14 @@
 #include "../DcMotor/DcMotor.hpp"
 namespace CleaningDevice::Components
 {
-    class Vacuum : public AbstractComponent<Vacuum>
+    class Vacuum : public AbstractComponent
     {
     private:
         float speedFraction;
         DcMotor motor;
 
     public:
-        Vacuum(Controller &c, State<Vacuum> *start);
+        Vacuum(Controller &c);
         ~Vacuum();
 
         void Start();

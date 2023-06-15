@@ -3,19 +3,16 @@
 
 namespace CleaningDevice
 {
-    // TODO: Define start state for all components
-    Controller::Controller(State<Controller> *start)
-        : FiniteStateMachine(start),
-          wifiClient(),
+    Controller::Controller()
+        : wifiClient(),
           mqttClient(wifiClient, "", 0U, "", ""),
-          em(*this, nullptr),
-          arm(*this, nullptr),
-          vacuum(*this, nullptr),
-          conveyor(*this, nullptr),
-          cont_a(*this, nullptr, Components::ContainerType::PlasticCap),
-          cont_b(*this, nullptr, Components::ContainerType::CrownCap),
-          cont_c(*this, nullptr, Components::ContainerType::CigaretteStump),
-          cont_d(*this, nullptr, Components::ContainerType::Valuables)
+          arm(*this),
+          vacuum(*this),
+          conveyor(*this),
+          cont_a(*this, Components::ContainerType::PlasticCap),
+          cont_b(*this, Components::ContainerType::CrownCap),
+          cont_c(*this, Components::ContainerType::CigaretteStump),
+          cont_d(*this, Components::ContainerType::Valuables)
     {
         this->ConnectToWiFiAP();
         this->ConnectToMqttBroker();
@@ -63,8 +60,7 @@ namespace CleaningDevice
 
     Report &Controller::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
-        this->report["Extended"] = this->IsReady();
+        this->report["Ready"] = this->IsReady();
         this->report["Collecting"] = this->IsCollecting();
         this->report["CurrentPowerConsumption"] = this->CurrentPowerConsumption();
         this->report["TotalPowerConsumption"] = this->TotalPowerConsumption();

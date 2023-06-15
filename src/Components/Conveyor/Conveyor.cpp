@@ -2,9 +2,9 @@
 
 namespace CleaningDevice::Components
 {
-    Conveyor::Conveyor(Controller &c, State<Conveyor> *start)
-        : AbstractComponent(c, start),
-          motor(c, nullptr, DcMotorCfg(-1, -1, -1)) // Determine correct pins
+    Conveyor::Conveyor(Controller &c)
+        : AbstractComponent(c),
+          motor(c, DcMotorCfg(-1, -1, -1)) // Determine correct pins
     {
     }
 
@@ -41,7 +41,6 @@ namespace CleaningDevice::Components
 
     Report &Conveyor::GetReport()
     {
-        this->report["Status"] = this->GetState()->GetName();
         this->report["Speed"] = this->GetSpeed();
         this->report["Motor"] = this->motor.GetReport();
 

@@ -2,8 +2,8 @@
 
 namespace CleaningDevice::Components
 {
-    Stepper::Stepper(Controller &c, State<Stepper> *start, AccelStepper::MotorInterfaceType ifType, std::uint8_t pin1, std::uint8_t pin2)
-        : AbstractComponent(c, start),
+    Stepper::Stepper(Controller &c, AccelStepper::MotorInterfaceType ifType, std::uint8_t pin1, std::uint8_t pin2)
+        : AbstractComponent(c),
           stepper(ifType, pin1, pin2)
     {
         // After initialisation, set current position as the new 0-position
@@ -83,7 +83,6 @@ namespace CleaningDevice::Components
 
     Report &Stepper::GetReport()
     {
-        // this->report["Status"] = this->GetState()->ToString().c_str();
         this->report["Running"] = this->stepper.isRunning();
         this->report["Position"]["Current"] = this->stepper.currentPosition();
         this->report["Position"]["Target"] = this->stepper.targetPosition();
