@@ -13,7 +13,7 @@ namespace CleaningDevice::Components
         portMUX_TYPE spinLock = portMUX_INITIALIZER_UNLOCKED;
 
     private:
-        static void StepTask(void *pvParams);
+        static void Run(void *pvParams);
 
     public:
         Stepper(Controller &c, AccelStepper::MotorInterfaceType ifType, std::uint8_t pin1, std::uint8_t pin2);
