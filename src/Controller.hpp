@@ -25,7 +25,6 @@ namespace CleaningDevice
         Report report;
         WiFiClient wifiClient;
         MqttClient mqttClient;
-        Components::ElectroMagnet em;
         Components::Arm arm;
         Components::Vacuum vacuum;
         Components::Conveyor conveyor;
