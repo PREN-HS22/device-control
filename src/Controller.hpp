@@ -6,6 +6,7 @@
 #include "Misc/Emergency.hpp"
 #include "Misc/Reportable.hpp"
 #include "Misc/MqttClient.hpp"
+#include "Misc/PowerConsumption.hpp"
 #include "Components/Arm/Arm.hpp"
 #include "Components/BrushHead/BrushHead.hpp"
 #include "Components/Container/Container.hpp"
@@ -24,6 +25,7 @@ namespace CleaningDevice
     {
     private:
         Report report;
+        PowerConsumption consumption;
         WiFiClient wifiClient;
         MqttClient mqttClient;
         Components::Arm arm;

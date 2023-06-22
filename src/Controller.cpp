@@ -4,7 +4,8 @@
 namespace CleaningDevice
 {
     Controller::Controller()
-        : wifiClient(),
+        : consumption(50),
+          wifiClient(),
           mqttClient(wifiClient, "", 0U, "", "", (std::string) "esp32/" + WiFi.macAddress().c_str()),
           arm(*this),
           vacuum(*this),
@@ -50,10 +51,12 @@ namespace CleaningDevice
 
     float Controller::CurrentPowerConsumption()
     {
+        return this->consumption.GetLatestSample().Power;
     }
 
     float Controller::TotalPowerConsumption()
     {
+        return this->consumption.GetTotalPower();
     }
 
     void Controller::RaiseEmergency()
