@@ -7,9 +7,15 @@ namespace CleaningDevice::Components
           config(cfg),
           motor(cfg.Enable, cfg.In1, cfg.In2)
     {
+        xTaskCreatePinnedToCore(DcMotor::Run, "DcMotor::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->task), 1);
+        vTaskSuspend(this->task);
     }
 
     DcMotor::~DcMotor()
+    {
+    }
+
+    void DcMotor::Run(void *pvParams)
     {
     }
 

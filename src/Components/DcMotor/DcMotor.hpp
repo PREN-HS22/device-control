@@ -1,6 +1,7 @@
 #pragma once
 #include "../AbstractComponent.hpp"
 #include <L298N.h>
+#include <freertos/task.h>
 
 namespace CleaningDevice::Components
 {
@@ -20,6 +21,10 @@ namespace CleaningDevice::Components
     private:
         DcMotorCfg config;
         L298N motor;
+        TaskHandle_t task;
+
+    private:
+        static void Run(void *pvParams);
 
     public:
         DcMotor(Controller &c, DcMotorCfg config);
