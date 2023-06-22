@@ -5,7 +5,7 @@ namespace CleaningDevice
 {
     Controller::Controller()
         : wifiClient(),
-          mqttClient(wifiClient, "", 0U, "", "", (std::string)"esp32" + WiFi.macAddress().c_str()),
+          mqttClient(wifiClient, "", 0U, "", "", (std::string) "esp32/" + WiFi.macAddress().c_str()),
           arm(*this),
           vacuum(*this),
           conveyor(*this),
