@@ -16,10 +16,12 @@ namespace CleaningDevice
     {
         this->ConnectToWiFiAP();
         this->mqttClient.Connect();
+        this->mqttClient.Publish("/status", "[Status] Controller started");
     }
 
     Controller::~Controller()
     {
+        this->mqttClient.Publish("/status", "[Status] Controller stopped");
     }
 
     void Controller::StartDevice()
@@ -76,13 +78,11 @@ namespace CleaningDevice
         while (WiFi.status() != WL_CONNECTED)
         {
             delay(250);
-            Serial.print(".");
             tries++;
 
             if (tries > 10)
             {
                 // Display connection error on LCD
-                Serial.println("AP connection failed");
         }
     }
     }
