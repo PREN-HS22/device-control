@@ -82,7 +82,7 @@ namespace CleaningDevice
         float GetSampleRate() { return this->sampleRate; }
         void SetSampleRate(float rate) { this->sampleRate = rate; }
 
-        MeasurementSample GetLatestSample() { return this->sample; }
+        MeasurementSample &GetLatestSample() { return this->sample; }
         float GetTotalPower() { return this->totalPower; }
 
         Report &GetReport()
