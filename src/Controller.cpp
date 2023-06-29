@@ -47,6 +47,8 @@ namespace CleaningDevice
 
     bool Controller::IsReady()
     {
+        return this->arm.IsLowered() &&
+               this->vacuum.IsReady();
     }
 
     bool Controller::IsCollecting()
