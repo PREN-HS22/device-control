@@ -4,7 +4,7 @@ namespace CleaningDevice::Components
 {
     BrushHead::BrushHead(Controller &c)
         : AbstractComponent(c),
-          motor(c, DcMotorCfg(-1, -1, -1)) // Determine correct pins
+          motor(c, DcMotorCfg(12, 15, 5))
     {
     }
 
