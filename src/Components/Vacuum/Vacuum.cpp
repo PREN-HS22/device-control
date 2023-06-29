@@ -24,7 +24,7 @@ namespace CleaningDevice::Components
         {
             taskENTER_CRITICAL(&self->spinLock);
             // 120° per call to Servo::write
-            self->motor.write(0 /* (degrees + (35 * servoNumber)) % 180 */);
+            self->motor.write(180 * self->speedFraction);
             taskEXIT_CRITICAL(&self->spinLock);
         }
     }
@@ -41,6 +41,7 @@ namespace CleaningDevice::Components
 
     void Vacuum::SetSpeed(float fraction)
     {
+        fraction = std::clamp(fraction, 0.f, 1.f);
     }
 
     float Vacuum::GetSpeed()
