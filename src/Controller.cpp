@@ -62,6 +62,24 @@ namespace CleaningDevice
 
     void Controller::RaiseEmergency()
     {
+        this->arm.RaiseEmergency();
+        this->vacuum.RaiseEmergency();
+        this->conveyor.RaiseEmergency();
+        this->cont_a.RaiseEmergency();
+        this->cont_b.RaiseEmergency();
+        this->cont_c.RaiseEmergency();
+        this->cont_d.RaiseEmergency();
+        this->lcd.RaiseEmergency();
+
+        this->mqttClient.Publish("/status", JSON.stringify(this->GetReport()).c_str());
+        this->mqttClient.Publish("/status", JSON.stringify(this->arm.GetReport()).c_str());
+        this->mqttClient.Publish("/status", JSON.stringify(this->vacuum.GetReport()).c_str());
+        this->mqttClient.Publish("/status", JSON.stringify(this->conveyor.GetReport()).c_str());
+        this->mqttClient.Publish("/status", JSON.stringify(this->cont_a.GetReport()).c_str());
+        this->mqttClient.Publish("/status", JSON.stringify(this->cont_b.GetReport()).c_str());
+        this->mqttClient.Publish("/status", JSON.stringify(this->cont_c.GetReport()).c_str());
+        this->mqttClient.Publish("/status", JSON.stringify(this->cont_d.GetReport()).c_str());
+        this->mqttClient.Publish("/status", JSON.stringify(this->lcd.GetReport()).c_str());
     }
 
     Report &Controller::GetReport()
