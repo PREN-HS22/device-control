@@ -49,6 +49,10 @@ namespace CleaningDevice::Components
         return this->speedFraction;
     }
 
+    bool Vacuum::IsReady() {
+        return this->motor.attached();
+    }
+
     void Vacuum::RaiseEmergency()
     {
         this->Stop();
