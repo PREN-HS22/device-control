@@ -21,14 +21,27 @@ namespace CleaningDevice::Components
     {
     }
 
+    template <typename T>
+    void Lcd::print(T msg) {
+        LiquidCrystal_I2C::print(msg);
+        this->lastMessage = std::to_string(msg);
+    }
+
+    template <typename T>
+    void Lcd::println(T msg) {
+        LiquidCrystal_I2C::println(msg);
+        this->lastMessage = std::to_string(msg);
+    }
+
     void Lcd::RaiseEmergency()
     {
         // Display emergency
+        this->print("[Lcd] Emergency raised");
     }
 
     Report &Lcd::GetReport()
     {
-        this->report[""] = "";
+        this->report["Last message"] = this->lastMessage.c_str();
 
         return this->report;
     }
