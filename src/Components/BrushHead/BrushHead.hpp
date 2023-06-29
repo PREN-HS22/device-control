@@ -1,6 +1,7 @@
 #pragma once
 #include "../AbstractComponent.hpp"
 #include "../DcMotor/DcMotor.hpp"
+#include "../../Misc/PowerConsumption.hpp"
 
 namespace CleaningDevice::Components
 {
@@ -8,6 +9,7 @@ namespace CleaningDevice::Components
     {
     private:
         DcMotor motor;
+        PowerConsumption pc;
 
     public:
         BrushHead(Controller &c);
@@ -17,6 +19,7 @@ namespace CleaningDevice::Components
         void Stop();
         void SetSpeed(float percentage);
         float GetSpeed();
+        float GetPower();
         void RaiseEmergency();
         Report &GetReport();
     };

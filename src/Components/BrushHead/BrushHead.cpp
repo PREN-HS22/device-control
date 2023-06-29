@@ -4,7 +4,8 @@ namespace CleaningDevice::Components
 {
     BrushHead::BrushHead(Controller &c)
         : AbstractComponent(c),
-          motor(c, DcMotorCfg(12, 15, 5))
+          motor(c, DcMotorCfg(12, 15, 5)),
+          pc(50, INA219_CALC_ADDRESS(1, 0))
     {
     }
 
@@ -34,6 +35,10 @@ namespace CleaningDevice::Components
         return this->motor.GetSpeed();
     }
 
+    float BrushHead::GetPower() {
+        return this->pc.GetLatestSample().Power;
+    }
+
     void BrushHead::RaiseEmergency()
     {
     }
@@ -42,6 +47,7 @@ namespace CleaningDevice::Components
     {
         this->report["Speed"] = this->GetSpeed();
         this->report["Motor"] = this->motor.GetReport();
+        this->report["Power"] = this->pc.GetReport();
 
         return this->report;
     }
