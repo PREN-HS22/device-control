@@ -39,12 +39,12 @@ namespace CleaningDevice::Components
         vTaskSuspend(this->task);
     }
 
-    void Vacuum::SetSpeed(float fraction)
+    void Vacuum::SetTargetSpeed(float fraction)
     {
         fraction = std::clamp(fraction, 0.f, 1.f);
     }
 
-    float Vacuum::GetSpeed()
+    float Vacuum::GetTargetSpeed()
     {
         return this->speedFraction;
     }
@@ -56,7 +56,7 @@ namespace CleaningDevice::Components
 
     Report &Vacuum::GetReport()
     {
-        this->report["Speed"] = this->GetSpeed();
+        this->report["Target speed"] = this->GetTargetSpeed();
 
         return this->report;
     }

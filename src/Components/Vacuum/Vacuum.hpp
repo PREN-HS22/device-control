@@ -22,8 +22,8 @@ namespace CleaningDevice::Components
 
         void Start();
         void Stop();
-        void SetSpeed(float fraction);
-        float GetSpeed();
+        void SetTargetSpeed(float fraction);
+        float GetTargetSpeed();
         void RaiseEmergency();
         Report &GetReport();
     };
