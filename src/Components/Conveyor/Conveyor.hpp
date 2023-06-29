@@ -20,6 +20,7 @@ namespace CleaningDevice::Components
         void Stop();
         void SetSpeed(float fraction);
         float GetSpeed();
+        bool IsRunning();
         void RaiseEmergency();
         Report &GetReport();
     };

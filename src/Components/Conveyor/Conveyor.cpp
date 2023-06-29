@@ -35,6 +35,10 @@ namespace CleaningDevice::Components
         return this->speedFraction;
     }
 
+    bool Conveyor::IsRunning() {
+        return this->stepper.IsRunning();
+    }
+
     void Conveyor::RaiseEmergency()
     {
         this->stepper.Stop();
