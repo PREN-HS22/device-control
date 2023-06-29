@@ -21,17 +21,20 @@ namespace CleaningDevice::Components
     private:
         DcMotorCfg config;
         L298N motor;
-        TaskHandle_t task;
+        unsigned long startTime, endTime;
+        TimerHandle_t timer;
+        portMUX_TYPE spinLock = portMUX_INITIALIZER_UNLOCKED;
 
     private:
-        static void Run(void *pvParams);
+        void Rotate(L298N::Direction dir, float speedFraction, std::uint64_t start, std::uint64_t end);
+        static void TimerCallback(TimerHandle_t timer);
 
     public:
         DcMotor(Controller &c, DcMotorCfg config);
         ~DcMotor();
 
         void Rotate(L298N::Direction dir, float speedFraction);
-        void Rotate(L298N::Direction dir, float speedFraction, float duration);
+        void Rotate(L298N::Direction dir, float speedFraction, std::uint64_t duration);
         void Stop();
         float GetSpeed();
         void RaiseEmergency();

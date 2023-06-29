@@ -7,33 +7,33 @@ namespace CleaningDevice::Components
           config(cfg),
           motor(cfg.Enable, cfg.In1, cfg.In2)
     {
-        xTaskCreatePinnedToCore(DcMotor::Run, "DcMotor::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->task), 1);
-        vTaskSuspend(this->task);
+        this->timer = xTimerCreate("DcMotor::Rotate", pdMS_TO_TICKS(0), pdFALSE, this, DcMotor::TimerCallback);
     }
 
     DcMotor::~DcMotor()
     {
     }
 
-    void DcMotor::Run(void *pvParams)
+    void DcMotor::Rotate(L298N::Direction dir, float speedFraction, std::uint64_t start, std::uint64_t end)
     {
+        this->startTime = start;
+        this->endTime = end;
+        speedFraction = std::clamp(speedFraction, 0.f, 1.f);
+        auto pwm = (std::uint16_t)(speedFraction * 255);
+        this->motor.setSpeed(pwm);
+        this->motor.run(dir);
     }
 
     void DcMotor::Rotate(L298N::Direction dir, float speedFraction)
     {
-        speedFraction = std::clamp(speedFraction, 0.f, 1.f);
-        auto pwm = (std::uint16_t)(speedFraction * 255);
-        this->motor.setSpeed(pwm);
-        this->motor.run(dir);
+        this->Rotate(dir, speedFraction, 0UL, 0UL);
     }
 
-    void DcMotor::Rotate(L298N::Direction dir, float speedFraction, float duration)
+    void DcMotor::Rotate(L298N::Direction dir, float speedFraction, std::uint64_t duration)
     {
-        // Use a one-time FreeRTOS timer to stop the motor
-        speedFraction = std::clamp(speedFraction, 0.f, 1.f);
-        auto pwm = (std::uint16_t)(speedFraction * 255);
-        this->motor.setSpeed(pwm);
-        this->motor.run(dir);
+        xTimerChangePeriod(this->timer, pdMS_TO_TICKS(duration), pdMS_TO_TICKS(5));
+        xTimerReset(this->timer, pdMS_TO_TICKS(5));
+        this->Rotate(dir, speedFraction, millis(), millis() + duration);
     }
 
     void DcMotor::Stop()
@@ -48,7 +48,7 @@ namespace CleaningDevice::Components
 
     void DcMotor::RaiseEmergency()
     {
-        this->motor.stop();
+        this->Stop();
     }
 
     Report &DcMotor::GetReport()
@@ -67,9 +67,21 @@ namespace CleaningDevice::Components
             break;
         }
 
+        auto timeLeft = this->endTime - this->startTime;
+
         this->report["Duty cycle"] = this->GetSpeed();
         this->report["Direction"] = dir.c_str();
+        this->report["Duration"] = timeLeft > 0 ? (std::to_string(timeLeft) + "ms").c_str() : "Indefinite";
 
         return this->report;
+    }
+
+    void DcMotor::TimerCallback(TimerHandle_t timer)
+    {
+        auto self = static_cast<DcMotor *>(pvTimerGetTimerID(timer));
+
+        taskENTER_CRITICAL(&self->spinLock);
+        self->Stop();
+        taskEXIT_CRITICAL(&self->spinLock);
     }
 }
