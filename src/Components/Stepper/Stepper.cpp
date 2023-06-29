@@ -4,7 +4,8 @@ namespace CleaningDevice::Components
 {
     Stepper::Stepper(Controller &c, AccelStepper::MotorInterfaceType ifType, std::uint8_t pin1, std::uint8_t pin2)
         : AbstractComponent(c),
-          stepper(ifType, pin1, pin2)
+          stepper(ifType, pin1, pin2),
+          indefiniteSteps(false)
     {
         // After initialisation, set current position as the new 0-position
         this->stepper.setAcceleration(12000);
@@ -19,17 +20,31 @@ namespace CleaningDevice::Components
         this->Stop();
     }
 
-    void Stepper::MoveAbsolute(long position, float speed = 1500.f)
+    void Stepper::Move(long position, float speed)
     {
         this->Stop();
-        this->stepper.setMaxSpeed(speed);
+        this->stepper.setMaxSpeed(std::abs(speed));
         this->stepper.moveTo(position);
         vTaskResume(this->task);
     }
 
+    void Stepper::MoveAbsolute(long position, float speed = 1500.f)
+    {
+        this->indefiniteSteps = false;
+        this->Move(position, speed);
+    }
+
     void Stepper::MoveRelative(long position, float speed = 1500.f)
     {
-        this->MoveAbsolute(this->stepper.currentPosition() + position);
+        this->indefiniteSteps = false;
+        this->Move(this->stepper.currentPosition() + position, speed);
+    }
+
+    void Stepper::MoveIndefinite(float speed)
+    {
+        this->indefiniteSteps = true;
+        this->stepper.setCurrentPosition(0);
+        this->Move(speed > 0.f ? 100000 : -10000, speed);
     }
 
     bool Stepper::Calibrate()
@@ -84,6 +99,7 @@ namespace CleaningDevice::Components
     Report &Stepper::GetReport()
     {
         this->report["Running"] = this->stepper.isRunning();
+        this->report["Run indefinitely"] = this->indefiniteSteps;
         this->report["Position"]["Current"] = this->stepper.currentPosition();
         this->report["Position"]["Target"] = this->stepper.targetPosition();
         this->report["Speed"]["Current"] = this->stepper.speed();
@@ -102,6 +118,11 @@ namespace CleaningDevice::Components
         for (;;)
         {
             taskENTER_CRITICAL(&self->spinLock);
+            if (self->indefiniteSteps)
+            {
+                self->stepper.setCurrentPosition(0);
+            }
+
             finished = !self->stepper.run();
             taskEXIT_CRITICAL(&self->spinLock);
 
