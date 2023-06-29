@@ -29,10 +29,26 @@ namespace CleaningDevice
 
     void Controller::StartDevice()
     {
+        this->arm.Lower();
+        while (!this->arm.IsLowered())
+        {
+            delay(1000);
+        }
+        this->conveyor.SetSpeed(.5f);
+        this->conveyor.Start();
     }
 
     void Controller::StopDevice()
     {
+        this->conveyor.Stop();
+        this->vacuum.Stop();
+        // Move arm to idle position
+        this->arm.Raise();
+
+        while (!this->arm.IsRaised())
+        {
+            delay(1000);
+        }
     }
 
     void Controller::StartCollecting()
