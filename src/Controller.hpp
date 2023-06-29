@@ -33,6 +33,7 @@ namespace CleaningDevice
         Components::Conveyor conveyor;
         Components::Container cont_a, cont_b, cont_c, cont_d;
         Components::Lcd lcd;
+        bool collecting;
 
     public:
         Controller();

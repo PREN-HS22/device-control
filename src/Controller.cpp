@@ -14,7 +14,8 @@ namespace CleaningDevice
           cont_b(*this, Components::ContainerType::CrownCap),
           cont_c(*this, Components::ContainerType::CigaretteStump),
           cont_d(*this, Components::ContainerType::Valuables),
-          lcd(*this, 0, 16, 2)
+          lcd(*this, 0, 16, 2),
+          collecting(false)
     {
         this->ConnectToWiFiAP();
         this->mqttClient.Connect();
@@ -36,10 +37,12 @@ namespace CleaningDevice
 
     void Controller::StartCollecting()
     {
+        this->collecting = true;
     }
 
     void Controller::StopCollecting()
     {
+        this->collecting = false;
     }
 
     bool Controller::IsReady()
@@ -48,6 +51,7 @@ namespace CleaningDevice
 
     bool Controller::IsCollecting()
     {
+        return this->collecting;
     }
 
     float Controller::CurrentPowerConsumption()
