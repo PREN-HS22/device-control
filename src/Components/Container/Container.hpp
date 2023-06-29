@@ -17,13 +17,15 @@ namespace CleaningDevice::Components
     private:
         ContainerType type;
         LoadCell<> lc;
+        std::uint32_t amount;
+        float confidence;
 
     public:
         Container(Controller &c, ContainerType t);
         ~Container();
 
         ContainerType GetType();
-        unsigned int GetContentAmount();
+        std::uint32_t GetContentAmount();
         float GetConfidence();
         void RaiseEmergency();
         Report &GetReport();

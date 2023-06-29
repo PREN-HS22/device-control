@@ -5,7 +5,9 @@ namespace CleaningDevice::Components
     Container::Container(Controller &c, ContainerType t)
         : AbstractComponent(c),
           type(t),
-          lc(c, 2U, 3U)
+          lc(c, 2U, 3U),
+          amount(0U),
+          confidence(0.f)
     {
     }
 
@@ -18,12 +20,14 @@ namespace CleaningDevice::Components
         return this->type;
     }
 
-    unsigned int Container::GetContentAmount()
+    std::uint32_t Container::GetContentAmount()
     {
+        return this->amount;
     }
 
     float Container::GetConfidence()
     {
+        return this->confidence;
     }
 
     void Container::RaiseEmergency()
