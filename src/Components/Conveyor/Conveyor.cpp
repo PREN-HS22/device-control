@@ -4,7 +4,9 @@ namespace CleaningDevice::Components
 {
     Conveyor::Conveyor(Controller &c)
         : AbstractComponent(c),
-          motor(c, DcMotorCfg(-1, -1, -1)) // Determine correct pins
+          stepper(c, AccelStepper::FULL2WIRE, 17, 16),
+          maxStepperSpeed(5000.f),
+          speedFraction(.5f)
     {
     }
 
@@ -14,35 +16,34 @@ namespace CleaningDevice::Components
 
     void Conveyor::Start()
     {
-        this->motor.Rotate(L298N::FORWARD, 100);
+        this->stepper.MoveIndefinite(this->speedFraction * this->maxStepperSpeed);
     }
 
     void Conveyor::Stop()
     {
-        this->motor.Stop();
+        this->stepper.Stop();
     }
 
     void Conveyor::SetSpeed(float fraction)
     {
-        fraction = std::clamp(fraction, 0.f, 1.f);
-        auto pwm = (std::uint16_t)(fraction * 255);
-        this->motor.Rotate(L298N::FORWARD, pwm);
+        this->speedFraction = std::clamp(fraction, 0.f, 1.f);
+        this->stepper.MoveIndefinite(this->speedFraction * this->maxStepperSpeed);
     }
 
     float Conveyor::GetSpeed()
     {
-        return (float)this->motor.GetSpeed();
+        return this->speedFraction;
     }
 
     void Conveyor::RaiseEmergency()
     {
-        // Stop device
+        this->stepper.Stop();
     }
 
     Report &Conveyor::GetReport()
     {
         this->report["Speed"] = this->GetSpeed();
-        this->report["Motor"] = this->motor.GetReport();
+        this->report["Stepper"] = this->stepper.GetReport();
 
         return this->report;
     }

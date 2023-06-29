@@ -1,13 +1,16 @@
 #pragma once
 #include "../AbstractComponent.hpp"
-#include "../DcMotor/DcMotor.hpp"
+#include "../Stepper/Stepper.hpp"
+#include <freertos/task.h>
 
 namespace CleaningDevice::Components
 {
     class Conveyor : public AbstractComponent
     {
     private:
-        DcMotor motor;
+        Stepper stepper;
+        const float maxStepperSpeed;
+        float speedFraction;
 
     public:
         Conveyor(Controller &c);
