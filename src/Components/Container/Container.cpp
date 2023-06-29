@@ -44,4 +44,15 @@ namespace CleaningDevice::Components
 
         return this->report;
     }
+
+    void Container::OnObjectDetected(std::uint32_t amount, float confidence)
+    {
+        auto cWeight = this->amount;        // Current confidence weight
+        auto nWeight = amount;              // New confidence weight
+        auto tWeight = cWeight + nWeight;   // Total confidence weight
+
+        // Weighted confidence calculation
+        this->confidence = (cWeight * this->confidence + nWeight * confidence) / tWeight;
+        this->amount += amount;
+    }
 }

@@ -20,6 +20,9 @@ namespace CleaningDevice::Components
         std::uint32_t amount;
         float confidence;
 
+    private:
+        void OnObjectDetected(std::uint32_t amount, float confidence);
+
     public:
         Container(Controller &c, ContainerType t);
         ~Container();
