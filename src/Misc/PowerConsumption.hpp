@@ -67,10 +67,11 @@ namespace CleaningDevice
         }
 
     public:
-        PowerConsumption(float rate)
+        PowerConsumption(float rate, std::uint8_t address)
             : sampleRate(rate),
               totalPower(0),
-              i2c(0)
+              i2c(0),
+              ina(address)
         {
             this->i2c.setPins(13, 4);
             xTaskCreatePinnedToCore(PowerConsumption::Run, "PowerConsumption::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->task), 0);
