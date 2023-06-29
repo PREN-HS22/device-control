@@ -1,13 +1,20 @@
 #pragma once
 #include "../AbstractComponent.hpp"
-#include "../DcMotor/DcMotor.hpp"
+#include <Servo.h>
+#include <freertos/task.h>
+
 namespace CleaningDevice::Components
 {
     class Vacuum : public AbstractComponent
     {
     private:
         float speedFraction;
-        DcMotor motor;
+        Servo motor;
+        TaskHandle_t task;
+        portMUX_TYPE spinLock = portMUX_INITIALIZER_UNLOCKED;
+
+    private:
+        static void Run(void *pvParams);
 
     public:
         Vacuum(Controller &c);

@@ -4,31 +4,43 @@ namespace CleaningDevice::Components
 {
     Vacuum::Vacuum(Controller &c)
         : AbstractComponent(c),
-          motor(c, nullptr, DcMotorCfg(-1, -1, -1)) // Determine correct pins
+          speedFraction(0.f),
+          motor()
     {
+        motor.attach(18);
+        xTaskCreatePinnedToCore(Vacuum::Run, "Vacuum::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->task), 1);
     }
 
     Vacuum::~Vacuum()
     {
+        motor.detach();
+    }
+
+    void Vacuum::Run(void *pvParams)
+    {
+        auto self = static_cast<Vacuum *>(pvParams);
+
+        for (;;)
+        {
+            taskENTER_CRITICAL(&self->spinLock);
+            // 120° per call to Servo::write
+            self->motor.write(0 /* (degrees + (35 * servoNumber)) % 180 */);
+            taskEXIT_CRITICAL(&self->spinLock);
+        }
     }
 
     void Vacuum::Start()
     {
-        auto pwm = (std::uint16_t)(this->speedFraction * 255);
-        this->motor.Rotate(L298N::FORWARD, pwm);
+        vTaskResume(this->task);
     }
 
     void Vacuum::Stop()
     {
-        this->motor.Stop();
+        vTaskSuspend(this->task);
     }
 
     void Vacuum::SetSpeed(float fraction)
     {
-        fraction = std::clamp(fraction, 0.f, 1.f);
-        this->speedFraction = fraction;
-        auto pwm = (std::uint16_t)(fraction * 255);
-        this->motor.Rotate(L298N::FORWARD, pwm);
     }
 
     float Vacuum::GetSpeed()
@@ -39,13 +51,11 @@ namespace CleaningDevice::Components
     void Vacuum::RaiseEmergency()
     {
         this->Stop();
-        // Stop device
     }
 
     Report &Vacuum::GetReport()
     {
         this->report["Speed"] = this->GetSpeed();
-        this->report["Motor"] = this->motor.GetReport();
 
         return this->report;
     }
