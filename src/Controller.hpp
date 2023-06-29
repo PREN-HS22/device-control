@@ -32,6 +32,7 @@ namespace CleaningDevice
         Components::Vacuum vacuum;
         Components::Conveyor conveyor;
         Components::Container cont_a, cont_b, cont_c, cont_d;
+        Components::Lcd lcd;
 
     public:
         Controller();

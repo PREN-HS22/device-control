@@ -13,7 +13,8 @@ namespace CleaningDevice
           cont_a(*this, Components::ContainerType::PlasticCap),
           cont_b(*this, Components::ContainerType::CrownCap),
           cont_c(*this, Components::ContainerType::CigaretteStump),
-          cont_d(*this, Components::ContainerType::Valuables)
+          cont_d(*this, Components::ContainerType::Valuables),
+          lcd(*this, 0, 16, 2)
     {
         this->ConnectToWiFiAP();
         this->mqttClient.Connect();
