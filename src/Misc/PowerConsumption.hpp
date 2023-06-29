@@ -19,6 +19,7 @@ namespace CleaningDevice
         MeasurementSample sample;
         TaskHandle_t task;
         portMUX_TYPE spinLock = portMUX_INITIALIZER_UNLOCKED;
+        TwoWire i2c;
         Adafruit_INA219 ina;
         float sampleRate, totalPower;
 
@@ -30,12 +31,13 @@ namespace CleaningDevice
 
             taskENTER_CRITICAL(&(self->spinLock));
             // ----
+            auto i2c = self->i2c;
             auto ina = self->ina;
             auto sample = self->sample;
             auto delta = 1.f / self->sampleRate;
 
             int i = 0;
-            while (!ina.begin())
+            while (!ina.begin(&i2c))
             {
                 if (i++ > 9)
                 {
@@ -65,8 +67,12 @@ namespace CleaningDevice
         }
 
     public:
-        PowerConsumption(float rate) : sampleRate(rate), totalPower(0)
+        PowerConsumption(float rate)
+            : sampleRate(rate),
+              totalPower(0),
+              i2c(0)
         {
+            this->i2c.setPins(13, 4);
             xTaskCreatePinnedToCore(PowerConsumption::Run, "PowerConsumption::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->task), 0);
         }
 
