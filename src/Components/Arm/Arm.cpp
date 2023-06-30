@@ -39,7 +39,7 @@ namespace CleaningDevice::Components
         motorB.Stop();
     }
 
-    void Arm::Rotate(float angle, float speed = .5f)
+    void Arm::Rotate(float angle, float speed)
     {
         // TODO: Calculate angle to steps
         long steps = (long)(angle * 100.f);

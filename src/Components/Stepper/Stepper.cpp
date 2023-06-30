@@ -28,13 +28,13 @@ namespace CleaningDevice::Components
         vTaskResume(this->task);
     }
 
-    void Stepper::MoveAbsolute(long position, float speed = 1500.f)
+    void Stepper::MoveAbsolute(long position, float speed)
     {
         this->indefiniteSteps = false;
         this->Move(position, speed);
     }
 
-    void Stepper::MoveRelative(long position, float speed = 1500.f)
+    void Stepper::MoveRelative(long position, float speed)
     {
         this->indefiniteSteps = false;
         this->Move(this->stepper.currentPosition() + position, speed);
