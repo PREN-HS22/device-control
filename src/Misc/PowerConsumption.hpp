@@ -66,6 +66,8 @@ namespace CleaningDevice
                 }
                 delay(50);
             }
+
+            xTimerReset(this->timer, pdMS_TO_TICKS(5));
         }
 
         ~PowerConsumption() { xTimerDelete(this->timer, pdMS_TO_TICKS(5)); }
