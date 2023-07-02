@@ -25,6 +25,10 @@ namespace StateMachineTest
             Serial.println("))");
             return *(*StateMachineTest::states)["B"];
         }
+
+        std::string ToString() {
+            return "";
+        }
     };
 
     class StateB : public MockState
@@ -40,6 +44,10 @@ namespace StateMachineTest
             Serial.println("))");
             return *(*StateMachineTest::states)["C"];
         }
+
+        std::string ToString() {
+            return "";
+        }
     };
 
     class StateC : public MockState
@@ -54,6 +62,10 @@ namespace StateMachineTest
             Serial.print(msg.GetName().c_str());
             Serial.println("))");
             return *(*StateMachineTest::states)["C"];
+        }
+
+        std::string ToString() {
+            return "";
         }
     };
 }
