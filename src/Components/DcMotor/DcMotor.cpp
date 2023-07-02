@@ -7,7 +7,7 @@ namespace CleaningDevice::Components
           config(cfg),
           motor(cfg.Enable, cfg.In1, cfg.In2)
     {
-        this->timer = xTimerCreate("DcMotor::Rotate", pdMS_TO_TICKS(0), pdFALSE, this, DcMotor::TimerCallback);
+        this->timer = xTimerCreate("DcMotor::Rotate", pdMS_TO_TICKS(1000), pdFALSE, this, DcMotor::TimerCallback);
     }
 
     DcMotor::~DcMotor()
