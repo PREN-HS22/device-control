@@ -4,9 +4,8 @@ namespace CleaningDevice::Components
 {
     Conveyor::Conveyor(Controller &c)
         : AbstractComponent(c),
-          stepper(c, AccelStepper::FULL2WIRE, 17, 16),
-          maxStepperSpeed(5000.f),
-          speedFraction(.5f)
+          stepper(c, 1000, 16, 17),
+          rpm(60.f)
     {
     }
 
@@ -16,7 +15,7 @@ namespace CleaningDevice::Components
 
     void Conveyor::Start()
     {
-        this->stepper.MoveIndefinite(this->speedFraction * this->maxStepperSpeed);
+        this->stepper.MoveIndefinite(this->rpm);
     }
 
     void Conveyor::Stop()
@@ -24,18 +23,22 @@ namespace CleaningDevice::Components
         this->stepper.Stop();
     }
 
-    void Conveyor::SetSpeed(float fraction)
+    void Conveyor::SetRpm(float rpm)
     {
-        this->speedFraction = std::clamp(fraction, 0.f, 1.f);
-        this->stepper.MoveIndefinite(this->speedFraction * this->maxStepperSpeed);
+        this->rpm = rpm;
+        if (this->IsRunning())
+        {
+            this->stepper.MoveIndefinite(rpm);
+        }
     }
 
-    float Conveyor::GetSpeed()
+    float Conveyor::GetRpm()
     {
-        return this->speedFraction;
+        return this->rpm;
     }
 
-    bool Conveyor::IsRunning() {
+    bool Conveyor::IsRunning()
+    {
         return this->stepper.IsRunning();
     }
 
@@ -46,7 +49,7 @@ namespace CleaningDevice::Components
 
     Report &Conveyor::GetReport()
     {
-        this->report["Speed"] = this->GetSpeed();
+        this->report["RPM"] = this->GetRpm();
         this->report["Stepper"] = this->stepper.GetReport();
 
         return this->report;

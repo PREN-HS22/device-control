@@ -9,8 +9,7 @@ namespace CleaningDevice::Components
     {
     private:
         Stepper stepper;
-        const float maxStepperSpeed;
-        float speedFraction;
+        float rpm;
 
     public:
         Conveyor(Controller &c);
@@ -18,8 +17,8 @@ namespace CleaningDevice::Components
 
         void Start();
         void Stop();
-        void SetSpeed(float fraction);
-        float GetSpeed();
+        void SetRpm(float rpm);
+        float GetRpm();
         bool IsRunning();
         void RaiseEmergency();
         Report &GetReport();
