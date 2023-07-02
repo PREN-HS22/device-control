@@ -39,6 +39,7 @@ namespace CleaningDevice::Components
 
     void BrushHead::RaiseEmergency()
     {
+        this->motor.Stop();
     }
 
     Report &BrushHead::GetReport()
