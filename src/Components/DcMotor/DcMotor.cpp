@@ -12,6 +12,7 @@ namespace CleaningDevice::Components
 
     DcMotor::~DcMotor()
     {
+        xTimerDelete(this->timer, pdMS_TO_TICKS(5));
     }
 
     void DcMotor::Rotate(L298N::Direction dir, float speedFraction, std::uint64_t start, std::uint64_t end)
