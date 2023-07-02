@@ -4,10 +4,10 @@ namespace CleaningDevice::Components
 {
     Arm::Arm(Controller &c)
         : AbstractComponent(c),
-          verticalStepper(c, 1000, 19, 21),   // Arm lowering and raising
-          horizontalStepper(c, 1000, 22, 23), // Arm rotation
-          motorA(c, DcMotorCfg(32, 25, 33)),                     // Compartment A (Motor closer to base)
-          motorB(c, DcMotorCfg(14, 26, 27))                      // Compartment B (Motor closer to brush)
+          verticalStepper(c, 200, 22, 23),   // Arm lowering and raising, positive numbers lower, negative raise the arm
+          horizontalStepper(c, 200, 19, 21), // Arm rotation
+          motorA(c, DcMotorCfg(32, 25, 33)),  // Compartment A (Motor closer to base)
+          motorB(c, DcMotorCfg(14, 26, 27))   // Compartment B (Motor closer to brush)
     {
     }
 
