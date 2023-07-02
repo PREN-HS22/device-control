@@ -11,7 +11,6 @@
 #include "Components/BrushHead/BrushHead.hpp"
 #include "Components/Container/Container.hpp"
 #include "Components/Conveyor/Conveyor.hpp"
-#include "Components/ElectroMagnet/ElectroMagnet.hpp"
 #include "Components/DcMotor/DcMotor.hpp"
 #include "Components/Lcd/Lcd.hpp"
 #include "Components/LoadCell/LoadCell.hpp"
