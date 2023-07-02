@@ -31,16 +31,21 @@ namespace CleaningDevice
             auto sample = self->sample;
             auto delta = 1.f / self->sampleRate;
 
-            taskENTER_CRITICAL(&(self->spinLock));
-            // ----
-            sample.ShuntVoltage = ina.getShuntVoltage_mV() / 1000.f;
-            sample.BusVoltage = ina.getBusVoltage_V();
-            sample.Current = ina.getCurrent_mA() / 1000.f;
-            sample.Power = ina.getPower_mW() / 1000.f;
-            sample.LoadVoltage = sample.BusVoltage + (sample.ShuntVoltage);
-            self->totalPower += sample.Power * delta;
-            // ----
-            taskEXIT_CRITICAL(&(self->spinLock));
+            auto shuntVoltage = ina.getShuntVoltage_mV() / 1000.f;
+            auto busVoltage = ina.getBusVoltage_V();
+            auto current = ina.getCurrent_mA() / 1000.f;
+            auto power = ina.getPower_mW() / 1000.f;
+            auto loadVoltage = busVoltage + shuntVoltage;
+            auto totalPower = self->totalPower + power * delta;
+
+            taskENTER_CRITICAL(&self->spinLock);
+            sample.ShuntVoltage = shuntVoltage;
+            sample.BusVoltage = busVoltage;
+            sample.Current = current;
+            sample.Power = power;
+            sample.LoadVoltage = loadVoltage;
+            self->totalPower = totalPower;
+            taskEXIT_CRITICAL(&self->spinLock);
         }
 
     public:
