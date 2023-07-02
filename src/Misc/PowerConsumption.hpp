@@ -19,7 +19,7 @@ namespace CleaningDevice
         MeasurementSample sample;
         TimerHandle_t timer;
         portMUX_TYPE spinLock = portMUX_INITIALIZER_UNLOCKED;
-        TwoWire i2c;
+        TwoWire wire;
         Adafruit_INA219 ina;
         float sampleRate, totalPower;
 
@@ -44,18 +44,18 @@ namespace CleaningDevice
         }
 
     public:
-        PowerConsumption(float rate, std::uint8_t address)
+        PowerConsumption(float rate, std::uint8_t sda, std::uint8_t scl, std::uint8_t address)
             : sampleRate(rate < 1.f ? 1.f : rate),
               totalPower(0),
-              i2c(0),
+              wire(0),
               ina(address)
         {
-            this->i2c.setPins(13, 4);
+            this->wire.setPins(sda, scl);
             this->timer = xTimerCreate("PowerConsumption::TimerCallback", pdMS_TO_TICKS((TickType_t)(1000.f / rate)), pdFALSE, this, PowerConsumption::TimerCallback);
 
             for (int i = 0; i < 10; i++)
             {
-                if (ina.begin())
+                if (ina.begin(&(this->wire)))
                 {
                     break;
                 }
