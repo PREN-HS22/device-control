@@ -2,94 +2,80 @@
 
 namespace CleaningDevice::Components
 {
-    Stepper::Stepper(Controller &c, AccelStepper::MotorInterfaceType ifType, std::uint8_t pin1, std::uint8_t pin2)
+    Stepper::Stepper(Controller &c, std::uint16_t steps, std::uint8_t dirPin, std::uint8_t stepPin)
         : AbstractComponent(c),
-          stepper(ifType, pin1, pin2),
-          indefiniteSteps(false)
+          driver(steps, dirPin, stepPin),
+          indefiniteSteps(false),
+          stepsRemaining(0)
     {
         // After initialisation, set current position as the new 0-position
-        this->stepper.setAcceleration(12000);
-        this->stepper.setCurrentPosition(this->stepper.currentPosition());
+        this->driver.begin();
+        this->driver.setSpeedProfile(BasicStepperDriver::CONSTANT_SPEED);
         xTaskCreatePinnedToCore(Stepper::Run, "Stepper::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->task), 1);
         vTaskSuspend(this->task);
     }
 
     Stepper::~Stepper()
     {
-        vTaskDelete(this->task);
         this->Stop();
+        vTaskDelete(this->task);
     }
 
-    void Stepper::Move(long position, float speed)
+    void Stepper::Move(long steps, float rpm)
     {
         this->Stop();
-        this->stepper.setMaxSpeed(std::abs(speed));
-        this->stepper.moveTo(position);
+        this->indefiniteSteps = false;
+        this->driver.setRPM(std::abs(rpm));
+        this->driver.startMove(steps);
         vTaskResume(this->task);
     }
 
-    void Stepper::MoveAbsolute(long position, float speed)
+    void Stepper::MoveIndefinite(float rpm)
     {
-        this->indefiniteSteps = false;
-        this->Move(position, speed);
-    }
-
-    void Stepper::MoveRelative(long position, float speed)
-    {
-        this->indefiniteSteps = false;
-        this->Move(this->stepper.currentPosition() + position, speed);
-    }
-
-    void Stepper::MoveIndefinite(float speed)
-    {
+        this->Stop();
         this->indefiniteSteps = true;
-        this->stepper.setCurrentPosition(0);
-        this->Move(speed > 0.f ? 100000 : -10000, speed);
+        this->driver.setRPM(std::abs(rpm));
+        this->driver.startMove(rpm > 0.f ? 1000000 : -1000000);
+        vTaskResume(this->task);
     }
 
     bool Stepper::Calibrate()
     {
-        auto canCalibrate = !this->stepper.isRunning();
-
-        if (canCalibrate)
-        {
-            this->stepper.setCurrentPosition(this->stepper.currentPosition());
-        }
+        auto canCalibrate = !this->driver.getCurrentState() != BasicStepperDriver::STOPPED;
 
         return canCalibrate;
     }
 
     void Stepper::Suspend()
     {
-        if (this->stepper.isRunning())
+        if (this->driver.getCurrentState() != BasicStepperDriver::STOPPED)
         {
             vTaskSuspend(this->task);
-            auto distanceLeft = this->stepper.distanceToGo();
-            this->stepper.stop();
-            this->stepper.move(distanceLeft);
+            this->stepsRemaining = this->driver.stop();
         }
     }
 
     void Stepper::Resume()
     {
-        if (this->stepper.isRunning())
+        if (this->driver.getCurrentState() == BasicStepperDriver::STOPPED)
         {
+            this->driver.startMove(this->stepsRemaining);
             vTaskResume(this->task);
         }
     }
 
     void Stepper::Stop()
     {
-        if (this->stepper.isRunning())
+        if (this->driver.getCurrentState() != BasicStepperDriver::STOPPED)
         {
             vTaskSuspend(this->task);
-            this->stepper.stop();
+            this->driver.stop();
         }
     }
 
     bool Stepper::IsRunning()
     {
-        return this->stepper.isRunning();
+        return this->driver.getCurrentState() != BasicStepperDriver::STOPPED;
     }
 
     void Stepper::RaiseEmergency()
@@ -98,14 +84,10 @@ namespace CleaningDevice::Components
 
     Report &Stepper::GetReport()
     {
-        this->report["Running"] = this->stepper.isRunning();
+        this->report["Running"] = this->driver.getCurrentState() != BasicStepperDriver::STOPPED;
         this->report["Run indefinitely"] = this->indefiniteSteps;
-        this->report["Position"]["Current"] = this->stepper.currentPosition();
-        this->report["Position"]["Target"] = this->stepper.targetPosition();
-        this->report["Speed"]["Current"] = this->stepper.speed();
-        this->report["Speed"]["Max"] = this->stepper.maxSpeed();
-        this->report["Acceleration"] = this->stepper.acceleration();
-        this->report["Distance left"] = this->stepper.distanceToGo();
+        this->report["Steps"]["Completed"] = this->driver.getStepsCompleted();
+        this->report["Steps"]["Remaining"] = this->driver.getStepsRemaining();
 
         return this->report;
     }
@@ -120,11 +102,11 @@ namespace CleaningDevice::Components
             taskENTER_CRITICAL(&self->spinLock);
             if (self->indefiniteSteps)
             {
-                self->stepper.setCurrentPosition(0);
+                self->driver.startMove(self->driver.getDirection() * 1000000);
             }
-
-            finished = !self->stepper.run();
             taskEXIT_CRITICAL(&self->spinLock);
+
+            finished = !self->driver.nextAction() > 0;
 
             if (finished)
             {

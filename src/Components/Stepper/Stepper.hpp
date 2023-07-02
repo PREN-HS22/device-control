@@ -1,6 +1,6 @@
 #pragma once
 #include "../AbstractComponent.hpp"
-#include <AccelStepper.h>
+#include <A4988.h>
 #include <freertos/task.h>
 
 namespace CleaningDevice::Components
@@ -8,22 +8,21 @@ namespace CleaningDevice::Components
     class Stepper : public AbstractComponent
     {
     private:
-        AccelStepper stepper;
+        A4988 driver;
         TaskHandle_t task;
         portMUX_TYPE spinLock = portMUX_INITIALIZER_UNLOCKED;
         bool indefiniteSteps;
+        long stepsRemaining;
 
     private:
         static void Run(void *pvParams);
-        void Move(long position, float speed);
 
     public:
-        Stepper(Controller &c, AccelStepper::MotorInterfaceType ifType, std::uint8_t pin1, std::uint8_t pin2);
+        Stepper(Controller &c, std::uint16_t, std::uint8_t dirPin, std::uint8_t stepPin);
         ~Stepper();
 
-        void MoveAbsolute(long position, float speed = 1500.f);
-        void MoveRelative(long position, float speed = 1500.f);
-        void MoveIndefinite(float speed);
+        void Move(long steps, float rpm = 60.f);
+        void MoveIndefinite(float rpm = 60.f);
         bool Calibrate();
         void Suspend();
         void Resume();
