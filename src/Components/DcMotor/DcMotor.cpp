@@ -31,6 +31,11 @@ namespace CleaningDevice::Components
 
     void DcMotor::Rotate(L298N::Direction dir, float speedFraction, std::uint64_t duration)
     {
+        if (duration == 0)
+        {
+            return;
+        }
+
         xTimerChangePeriod(this->timer, pdMS_TO_TICKS(duration), pdMS_TO_TICKS(5));
         xTimerReset(this->timer, pdMS_TO_TICKS(5));
         this->Rotate(dir, speedFraction, millis(), millis() + duration);
