@@ -9,6 +9,7 @@ namespace CleaningDevice::Components
     {
     private:
         DcMotor motor;
+        PowerConsumption pc;
 
     public:
         BrushHead(Controller &c);
