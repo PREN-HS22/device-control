@@ -13,6 +13,10 @@ namespace CleaningDevice::Components
 
     Arm::~Arm()
     {
+        this->motorA.Stop();
+        this->motorB.Stop();
+        this->verticalStepper.Stop();
+        this->horizontalStepper.Stop();
     }
 
     void Arm::Lower()
@@ -64,7 +68,10 @@ namespace CleaningDevice::Components
 
     void Arm::RaiseEmergency()
     {
-        // Stop device
+        this->motorA.Stop();
+        this->motorB.Stop();
+        this->verticalStepper.Stop();
+        this->horizontalStepper.Stop();
     }
 
     Report &Arm::GetReport()
