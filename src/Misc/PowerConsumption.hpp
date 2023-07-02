@@ -49,7 +49,7 @@ namespace CleaningDevice
         }
 
     public:
-        PowerConsumption(float rate, std::uint8_t sda, std::uint8_t scl, std::uint8_t address)
+        PowerConsumption(float rate, int sda, int scl, std::uint8_t address)
             : sampleRate(rate < 1.f ? 1.f : rate),
               totalPower(0),
               wire(0),
