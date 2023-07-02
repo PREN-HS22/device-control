@@ -10,6 +10,7 @@ namespace CleaningDevice
           arm(*this),
           vacuum(*this),
           conveyor(*this),
+          brush(*this),
           cont_a(*this, Components::ContainerType::PlasticCap),
           cont_b(*this, Components::ContainerType::CrownCap),
           cont_c(*this, Components::ContainerType::CigaretteStump),

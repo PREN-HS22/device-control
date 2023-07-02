@@ -31,6 +31,7 @@ namespace CleaningDevice
         Components::Arm arm;
         Components::Vacuum vacuum;
         Components::Conveyor conveyor;
+        Components::BrushHead brush;
         Components::Container cont_a, cont_b, cont_c, cont_d;
         Components::Lcd lcd;
         bool collecting;
