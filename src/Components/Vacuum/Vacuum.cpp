@@ -7,41 +7,30 @@ namespace CleaningDevice::Components
           speedFraction(0.f),
           motor()
     {
-        motor.attach(18);
-        xTaskCreatePinnedToCore(Vacuum::Run, "Vacuum::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->task), 1);
+        this->motor.attach(18, Servo::CHANNEL_NOT_ATTACHED, 0, 100);
     }
 
     Vacuum::~Vacuum()
     {
-        motor.detach();
-    }
-
-    void Vacuum::Run(void *pvParams)
-    {
-        auto self = static_cast<Vacuum *>(pvParams);
-
-        for (;;)
-        {
-            taskENTER_CRITICAL(&self->spinLock);
-            // 120° per call to Servo::write
-            self->motor.write(180 * self->speedFraction);
-            taskEXIT_CRITICAL(&self->spinLock);
-        }
+        this->motor.write(0.f);
+        this->motor.detach();
     }
 
     void Vacuum::Start()
     {
-        vTaskResume(this->task);
+        this->motor.write(this->speedFraction * 100.f);
     }
 
     void Vacuum::Stop()
     {
-        vTaskSuspend(this->task);
+        this->motor.write(0.f);
     }
 
     void Vacuum::SetTargetSpeed(float fraction)
     {
         fraction = std::clamp(fraction, 0.f, 1.f);
+        this->speedFraction = fraction;
+        motor.write(fraction * 100.f);
     }
 
     float Vacuum::GetTargetSpeed()
