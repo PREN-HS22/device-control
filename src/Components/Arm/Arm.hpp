@@ -18,7 +18,7 @@ namespace CleaningDevice::Components
         void Lower();
         void Raise();
         void Move(float distance, float speed = .5f);
-        void Rotate(float angle, float speed = .5f);
+        void Rotate(float angle, float rpm = 60.f);
         bool IsRaised();
         bool IsLowered();
         float GetDistance();

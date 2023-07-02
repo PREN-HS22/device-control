@@ -4,8 +4,8 @@ namespace CleaningDevice::Components
 {
     Arm::Arm(Controller &c)
         : AbstractComponent(c),
-          verticalStepper(c, AccelStepper::FULL2WIRE, 21, 19),   // Arm lowering and raising
-          horizontalStepper(c, AccelStepper::FULL2WIRE, 23, 22), // Arm rotation
+          verticalStepper(c, 1000, 19, 21),   // Arm lowering and raising
+          horizontalStepper(c, 1000, 22, 23), // Arm rotation
           motorA(c, DcMotorCfg(32, 25, 33)),                     // Compartment A (Motor closer to base)
           motorB(c, DcMotorCfg(14, 26, 27))                      // Compartment B (Motor closer to brush)
     {
@@ -39,12 +39,11 @@ namespace CleaningDevice::Components
         motorB.Stop();
     }
 
-    void Arm::Rotate(float angle, float speed)
+    void Arm::Rotate(float angle, float rpm)
     {
         // TODO: Calculate angle to steps
         long steps = (long)(angle * 100.f);
-        speed = speed * 3000.f;
-        this->horizontalStepper.MoveRelative(steps, speed);
+        this->horizontalStepper.Move(steps, rpm);
     }
 
     bool Arm::IsRaised()
