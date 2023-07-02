@@ -21,7 +21,7 @@ namespace StateMachineTest
         MockState &Handle(MockFSM &fsm, MockMsg &msg)
         {
             Serial.print("StateA::Handle(MockMsg(");
-            Serial.print(msg.GetName());
+            Serial.print(msg.GetName().c_str());
             Serial.println("))");
             return *(*StateMachineTest::states)["B"];
         }
@@ -36,7 +36,7 @@ namespace StateMachineTest
         MockState &Handle(MockFSM &fsm, MockMsg &msg)
         {
             Serial.print("StateB::Handle(MockMsg(");
-            Serial.print(msg.GetName());
+            Serial.print(msg.GetName().c_str());
             Serial.println("))");
             return *(*StateMachineTest::states)["C"];
         }
@@ -51,7 +51,7 @@ namespace StateMachineTest
         MockState &Handle(MockFSM &fsm, MockMsg &msg)
         {
             Serial.print("StateC::Handle(MockMsg(");
-            Serial.print(msg.GetName());
+            Serial.print(msg.GetName().c_str());
             Serial.println("))");
             return *(*StateMachineTest::states)["C"];
         }

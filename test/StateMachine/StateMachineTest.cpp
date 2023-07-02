@@ -18,7 +18,7 @@ namespace StateMachineTest
 
         for (auto e : *messages)
         {
-            Serial.println(e.second->GetName());
+            Serial.println(e.second->GetName().c_str());
         }
     }
 
@@ -30,13 +30,13 @@ namespace StateMachineTest
 
         for (auto e : *states)
         {
-            Serial.println(e.second->GetName());
+            Serial.println(e.second->GetName().c_str());
         }
     }
 
     void FSMTest()
     {
-        auto fsm = new MockFSM(*(*states)["A"]);
+        auto fsm = new MockFSM((*states)["A"]);
         fsm->UpdateState(*(*messages)["A"]);
         fsm->UpdateState(*(*messages)["B"]);
         fsm->UpdateState(*(*messages)["C"]);
