@@ -6,8 +6,10 @@ namespace CleaningDevice::Components
         : AbstractComponent(c),
           verticalStepper(c, 200, 22, 23),   // Arm lowering and raising, positive numbers lower, negative raise the arm
           horizontalStepper(c, 200, 19, 21), // Arm rotation
-          motorA(c, DcMotorCfg(32, 25, 33)),  // Compartment A (Motor closer to base)
-          motorB(c, DcMotorCfg(14, 26, 27))   // Compartment B (Motor closer to brush)
+          motorA(c, DcMotorCfg(32, 25, 33)), // Compartment A (Motor closer to base)
+          motorB(c, DcMotorCfg(14, 26, 27)), // Compartment B (Motor closer to brush)
+          raised(true),
+          lowered(false)
     {
     }
 
@@ -21,10 +23,14 @@ namespace CleaningDevice::Components
 
     void Arm::Lower()
     {
+        this->raised = false;
+        this->lowered = true;
     }
 
     void Arm::Raise()
     {
+        this->lowered = false;
+        this->raised = true;
     }
 
     void Arm::Move(float distance, float speed)
@@ -52,10 +58,12 @@ namespace CleaningDevice::Components
 
     bool Arm::IsRaised()
     {
+        return this->raised;
     }
 
     bool Arm::IsLowered()
     {
+        return this->lowered;
     }
 
     float Arm::GetDistance()

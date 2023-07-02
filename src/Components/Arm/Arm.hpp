@@ -10,6 +10,7 @@ namespace CleaningDevice::Components
     private:
         Stepper verticalStepper, horizontalStepper;
         DcMotor motorA, motorB;
+        bool raised, lowered;
 
     public:
         Arm(Controller &c);
