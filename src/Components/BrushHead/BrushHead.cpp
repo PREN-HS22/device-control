@@ -15,7 +15,7 @@ namespace CleaningDevice::Components
 
     void BrushHead::Start()
     {
-        this->motor.Rotate(L298N::FORWARD, 100); // Determine correct direction
+        this->motor.Rotate(L298N::FORWARD, .8f); // Determine correct direction
     }
 
     void BrushHead::Stop()
@@ -25,9 +25,7 @@ namespace CleaningDevice::Components
 
     void BrushHead::SetSpeed(float fraction)
     {
-        fraction = std::clamp(fraction, .0f, 1.f);
-        auto pwm = (std::uint16_t)(fraction * 255);
-        this->motor.Rotate(L298N::FORWARD, pwm);
+        this->motor.Rotate(L298N::FORWARD, fraction);
     }
 
     float BrushHead::GetSpeed()

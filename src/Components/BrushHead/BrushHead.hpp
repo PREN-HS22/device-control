@@ -17,7 +17,7 @@ namespace CleaningDevice::Components
 
         void Start();
         void Stop();
-        void SetSpeed(float percentage);
+        void SetSpeed(float fraction);
         float GetSpeed();
         float GetPower();
         void RaiseEmergency();
