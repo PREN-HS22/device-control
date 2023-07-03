@@ -18,6 +18,9 @@ namespace CleaningDevice::Components
 
         void Lower();
         void Raise();
+        void StopVerticalMovement();
+        void StopHorizontalMovement();
+        void StopMovement();
         void Move(float distance, float speed = .5f);
         void Rotate(float angle, float rpm = 60.f);
         bool IsRaised();
