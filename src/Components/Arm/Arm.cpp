@@ -23,12 +23,20 @@ namespace CleaningDevice::Components
 
     void Arm::Lower()
     {
+        if (this->lowered)
+        {
+            return;
+        }
         this->raised = false;
         this->lowered = true;
     }
 
     void Arm::Raise()
     {
+        if (this->raised)
+        {
+            return;
+        }
         this->lowered = false;
         this->raised = true;
     }
