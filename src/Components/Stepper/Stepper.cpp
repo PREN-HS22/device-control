@@ -80,6 +80,7 @@ namespace CleaningDevice::Components
 
     void Stepper::RaiseEmergency()
     {
+        this->Stop();
     }
 
     Report &Stepper::GetReport()
