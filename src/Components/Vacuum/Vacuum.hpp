@@ -18,6 +18,9 @@ namespace CleaningDevice::Components
         void Disable();
         void SetTargetSpeed(float fraction);
         float GetTargetSpeed();
+        void CutOff();
+        void Idle();
+        void OperationalSpeed();
         bool IsReady();
         void RaiseEmergency();
         Report &GetReport();

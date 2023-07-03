@@ -62,6 +62,36 @@ namespace CleaningDevice::Components
         return this->speedFraction;
     }
 
+    void Vacuum::CutOff()
+    {
+        if (!this->IsReady())
+        {
+            return;
+        }
+
+        this->motor.write(0);
+    }
+
+    void Vacuum::Idle()
+    {
+        if (!this->IsReady())
+        {
+            return;
+        }
+
+        this->SetTargetSpeed(.18f);
+    }
+
+    void Vacuum::OperationalSpeed()
+    {
+        if (!this->IsReady())
+        {
+            return;
+        }
+
+        this->SetTargetSpeed(.26f);
+    }
+
     bool Vacuum::IsReady()
     {
         return this->motor.attached();
