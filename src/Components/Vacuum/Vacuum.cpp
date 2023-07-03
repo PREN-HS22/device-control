@@ -74,6 +74,7 @@ namespace CleaningDevice::Components
 
     Report &Vacuum::GetReport()
     {
+        this->report["Ready"] = this->IsReady();
         this->report["Target speed"] = this->GetTargetSpeed();
 
         return this->report;
