@@ -73,7 +73,7 @@ namespace CleaningDevice::Components
     void Arm::Rotate(float angle, float rpm)
     {
         // TODO: Calculate angle to steps
-        long steps = (long)(angle * 100.f);
+        long steps = (long)(angle * (360.f / 200.f));
         this->horizontalStepper.Move(steps, rpm);
     }
 
