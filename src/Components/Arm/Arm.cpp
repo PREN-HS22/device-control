@@ -41,15 +41,18 @@ namespace CleaningDevice::Components
         this->raised = true;
     }
 
-    void Arm::StopVerticalMovement() {
+    void Arm::StopVerticalMovement()
+    {
         this->verticalStepper.Stop();
     }
 
-    void Arm::StopHorizontalMovement() {
+    void Arm::StopHorizontalMovement()
+    {
         this->horizontalStepper.Stop();
     }
 
-    void Arm::StopMovement() {
+    void Arm::StopMovement()
+    {
         this->motorA.Stop();
         this->motorB.Stop();
     }
