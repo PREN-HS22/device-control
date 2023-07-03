@@ -61,16 +61,13 @@ namespace CleaningDevice::Components
     {
         // FORWARD: Retract
         // BACKWARD: Extend
-        // TODO: Map distance and speed to the corresponding duration and PWM dutycycle
+        // TODO: Map distance and speed to the corresponding duration
         speed = std::clamp(speed, 0.f, 1.f);
+        auto duration = 0;
         auto dir = distance > 0.f ? L298N::BACKWARD : L298N::FORWARD;
-        auto pwm = (std::uint16_t)(speed * 255);
 
-        motorA.Rotate(dir, pwm);
-        motorB.Rotate(dir, pwm);
-        delay(1000);
-        motorA.Stop();
-        motorB.Stop();
+        motorA.Rotate(dir, speed, duration);
+        motorB.Rotate(dir, speed, duration);
     }
 
     void Arm::Rotate(float angle, float rpm)
