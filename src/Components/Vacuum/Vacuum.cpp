@@ -15,7 +15,7 @@ namespace CleaningDevice::Components
         this->motor.detach();
     }
 
-    void Vacuum::Start()
+    void Vacuum::Enable()
     {
         if (this->motor.attached())
         {
@@ -27,7 +27,7 @@ namespace CleaningDevice::Components
         this->motor.write(0);
     }
 
-    void Vacuum::Stop()
+    void Vacuum::Disable()
     {
         if (!this->motor.attached())
         {
@@ -54,7 +54,7 @@ namespace CleaningDevice::Components
         // Max %. loudness -> 28.0
         fraction = std::clamp(fraction, 0.f, 1.f);
         this->speedFraction = fraction;
-        motor.write((int)(fraction * 1000.f));
+        this->motor.write((int)(fraction * 1000.f));
     }
 
     float Vacuum::GetTargetSpeed()
@@ -69,7 +69,7 @@ namespace CleaningDevice::Components
 
     void Vacuum::RaiseEmergency()
     {
-        this->Stop();
+        this->Disable();
     }
 
     Report &Vacuum::GetReport()

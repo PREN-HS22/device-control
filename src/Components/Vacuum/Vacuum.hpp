@@ -14,8 +14,8 @@ namespace CleaningDevice::Components
         Vacuum(Controller &c);
         ~Vacuum();
 
-        void Start();
-        void Stop();
+        void Enable();
+        void Disable();
         void SetTargetSpeed(float fraction);
         float GetTargetSpeed();
         bool IsReady();
