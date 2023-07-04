@@ -18,7 +18,6 @@ namespace CleaningDevice
     {
         this->pubsubClient.publish((this->id + "/status").c_str(), "[Status] Shutting down");
         this->pubsubClient.disconnect();
-        WiFi.disconnect();
     }
 
     void MqttClient::OnIncoming(char *topic, std::uint8_t *payload, std::size_t length)
