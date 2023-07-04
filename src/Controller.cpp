@@ -135,7 +135,7 @@ namespace CleaningDevice
 
     void Controller::Run(void *pvParams)
     {
-        auto self = new Controller();
+        auto self = static_cast<Controller *>(pvParams);
 
         for (;;)
         {
