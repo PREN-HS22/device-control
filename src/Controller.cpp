@@ -42,7 +42,7 @@ namespace CleaningDevice
     void Controller::StopDevice()
     {
         this->conveyor.Stop();
-        this->vacuum.Stop();
+        this->vacuum.Disable();
         // Move arm to idle position
         this->arm.Raise();
 
