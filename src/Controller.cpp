@@ -4,7 +4,7 @@
 namespace CleaningDevice
 {
     Controller::Controller(WiFiClient &wc, MqttClient &mc)
-        : consumption(50, INA219_CALC_ADDRESS(0, 0)),
+        : consumption(50, 13, 4, INA219_CALC_ADDRESS(0, 0)),
           wifiClient(wc),
           mqttClient(mc),
           arm(*this),
