@@ -36,7 +36,6 @@ namespace CleaningDevice
         {
             delay(1000);
         }
-        this->conveyor.SetSpeed(.5f);
         this->conveyor.Start();
     }
 
