@@ -3,10 +3,10 @@
 
 namespace CleaningDevice
 {
-    Controller::Controller()
+    Controller::Controller(WiFiClient &wc, MqttClient &mc)
         : consumption(50, INA219_CALC_ADDRESS(0, 0)),
-          wifiClient(),
-          mqttClient(wifiClient, "", 0U, "", "", (std::string) "esp32/" + WiFi.macAddress().c_str()),
+          wifiClient(wc),
+          mqttClient(mc),
           arm(*this),
           vacuum(*this),
           conveyor(*this),

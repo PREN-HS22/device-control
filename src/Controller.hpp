@@ -36,7 +36,7 @@ namespace CleaningDevice
         bool collecting;
 
     public:
-        Controller();
+        Controller(WiFiClient &wc, MqttClient &mc);
         ~Controller();
 
         void StartDevice();
