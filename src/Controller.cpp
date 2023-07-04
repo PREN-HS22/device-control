@@ -19,7 +19,9 @@ namespace CleaningDevice
           collecting(false)
     {
         this->ConnectToWiFiAP();
+        delay(500);
         this->mqttClient.Connect();
+        delay(500);
         this->mqttClient.Publish("/status", "[Status] Controller started");
     }
 
