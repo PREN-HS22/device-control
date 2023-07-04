@@ -9,6 +9,8 @@ namespace CleaningDevice::Components
     {
     private:
         DcMotor motor;
+        bool running;
+        float speedFraction;
         PowerConsumption pc;
 
     public:
