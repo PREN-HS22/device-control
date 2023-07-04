@@ -26,6 +26,7 @@ namespace CleaningDevice
     Controller::~Controller()
     {
         this->mqttClient.Publish("/status", "[Status] Controller stopped");
+        WiFi.disconnect();
     }
 
     void Controller::StartDevice()
