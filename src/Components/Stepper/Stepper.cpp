@@ -111,6 +111,7 @@ namespace CleaningDevice::Components
 
             if (finished)
             {
+                self->driver.stop();
                 vTaskSuspend(nullptr);
             }
         }
