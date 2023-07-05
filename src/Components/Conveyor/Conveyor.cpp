@@ -5,7 +5,7 @@ namespace CleaningDevice::Components
     Conveyor::Conveyor(Controller &c)
         : AbstractComponent(c),
           stepper(c, 200, 16, 17),
-          rpm(20.f)
+          rpm(-20.f)
     {
     }
 
