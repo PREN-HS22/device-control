@@ -171,16 +171,90 @@ namespace CleaningDevice
             if (tries > 10)
             {
                 // Display connection error on LCD
+            }
         }
-    }
     }
 
     void Controller::Run(void *pvParams)
     {
         auto self = static_cast<Controller *>(pvParams);
+        pinMode(34, INPUT); // Start
+        pinMode(35, INPUT); // Stop
 
         for (;;)
         {
+            switch (self->state)
+            {
+            case State::STARTING:
+                self->state = State::COLLECTING;
+                vTaskResume(self->cleaningTask);
+                break;
+            case State::COLLECTING:
+                vTaskDelay(pdMS_TO_TICKS(500));
+                break;
+            case State::STOPPING:
+                vTaskSuspend(self->cleaningTask);
+                self->StopCollecting();
+                break;
+            case State::STOPPED:
+                self->StopCollecting();
+                self->StopDevice();
+                vTaskDelete(self->cleaningTask);
+                self->state = State::IDLE;
+                break;
+            }
+        }
+    }
+
+    void Controller::ButtonTask(void *pvParams)
+    {
+        auto self = static_cast<Controller *>(pvParams);
+        pinMode(34, INPUT); // Start
+        pinMode(35, INPUT); // Stop
+
+        for (;;)
+        {
+            if (!digitalRead(34))
+            {
+                Serial.println("34 pressed");
+
+                if (self->state == State::IDLE)
+                {
+                    self->state = State::STARTING;
+                }
+            }
+
+            if (!digitalRead(35))
+            {
+                Serial.println("35 pressed");
+
+                if (self->state == State::COLLECTING)
+                {
+                    self->state = State::STOPPING;
+                }
+                else if (self->state == State::STOPPING)
+                {
+                    self->state = State::IDLE;
+                }
+            }
+
+            vTaskDelay(pdMS_TO_TICKS(400));
+        }
+    }
+
+    void Controller::CleaningTask(void *pvParams)
+    {
+        auto self = static_cast<Controller *>(pvParams);
+
+        for (;;)
+        {
+            switch (self->state)
+            {
+            case State::STARTING:
+                self->StartDevice();
+                self->StartCollecting();
+                break;
+            }
         }
     }
 }
