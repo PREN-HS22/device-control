@@ -17,22 +17,12 @@ namespace CleaningDevice::Components
 
     void BrushHead::Start()
     {
-        if (this->running)
-        {
-            return;
-        }
-
         this->running = true;
         this->motor.Rotate(L298N::FORWARD, this->speedFraction);
     }
 
     void BrushHead::Stop()
     {
-        if (!this->running)
-        {
-            return;
-        }
-
         this->running = false;
         this->motor.Stop();
     }
