@@ -23,7 +23,8 @@ namespace CleaningDevice
             IDLE,
             STARTING,
             COLLECTING,
-            STOPPING
+            STOPPING,
+            STOPPED
         };
 
     private:
