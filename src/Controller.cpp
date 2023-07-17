@@ -51,6 +51,23 @@ namespace CleaningDevice
 
     void Controller::StartCollecting()
     {
+        this->arm.Rotate(34, 2.5f);
+        vTaskDelay(pdMS_TO_TICKS(5500));
+
+        for (int i = 0; i < 4; i++)
+        {
+            this->DoLinearMovementPattern();
+
+            if (i < 3)
+            {
+                this->arm.Rotate(-17, 2.5f);
+                vTaskDelay(pdMS_TO_TICKS(2900));
+            }
+        }
+
+        this->arm.Rotate(34, 2.5f);
+        vTaskDelay(pdMS_TO_TICKS(5500));
+        this->state = State::IDLE;
     }
 
     void Controller::StopCollecting()
