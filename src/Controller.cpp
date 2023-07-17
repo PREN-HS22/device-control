@@ -63,6 +63,42 @@ namespace CleaningDevice
 
     void Controller::DoLinearMovementPattern()
     {
+        // 1. Extend
+        this->vacuum.Idle();
+        vTaskDelay(pdMS_TO_TICKS(100));
+        this->conveyor.Start();
+        this->vacuum.OperationalSpeed();
+        this->brush.Start();
+        this->arm.Move(4500, .6f); // 6800 for complete extension
+        vTaskDelay(pdMS_TO_TICKS(4500));
+
+        for (int i = 0; i < 5; i++)
+        {
+            // 2. Vacuum pause
+            this->arm.StopAllMovements();
+            this->vacuum.Idle();
+            vTaskDelay(pdMS_TO_TICKS(200));
+            this->vacuum.CutOff();
+            vTaskDelay(pdMS_TO_TICKS(1500));
+
+            // 3. Spin up vacuum
+            this->vacuum.Idle();
+            vTaskDelay(100);
+            this->vacuum.OperationalSpeed();
+
+            // 4. Step wise retraction
+            for (int j = 0; j < 5; j++)
+            {
+                this->arm.Move(200, -.75f);
+                vTaskDelay(pdMS_TO_TICKS(800));
+            }
+        }
+
+        // 5. Finish linear movement
+        this->vacuum.Idle();
+        vTaskDelay(pdMS_TO_TICKS(200));
+        this->vacuum.CutOff();
+        vTaskDelay(pdMS_TO_TICKS(800));
     }
 
     bool Controller::IsReady()
