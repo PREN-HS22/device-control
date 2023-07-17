@@ -62,6 +62,10 @@ namespace CleaningDevice
     {
     }
 
+    void Controller::DoLinearMovementPattern()
+    {
+    }
+
     bool Controller::IsReady()
     {
         return this->arm.IsLowered() &&

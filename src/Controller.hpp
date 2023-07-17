@@ -50,5 +50,6 @@ namespace CleaningDevice
         static void CleaningTask(void *pvParams);
         static void TimerCallback(TimerHandle_t timer);
         void ConnectToWiFiAP();
+        void DoLinearMovementPattern();
     };
 }
