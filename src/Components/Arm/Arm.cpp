@@ -51,29 +51,25 @@ namespace CleaningDevice::Components
         this->horizontalStepper.Stop();
     }
 
-    void Arm::StopMovement()
+    void Arm::StopAllMovements()
     {
         this->motorA.Stop();
         this->motorB.Stop();
     }
 
-    void Arm::Move(float distance, float speed)
+    void Arm::Move(uint64_t duration, float speed)
     {
         // FORWARD: Retract
         // BACKWARD: Extend
-        // TODO: Map distance and speed to the corresponding duration
-        speed = std::clamp(speed, 0.f, 1.f);
-        auto duration = 0;
-        auto dir = distance > 0.f ? L298N::BACKWARD : L298N::FORWARD;
+        speed = std::clamp(speed, -1.f, 1.f);
+        auto dir = speed > 0.f ? L298N::BACKWARD : L298N::FORWARD;
 
-        motorA.Rotate(dir, speed, duration);
-        motorB.Rotate(dir, speed, duration);
+        motorA.Rotate(dir, std::abs(speed), duration);
+        motorB.Rotate(dir, std::abs(speed), duration);
     }
 
-    void Arm::Rotate(float angle, float rpm)
+    void Arm::Rotate(long steps, float rpm)
     {
-        // TODO: Calculate angle to steps
-        long steps = (long)(angle * (360.f / 200.f));
         this->horizontalStepper.Move(steps, rpm);
     }
 

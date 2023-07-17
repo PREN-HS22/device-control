@@ -20,9 +20,9 @@ namespace CleaningDevice::Components
         void Raise();
         void StopVerticalMovement();
         void StopHorizontalMovement();
-        void StopMovement();
-        void Move(float distance, float speed = .5f);
-        void Rotate(float angle, float rpm = 60.f);
+        void StopAllMovements();
+        void Move(uint64_t duration, float speed = .5f);
+        void Rotate(long steps, float rpm = 60.f);
         bool IsRaised();
         bool IsLowered();
         float GetDistance();
