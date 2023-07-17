@@ -16,11 +16,18 @@ namespace CleaningDevice
         this->mqttClient.Connect();
         delay(500);
         this->mqttClient.Publish("/status", "[Status] Controller started");
+        xTaskCreatePinnedToCore(Controller::Run, "Controller::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->mainTask), 0);
+        xTaskCreatePinnedToCore(Controller::ButtonTask, "Controller::ButtonTask", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->buttonTask), 0);
+        xTaskCreatePinnedToCore(Controller::CleaningTask, "Controller::CleaningTask", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->cleaningTask), 0);
+        vTaskSuspend(this->cleaningTask);
+        this->timer = xTimerCreate("Controller::TimerCallback", pdMS_TO_TICKS((uint64_t)(3.5f * 60 * 1000)), pdFALSE, this, Controller::TimerCallback);
     }
 
     Controller::~Controller()
     {
         this->mqttClient.Publish("/status", "[Status] Controller stopped");
+        vTaskDelete(this->mainTask);
+        vTaskDelete(this->buttonTask);
         WiFi.disconnect();
     }
 
