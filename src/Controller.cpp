@@ -17,6 +17,7 @@ namespace CleaningDevice
         this->mqttClient.Connect();
         delay(500);
         this->mqttClient.Publish("/status", "[Status] Controller started");
+        this->vacuum.Enable();
         xTaskCreatePinnedToCore(Controller::Run, "Controller::Run", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->mainTask), 0);
         xTaskCreatePinnedToCore(Controller::ButtonTask, "Controller::ButtonTask", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->buttonTask), 0);
         xTaskCreatePinnedToCore(Controller::CleaningTask, "Controller::CleaningTask", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->cleaningTask), 0);
@@ -29,30 +30,24 @@ namespace CleaningDevice
         this->mqttClient.Publish("/status", "[Status] Controller stopped");
         vTaskDelete(this->mainTask);
         vTaskDelete(this->buttonTask);
+        this->vacuum.Disable();
         WiFi.disconnect();
     }
 
     void Controller::StartDevice()
     {
+        xTaskCreatePinnedToCore(Controller::CleaningTask, "Controller::CleaningTask", CONFIG_ARDUINO_LOOP_STACK_SIZE, this, tskIDLE_PRIORITY, &(this->cleaningTask), 0);
+        vTaskSuspend(this->cleaningTask);
         this->arm.Lower();
-        while (!this->arm.IsLowered())
-        {
-            delay(1000);
-        }
-        this->conveyor.Start();
     }
 
     void Controller::StopDevice()
     {
         this->conveyor.Stop();
-        this->vacuum.Disable();
+        this->brush.Stop();
+        this->vacuum.CutOff();
         // Move arm to idle position
         this->arm.Raise();
-
-        while (!this->arm.IsRaised())
-        {
-            delay(1000);
-        }
     }
 
     void Controller::StartCollecting()
@@ -61,6 +56,10 @@ namespace CleaningDevice
 
     void Controller::StopCollecting()
     {
+        this->arm.StopAllMovements();
+        this->conveyor.Stop();
+        this->brush.Stop();
+        this->vacuum.CutOff();
     }
 
     void Controller::DoLinearMovementPattern()
