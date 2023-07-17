@@ -57,7 +57,6 @@ namespace CleaningDevice
         static void Run(void *pvParams);
         static void ButtonTask(void *pvParams);
         static void CleaningTask(void *pvParams);
-        static void TimerCallback(TimerHandle_t timer);
         void ConnectToWiFiAP();
         void DoLinearMovementPattern();
     };
