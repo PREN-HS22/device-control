@@ -21,18 +21,6 @@ namespace CleaningDevice::Components
     {
     }
 
-    template <typename T>
-    void Lcd::print(T msg) {
-        LiquidCrystal_I2C::print(msg);
-        this->lastMessage = std::to_string(msg);
-    }
-
-    template <typename T>
-    void Lcd::println(T msg) {
-        LiquidCrystal_I2C::println(msg);
-        this->lastMessage = std::to_string(msg);
-    }
-
     void Lcd::RaiseEmergency()
     {
         // Display emergency
@@ -41,7 +29,7 @@ namespace CleaningDevice::Components
 
     Report &Lcd::GetReport()
     {
-        this->report["Last message"] = this->lastMessage.c_str();
+        this->report["Running"] = true;
 
         return this->report;
     }
