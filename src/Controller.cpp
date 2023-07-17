@@ -4,19 +4,12 @@
 namespace CleaningDevice
 {
     Controller::Controller(WiFiClient &wc, MqttClient &mc)
-        : consumption(50, 13, 4, INA219_CALC_ADDRESS(0, 0)),
-          wifiClient(wc),
+        : wifiClient(wc),
           mqttClient(mc),
           arm(*this),
           vacuum(*this),
           conveyor(*this),
-          brush(*this),
-          cont_a(*this, Components::ContainerType::PlasticCap),
-          cont_b(*this, Components::ContainerType::CrownCap),
-          cont_c(*this, Components::ContainerType::CigaretteStump),
-          cont_d(*this, Components::ContainerType::Valuables),
-          lcd(*this, 0, 16, 2),
-          collecting(false)
+          brush(*this)
     {
         this->ConnectToWiFiAP();
         delay(500);
@@ -56,12 +49,10 @@ namespace CleaningDevice
 
     void Controller::StartCollecting()
     {
-        this->collecting = true;
     }
 
     void Controller::StopCollecting()
     {
-        this->collecting = false;
     }
 
     bool Controller::IsReady()
@@ -72,17 +63,14 @@ namespace CleaningDevice
 
     bool Controller::IsCollecting()
     {
-        return this->collecting;
     }
 
     float Controller::CurrentPowerConsumption()
     {
-        return this->consumption.GetLatestSample().Power;
     }
 
     float Controller::TotalPowerConsumption()
     {
-        return this->consumption.GetTotalPower();
     }
 
     void Controller::RaiseEmergency()
@@ -90,21 +78,11 @@ namespace CleaningDevice
         this->arm.RaiseEmergency();
         this->vacuum.RaiseEmergency();
         this->conveyor.RaiseEmergency();
-        this->cont_a.RaiseEmergency();
-        this->cont_b.RaiseEmergency();
-        this->cont_c.RaiseEmergency();
-        this->cont_d.RaiseEmergency();
-        this->lcd.RaiseEmergency();
 
         this->mqttClient.Publish("/status", JSON.stringify(this->GetReport()).c_str());
         this->mqttClient.Publish("/status", JSON.stringify(this->arm.GetReport()).c_str());
         this->mqttClient.Publish("/status", JSON.stringify(this->vacuum.GetReport()).c_str());
         this->mqttClient.Publish("/status", JSON.stringify(this->conveyor.GetReport()).c_str());
-        this->mqttClient.Publish("/status", JSON.stringify(this->cont_a.GetReport()).c_str());
-        this->mqttClient.Publish("/status", JSON.stringify(this->cont_b.GetReport()).c_str());
-        this->mqttClient.Publish("/status", JSON.stringify(this->cont_c.GetReport()).c_str());
-        this->mqttClient.Publish("/status", JSON.stringify(this->cont_d.GetReport()).c_str());
-        this->mqttClient.Publish("/status", JSON.stringify(this->lcd.GetReport()).c_str());
     }
 
     Report &Controller::GetReport()
