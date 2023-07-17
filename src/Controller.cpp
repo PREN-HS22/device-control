@@ -9,7 +9,8 @@ namespace CleaningDevice
           arm(*this),
           vacuum(*this),
           conveyor(*this),
-          brush(*this)
+          brush(*this),
+          state(State::IDLE)
     {
         this->ConnectToWiFiAP();
         delay(500);

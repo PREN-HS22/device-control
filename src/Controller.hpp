@@ -19,6 +19,14 @@ namespace CleaningDevice
           public Reportable
     {
     private:
+        enum class State {
+            IDLE,
+            STARTING,
+            COLLECTING,
+            STOPPING
+        };
+
+    private:
         Report report;
         WiFiClient wifiClient;
         MqttClient mqttClient;
@@ -26,6 +34,7 @@ namespace CleaningDevice
         Components::Vacuum vacuum;
         Components::Conveyor conveyor;
         Components::BrushHead brush;
+        State state;
         TaskHandle_t mainTask, buttonTask, cleaningTask;
         TimerHandle_t timer;
 
