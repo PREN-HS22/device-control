@@ -126,6 +126,7 @@ namespace CleaningDevice
 
     bool Controller::IsCollecting()
     {
+        return this->state == State::COLLECTING;
     }
 
     float Controller::CurrentPowerConsumption()
