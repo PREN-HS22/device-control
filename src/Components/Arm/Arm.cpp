@@ -27,6 +27,9 @@ namespace CleaningDevice::Components
         {
             return;
         }
+
+        this->verticalStepper.Move(7400, 200.f);
+        vTaskDelay(pdMS_TO_TICKS(15000));
         this->raised = false;
         this->lowered = true;
     }
@@ -37,6 +40,9 @@ namespace CleaningDevice::Components
         {
             return;
         }
+
+        this->verticalStepper.Move(-7400, 200.f);
+        vTaskDelay(pdMS_TO_TICKS(15000));
         this->lowered = false;
         this->raised = true;
     }
